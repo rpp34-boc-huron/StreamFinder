@@ -6,6 +6,8 @@ const App = () => {
       Hello World From React
     </div>
   );
+
+  //tests
 };
 
 export default App;
