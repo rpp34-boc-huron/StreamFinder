@@ -8,7 +8,6 @@ const App = () => {
   return (
     <div className="app">
       <Navbar />
-      <SearchBar />
       Hello World From React
     </div>
   );
