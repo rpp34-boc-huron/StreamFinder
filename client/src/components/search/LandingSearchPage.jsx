@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+// import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar';
 import MovieList from './MovieList';
 
@@ -15,11 +15,17 @@ import MovieList from './MovieList';
 //   );
 // }
 
-
 const LandingSearchPage = (props) => {
+  console.log('length = ', props.listOfMovies.results.length)
+
   return (
     <div>
-      <MovieList listOfMovies={props.listOfMovies.results} />
+      {
+        props.listOfMovies.results.length > 0 ?
+        <MovieList listOfMovies={props.listOfMovies.results} />
+        :
+        <p>Sorry, we couldn't find any results for your search.</p>
+      }
     </div>
   );
 }
