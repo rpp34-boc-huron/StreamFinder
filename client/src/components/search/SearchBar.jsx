@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Paper from '@mui/material/Paper';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   const [keywords, setKeywords] = useState('');
   const searchButtonStyle = { cursor: 'pointer' };
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
 
   const handleInput = (e) => {
     let input = e.target.value;
@@ -17,11 +17,13 @@ const SearchBar = () => {
   }
 
   const handleSearch = () => {
-    console.log(keywords);
+    console.log(keywords, '<- search bar');
       axios.get(`/search/movies/${keywords}`)
       .then(result => {
-        let path = `/search/movies/${keywords}`;
-        navigate(path, { state: { keywords, data: result.data } });
+        props.setSearch(true)
+        props.setMovieList(result.data)
+        // let path = `/search/movies/${keywords}`;
+        // navigate(path, { state: { keywords, data: result.data } });
       })
       .catch(err => {
         console.log('oh no....', err);
@@ -36,16 +38,6 @@ const SearchBar = () => {
     // search when type, change to KeyUp
     // handleSearch();
   }
-
-  // return (
-  //   <div className="searchBar">
-  //     <input type='text' placeholder='Search for a movie...' onChange={handleInput} onKeyDown={handleKeyDown}></input>
-  //     <button onClick={handleSearch}>
-  //       <SearchIcon style={searchButtonStyle} />
-  //     </button>
-  //   </div>
-  // );
-
 
   return (
     <Paper className="search">

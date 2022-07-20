@@ -7,7 +7,7 @@ const MovieCard = (props) => {
     <div className="movie-card">
       <div className="movie-poster">
         <a>
-        <img className="image" src={imageUrl} alt="No Image"></img>
+        <img className="image" src={imageUrl} alt={props.movie.title}></img>
         </a>
       </div>
       <div className="movie-details">

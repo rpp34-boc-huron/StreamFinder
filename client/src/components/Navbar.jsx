@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from './search/SearchBar';
-import { useLocation, useNavigate } from 'react-router-dom';
+// import { useLocation, useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import IconButton from '@mui/material/IconButton';
@@ -10,8 +10,8 @@ import Button from '@mui/material/Button';
 
 
 import '../App.css';
-const Navbar = () => {
-    const navigate = useNavigate();
+const Navbar = (props) => {
+    // const navigate = useNavigate();
     // return (
     //     <nav className="Navbar">
     //         <button onClick={() => { navigate('/'); }}>
@@ -39,8 +39,8 @@ const Navbar = () => {
                         }}
                     >&#127916; Stream Finder
                     </Typography>
-                    <SearchBar />
-                    <Button color="inherit" onClick={() => { navigate('/'); }}>Home</Button>
+                    <SearchBar setSearch={props.setSearch} setMovieList={props.setMovieList}/>
+                    <Button color="inherit">Home</Button>
                     <Button color="inherit">Profile</Button>
                     <Button color="inherit">Sign Out</Button>
                 </Toolbar>
