@@ -26,10 +26,10 @@ jobs:
       run: npm install
     
     - name: Start Server
-       run: npm run server-dev
+      run: npm run server-dev
   
     - name: Build React
-       run: npm run react-dev
+      run: npm run react-dev
 
     - name: test
-       run: npm test
+      run: npm test
