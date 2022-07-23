@@ -1,31 +1,55 @@
 import React, { useState, useEffect } from 'react';
 const axios = require('axios');
+import Recommendationslist from './RecomendationsList';
 
 const MovieSpecific2 = () => {
+  const [isLoading, setLoading] = useState(false);
   const [movieId, setMovieId] = useState(550);
   const [trailerKey, setTrailerKey] = useState('');
   const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
-    axios.get(`/trailer/${movieId}`)
-      .then(res => setTrailerKey(res.data))
-      .catch(err => console.error('get trailer error', err))
-  });
+    getTrailer();
+    getRecommendations()
+  }, [movieId]);
 
-  useEffect(() => {
-    axios.get(`/recommendations/${movieId}`)
-      .then(res => setRecommendations(res.data))
-      .catch(err => console.error('get recommendations error', err))
-  }, []);
+  const getTrailer = async () => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`/trailer/${movieId}`);
+      setTrailerKey(data);
+    } catch (err) {
+      console.error('get trailer error', err);
+    }
+    setLoading(false);
+  };
 
-  const trailerUrl = `https://www.youtube.com/embed/${trailerKey}`;
+  const getRecommendations = async () => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(`/recommendations/${movieId}`);
+      setRecommendations(data);
+    } catch (err) {
+      console.error('get recommendations error', err);
+    }
+    setLoading(false);
+  };
+
+  const trailerUri = `https://www.youtube.com/embed/`;
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    const movieId = e.target.id;
+    setMovieId(movieId);
+  }
 
   return (
     <>
     <p>MovieSpecific2</p>
-    <iframe src={trailerUrl} />
+    <iframe src={trailerUri + trailerKey} />
+    <Recommendationslist recommendations={recommendations} handleClick={handleClick} />
     </>
-  )
+  );
 }
 
 export default MovieSpecific2;
