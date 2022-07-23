@@ -16,7 +16,7 @@ import MovieList from './MovieList';
 // }
 
 const LandingSearchPage = (props) => {
-  console.log('length = ', props.listOfMovies.results.length)
+  console.log('listOfMovies => ', props.listOfMovies.results.length)
 
   return (
     <div>

@@ -42,6 +42,7 @@ const SearchBar = (props) => {
   return (
     <Paper className="search">
     <InputBase
+        // required={true}
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search for a movie..."
         inputProps={{ 'aria-label': 'search for a movie...' }}
