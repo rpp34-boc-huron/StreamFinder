@@ -3,7 +3,6 @@ import Moviesumm from './components/movieSummary';
 const App = () => {
   return (
     <div className="app">
-      Hello World From React
       <div> 
       <Moviesumm />
     </div>
