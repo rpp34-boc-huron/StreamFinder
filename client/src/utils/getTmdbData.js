@@ -1,32 +1,33 @@
 import axios from 'axios';
 
-export const getTrendingMovieData = (cb) => {
-  axios('https://api.themoviedb.org/3/trending/movie/day?api_key=2ac71823f7c353e5fc4aa330ad4a6497')
+const getTrendingMovieData = (cb) => {
+  axios('/movies/trending')
   .then(data => {
     cb(null, data);
   })
   .catch(err => {
     cb(err);
   })
-}
+};
 
-export const getHorrorMovieData = (cb) => {
-  axios('https://api.themoviedb.org/3/discover/movie?api_key=2ac71823f7c353e5fc4aa330ad4a6497&with_genres=27')
+const getHorrorMovieData = (cb) => {
+  axios('/movies/horror')
   .then(data => {
     cb(null, data);
   })
   .catch(err => {
     cb(err);
   })
-}
+};
 
-export const getActionMovieData = (cb) => {
-  axios('https://api.themoviedb.org/3/discover/movie?api_key=2ac71823f7c353e5fc4aa330ad4a6497&with_genres=28')
+const getActionMovieData = (cb) => {
+  axios('/movies/action')
   .then(data => {
     cb(null, data);
   })
   .catch(err => {
     cb(err);
   })
-}
-
+};
+console.log('*', typeof getHorrorMovieData)
+export {getTrendingMovieData, getHorrorMovieData, getActionMovieData};

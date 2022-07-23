@@ -7,6 +7,8 @@ import MovieCard from './MovieCard.jsx';
 // import '../style.css';
 
 const MovieCarousel = ({ header, apiMethod }) => {
+    console.log('header: ', header);
+    console.log('type of method: ', typeof apiMethod);
     const [trendingList, setTrendingList] = useState([]);
     const [error, setError] = useState(null);
     useEffect(() => {
@@ -20,7 +22,7 @@ const MovieCarousel = ({ header, apiMethod }) => {
         setTrendingList(data);
         }
       })
-    })
+    }, [])
 
     const sliderItems = trendingList.length > 6 ? 6 : trendingList.length;
     const items = [];
