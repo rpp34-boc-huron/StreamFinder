@@ -1,25 +1,27 @@
 import React, { useState, useEffect } from 'react';
 const axios = require('axios');
 import Recommendationslist from './RecomendationsList';
+import ScrollableTabsButtonAuto from './TrailerList';
 
 const MovieSpecific2 = () => {
   const [isLoading, setLoading] = useState(false);
-  const [movieId, setMovieId] = useState(550);
+  const [movieId, setMovieId] = useState(238);
   const [trailerKey, setTrailerKey] = useState('');
+  const [trailerKeys, setTrailerKeyS] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
-    getTrailer();
+    getTrailers();
     getRecommendations()
   }, [movieId]);
 
-  const getTrailer = async () => {
+  const getTrailers = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get(`/trailer/${movieId}`);
+      const { data } = await axios.get(`/trailers/${movieId}`);
       setTrailerKey(data);
     } catch (err) {
-      console.error('get trailer error', err);
+      console.error('get trailers error', err);
     }
     setLoading(false);
   };
@@ -46,6 +48,7 @@ const MovieSpecific2 = () => {
   return (
     <>
     <p>MovieSpecific2</p>
+    <ScrollableTabsButtonAuto />
     <iframe src={trailerUri + trailerKey} />
     <Recommendationslist recommendations={recommendations} handleClick={handleClick} />
     </>

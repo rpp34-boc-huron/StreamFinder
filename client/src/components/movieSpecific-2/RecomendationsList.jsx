@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Recommendation from './Recommendation';
 
 const Recommendationslist = ({ recommendations, handleClick }) => {
-  const backdropUri = 'https://image.tmdb.org/t/p/w185/';
+  const backdropUri = 'https://image.tmdb.org/t/p/w300/';
 
   return (
     <div id='recommendations'>

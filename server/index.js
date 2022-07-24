@@ -16,7 +16,7 @@ app.use(cors());
 //------------------movie-specific2------------------//
 const uri = 'https://api.themoviedb.org/3/movie';
 
-app.get('/trailer/:movieId', async (req, res) => {
+app.get('/trailers/:movieId', async (req, res) => {
   try {
     const { movieId } = req.params;
     const apiRes = await axios.get(`${uri}/${movieId}/videos`, {
@@ -25,6 +25,8 @@ app.get('/trailer/:movieId', async (req, res) => {
         language: 'en-US'
       }
     });
+    // const trailerKeys = apiRes.data.results.map(trailer => trailer.key);
+    // res.status(200).send(trailerKeys);
     const trailerKey = apiRes.data.results[0].key;
     res.status(200).send(trailerKey);
   } catch (err) {
@@ -36,8 +38,6 @@ app.get('/trailer/:movieId', async (req, res) => {
 app.get('/recommendations/:movieId', async (req, res) => {
   try {
     const { movieId } = req.params;
-    console.log(movieId);
-    debugger;
     const apiRes = await axios.get(`${uri}/${movieId}/recommendations`, {
       params: {
         api_key: process.env.TMDB_API_KEY,

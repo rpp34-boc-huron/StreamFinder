@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MovieSpecific2 from './components/MovieSpecific2';
+import MovieSpecific2 from './components/movieSpecific-2/MovieSpecific2';
 
 const App = () => {
   return (
