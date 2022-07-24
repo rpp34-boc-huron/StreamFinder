@@ -25,5 +25,5 @@ jobs:
     - name: Build
       run: |
         npm install
-        node server/index.js & npx wait-on http://localhost:8080/
         npx webpack
+        sudo pm2 restart Server
