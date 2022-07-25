@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useReducer } from "react";
-import { summaryFinder, posterFinder, providerFinder } from '../../../server/controllers/movieSummaryHelper.js'
+import { summaryFinder, posterFinder, providerFinder } from '../../../../server/controllers/movieSummaryHelper.js'
 import './movieSum.css';
 import costs from "./providersCost.js";
 import Chart from 'react-apexcharts';
