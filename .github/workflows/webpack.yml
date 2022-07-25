@@ -33,4 +33,5 @@ jobs:
         cd /home/ubuntu/actions-runner/_work/StreamFinder/StreamFinder
         touch .env
         echo API_KEY=${{ secrets.API_KEY }} >> .env
+        cat .env
 
