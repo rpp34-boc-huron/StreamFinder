@@ -16,12 +16,6 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
-    
-    - name: create env file
-      run: |
-        touch .env
-        echo API_KEY=${{ secrets.API_KEY }} >> .env
-        cat .env
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
@@ -33,5 +27,12 @@ jobs:
         npm install
         npx webpack
         sudo pm2 restart Server
+        
+    - name: create env file
+      run: |
+        cd /home/ubuntu/actions-runner/_work/StreamFinder/StreamFinder
+        touch .env
+        echo API_KEY=${{ secrets.API_KEY }} >> .env
+        cat .env
         
 
