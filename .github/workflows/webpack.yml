@@ -14,6 +14,9 @@ jobs:
       matrix:
         node-version: [16.x]
     
+    env:
+      API_KEY: ${{ secrets.API_KEY }}
+    
     steps:
     - uses: actions/checkout@v3
 
@@ -27,12 +30,5 @@ jobs:
         npm install
         npx webpack
         sudo pm2 restart Server
-        
-    - name: create env file
-      run: |
-        cd /home/ubuntu/actions-runner/_work/StreamFinder/StreamFinder
-        touch .env
-        echo API_KEY=${{ secrets.API_KEY }} >> .env
-        cat .env
         
 
