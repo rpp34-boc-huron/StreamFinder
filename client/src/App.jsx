@@ -5,6 +5,8 @@ import './style.css';
 const App = () => {
   return (
     <div className="app">
+      Hello World From React
+      Test CI/CD
       <LandingPage />
     </div>
   );
