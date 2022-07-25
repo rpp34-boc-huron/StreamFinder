@@ -27,3 +27,5 @@ jobs:
         npm install
         npx webpack
         sudo pm2 restart Server
+      env:
+        API_KEY: ${{ secrets.API_KEY }}
