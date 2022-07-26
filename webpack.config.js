@@ -15,13 +15,19 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
-      }
+      },
+      {
+        test: /\.(jpg|png|jpeg)$/,
+        use: {
+          loader: 'url-loader',
+        },
+      },
     ]
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
   output: {
     path: path.resolve(__dirname, "client/public/dist/"),
-    publicPath: "client/public//dist/",
+    publicPath: "client/public/dist/",
     filename: "bundle.js"
   }
 };
