@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const moviesRoutes = require('./routes/movies.js');
+console.log(process.env);  //checking cd/ci .env
 
 const app = express();
 const port = process.env.port || 8080;
