@@ -29,5 +29,5 @@ const getActionMovieData = (cb) => {
     cb(err);
   })
 };
-console.log('*', typeof getHorrorMovieData)
+// console.log('*', typeof getHorrorMovieData)
 export {getTrendingMovieData, getHorrorMovieData, getActionMovieData};
