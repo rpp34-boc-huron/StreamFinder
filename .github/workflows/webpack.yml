@@ -35,5 +35,6 @@ jobs:
         npm install
         npx webpack
         sudo pm2 restart Server --update-env
+        sudo pm2 reload ecosystem.json --update-env
         
 
