@@ -14,21 +14,28 @@ jobs:
       matrix:
         node-version: [16.x]
     
-    env:
-      API_KEY: ${{ secrets.API_KEY }}
-    
     steps:
+        
     - uses: actions/checkout@v3
+    
+    - name: create env file
+      run: |
+        cd /home/ubuntu/actions-runner/_work/StreamFinder/StreamFinder/server
+        touch .env
+        echo API_KEY=${{ secrets.API_KEY }} >> .env
+        cat .env
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-
+      env:
+        ENV-2: '222'
+      
     - name: Build
       run: |
         npm install
         npx webpack
-        sudo pm2 restart Server
+        sudo pm2 restart Server --update-env
         
 
