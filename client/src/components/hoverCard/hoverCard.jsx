@@ -87,7 +87,7 @@ export default function HoverCard() {
                 />
               </CardActionArea>
             </Card>
-            <AddToFavorites event={{addToFavorite}}/>
+            <AddToFavorites event={{addToFavorites}}/>
             <AddToList />
             </Stack>
           {/* </CardActions> */}
