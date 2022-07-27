@@ -15,6 +15,24 @@ import MovieList from './MovieList';
 //   );
 // }
 
+// const LandingSearchPage = (props) => {
+//   console.log('listOfMovies => ', props.listOfMovies.results.length)
+
+//   return (
+//     <div>
+//       {
+//         props.listOfMovies.results.length > 0 ?
+//         <MovieList listOfMovies={props.listOfMovies.results} />
+//         :
+//         <p>Sorry, we couldn't find any results for your search.</p>
+//       }
+//     </div>
+//   );
+// }
+
+
+
+import MovieCarousel from '../LandingPage/MovieCarousel.jsx';
 const LandingSearchPage = (props) => {
   console.log('listOfMovies => ', props.listOfMovies.results.length)
 

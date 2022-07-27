@@ -29,5 +29,15 @@ const getActionMovieData = (cb) => {
     cb(err);
   })
 };
+
+const getSearchResultsData = (cb) => {
+  axios('/search/movies')
+  .then(data => {
+    cb(null, data);
+  })
+  .catch(err => {
+    cb(err);
+  })
+};
 // console.log('*', typeof getHorrorMovieData)
-export {getTrendingMovieData, getHorrorMovieData, getActionMovieData};
+export {getTrendingMovieData, getHorrorMovieData, getActionMovieData, getSearchResultsData};

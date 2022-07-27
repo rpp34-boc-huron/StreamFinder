@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from './search/SearchBar';
 // import { useLocation, useNavigate } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import AppBar from '@mui/material/AppBar';
-import IconButton from '@mui/material/IconButton';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
+import { Box, AppBar, IconButton, Toolbar, Typography, Button, CssBaseline, useScrollTrigger} from '@mui/material';
 import PropTypes from 'prop-types';
 import '../App.css';
 
