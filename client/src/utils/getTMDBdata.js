@@ -30,14 +30,21 @@ const getActionMovieData = (cb) => {
   })
 };
 
-const getSearchResultsData = (cb) => {
-  axios('/search/movies')
-  .then(data => {
-    cb(null, data);
-  })
-  .catch(err => {
-    cb(err);
-  })
-};
-// console.log('*', typeof getHorrorMovieData)
-export {getTrendingMovieData, getHorrorMovieData, getActionMovieData, getSearchResultsData};
+const getMovieDetails = async (id) => {
+      try {
+        const {data:response} = await axios.get(`/hover/details/${id}`)
+         return response
+      }
+      catch (error) {
+        console.log(error);
+      }
+}
+const addToFavorites = async (userID, id) => {
+
+}
+
+const addToList = async (userID, id) => {
+
+}
+console.log('*', typeof getHorrorMovieData)
+export { addToList, addToFavorites, getMovieDetails, getTrendingMovieData, getHorrorMovieData, getActionMovieData };
