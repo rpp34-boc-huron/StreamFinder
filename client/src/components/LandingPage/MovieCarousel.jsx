@@ -16,7 +16,7 @@ const MovieCarousel = ({ header, apiMethod }) => {
         if (err) {
           setError(err);
         } else {
-          console.log('res.data.results: ', res.data.results);
+          // console.log('res.data.results: ', res.data.results);
           let data = res.data.results.map(movie => {
             return {'image': `https://image.tmdb.org/t/p/w185${movie.poster_path}`};
           });

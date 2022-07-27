@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-// import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import Paper from '@mui/material/Paper';
+import {Paper, InputBase, IconButton} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import InputBase from '@mui/material/InputBase';
-import IconButton from '@mui/material/IconButton';
+import { getSearchMovieResultsData } from '../../utils/getTMDBdata';
 
 const SearchBar = (props) => {
   const [keywords, setKeywords] = useState('');
   const searchButtonStyle = { cursor: 'pointer' };
-  // let navigate = useNavigate();
 
   const handleInput = (e) => {
     let input = e.target.value;
@@ -18,12 +15,11 @@ const SearchBar = (props) => {
 
   const handleSearch = () => {
     console.log(keywords, '<- search bar');
-      axios.get(`/search/movies/${keywords}`)
-      .then(result => {
+      getSearchMovieResultsData(keywords)
+      .then(data => {
+        // console.log('search bar result?????', data)
         props.setSearch(true)
-        props.setMovieList(result.data)
-        // let path = `/search/movies/${keywords}`;
-        // navigate(path, { state: { keywords, data: result.data } });
+        props.setMovieList(data.results)
       })
       .catch(err => {
         console.log('oh no....', err);
@@ -32,7 +28,7 @@ const SearchBar = (props) => {
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      console.log('search via Enter');
+      // console.log('search via Enter');
       handleSearch();
     }
     // search when type, change to KeyUp

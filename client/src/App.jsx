@@ -16,7 +16,6 @@ const App = () => {
       <Navbar setSearch={setSearchStatus} setMovieList={setListOfMovies}/>
       Hello World From React
       {searchStatus ? <LandingSearchPage listOfMovies={listOfMovies} setSearch={setSearchStatus} /> : <LandingPage />}
-      Test CI/CD
       <LandingPage />
 
 
