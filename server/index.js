@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const moviesRoutes = require('../server/routes/hoverCard.js');
+const moviesRoutes = require('../server/routes/movies.js');
 const hoverRoutes = require('../server/routes/hoverCard.js');
 const app = express();
 const port = process.env.port || 8080;
