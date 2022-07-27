@@ -7,10 +7,13 @@ const App = () => {
 
   return (
     <div className="app">
-      <MultiActionAreaCard></MultiActionAreaCard>
       Hello World From React
       Test CI/CD
       <LandingPage />
+
+
+      <MultiActionAreaCard></MultiActionAreaCard>
+
     </div>
   );
 };

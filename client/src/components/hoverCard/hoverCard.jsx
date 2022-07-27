@@ -1,35 +1,57 @@
 import {Card, CardContent, CardMedia, CardActionArea, CardActions,Typography, Stack } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AddToFavorites from './addToFavoritesButton';
 import AddToList from './addToListButton';
-import Netflix from '../../../assets/netflix.png';
 import HBO from '../../../assets/hbo2.png';
 import hulu from '../../../assets/hulu.png';
 import Netflix2 from '../../../assets/netflix3.jpeg';
+import { getMovieDetails, addToFavorites, addToList } from '../../utils/getTMDBdata';
 
 
 export default function HoverCard() {
-  const addToFavorite = e => {
-    console.log(Netflix)
-  }
+
+  const [movieTitle, setMovieTitle] = useState('');
+  const [movieDescription, setMovieDescription] = useState('');
+  const [movieImage, setMovieImage] = useState('');
+  const id = 2134
+
+  useEffect(() => {
+    getMovieDetails(id)
+      .then((data) => {
+        console.log(data)
+        const title = data.original_title;
+        const description = data.overview;
+        const poster_path = data.poster_path;
+        const image = `https://image.tmdb.org/t/p/w500${poster_path}`
+        setMovieTitle(title)
+        setMovieDescription(description)
+        setMovieImage(image)
+      })
+  })
     return (
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 345, maxHeight: 305 }}>
         <CardActionArea>
           <CardMedia
             component="img"
-            height="130"
-            image="https://www.denofgeek.com/wp-content/uploads/2016/01/kung-fu-panda-3.jpg?fit=910%2C564"
-            alt="kungfu panda"
+            height="140"
+            image={movieImage}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Kung Fu Panda 2
+              {movieTitle}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-            Po and his allies (Tigress, Monkey, Viper, Crane, Mantis) travel to Gongmen City to stop the evil peacock Lord Shen from conquering China, while also rediscovering Po's forgotten past.
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{overflow: "hidden",
+                   textOverflow: "ellipsis"
+                  }}
+            >
+            {movieDescription}
             </Typography>
           </CardContent>
         </CardActionArea>
+
         <Stack
           spacing={1}
           direction="row"
@@ -38,29 +60,29 @@ export default function HoverCard() {
         >
 
           {/* <CardActions > */}
-              <Card sx={{minWidth:50, maxWidth:60}}>
-                <CardActionArea href="https://www.netflix.com/title/70126574" target="_blank" >
+              <Card sx={{minWidth:30, maxWidth:30}}>
+                <CardActionArea href="https://www.netflix.com/title/70126574" target="_blank" sx={{height: 30}}>
                   <CardMedia
                         component="img"
-                        height="60"
+                        height="30"
                         image={Netflix2}
                   />
                 </CardActionArea>
               </Card>
-            <Card sx={{minWidth:50, maxWidth: 60}}>
-              <CardActionArea href="https://hulu.com" target="_blank">
+            <Card sx={{minWidth:30, maxWidth: 30}}>
+              <CardActionArea href="https://hulu.com" target="_blank" sx={{maxHeight: 30}}>
                 <CardMedia
                       component="img"
-                      height="60"
+                      height="30"
                       image={hulu}
                 />
               </CardActionArea>
             </Card>
-            <Card sx={{minWidth:50, maxWidth: 60}}>
+            <Card sx={{minWidth:30, maxWidth: 30}}>
               <CardActionArea href="https://hbo.com" target="_blank">
                 <CardMedia
                       component="img"
-                      height="60"
+                      height="30"
                       image={HBO}
                 />
               </CardActionArea>

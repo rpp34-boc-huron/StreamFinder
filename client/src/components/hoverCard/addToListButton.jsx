@@ -19,12 +19,12 @@ export default function addToList() {
           aria-label="add"
           variant="contained"
           sx={{
-            minWidth: 60,
-            height: 60,
+            minWidth: 25,
+            height: 30,
             borderRadius: 1,
             // border: "1px solid",
             // borderColor: "primary.main",
-            backgroundColor: '#edeff2',
+            // backgroundColor: '#edeff2',
             "& .MuiButton-startIcon": { margin: 0 }}}
           >
           <Add onClick={actionWrapper} />

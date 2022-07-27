@@ -4,10 +4,10 @@
   margin: 10px;
   height: 240px;
 }
-
-.MuiPaper-root {
+/* note for Derek commented this out because it's moving the netflix icon down some how?? */
+/* .MuiPaper-root {
   margin: 10px;
-}
+} */
 
 .carousel-header {
   font-size: 20px;

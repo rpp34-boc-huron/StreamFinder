@@ -1,8 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const moviesRoutes = require('./routes/movies.js');
-
+const moviesRoutes = require('../server/routes/hoverCard.js');
+const hoverRoutes = require('../server/routes/hoverCard.js');
 const app = express();
 const port = process.env.port || 8080;
 const publicPath = path.join(__dirname, '..', 'client', 'public');
@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.static(publicPath));
 
 app.use('/movies', moviesRoutes);
-
+app.use('/hover', hoverRoutes);
 app.get('/', (req, res) => {
   res.sendFile(indexHtmlPath);
 });

@@ -11,6 +11,7 @@ export default function addToFavorites({event}) {
   console.log(addToFavorite)
   const actionWrapper = e => {
     handleOpen()
+    //pass in userID and movieID
     addToFavorite()
   }
   const buttonSides = 64;
@@ -21,12 +22,12 @@ export default function addToFavorites({event}) {
       aria-label="favorites"
       variant="contained"
       sx={{
-        minWidth: 60,
-        height: 60,
+        minWidth: 25,
+        height: 30,
         borderRadius: 1,
         // border: "1px solid",
         // borderColor: "primary.main",
-        backgroundColor: '#edeff2',
+        // backgroundColor: '#edeff2',
         "& .MuiButton-startIcon": { margin: 0 }
       }}>
       <FavoriteIcon onClick={actionWrapper} />
