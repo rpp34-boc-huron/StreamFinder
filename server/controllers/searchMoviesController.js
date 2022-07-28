@@ -1,6 +1,6 @@
 const axios = require('axios');
-// const API_KEY = process.env.API_KEY;
-const API_KEY = require('../../apiToken.js').TOKEN;
+const API_KEY = process.env.API_KEY;
+// const API_KEY = require('../../apiToken.js').TOKEN;
 
 // const searchMovies = (keywords) => {
 //   return axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${keywords}&page=1`)

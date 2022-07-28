@@ -2,8 +2,8 @@ const axios = require('axios');
 const express = require('express');
 const router = express.Router();
 require('dotenv').config();
-// const API_KEY = process.env.API_KEY;
-const API_KEY = require('../../apiToken.js').TOKEN;
+const API_KEY = process.env.API_KEY;
+// const API_KEY = require('../../apiToken.js').TOKEN;
 
 
 router.get('/trending', (req, res) => {
