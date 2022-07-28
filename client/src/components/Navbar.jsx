@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from './search/SearchBar';
-// import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Box, AppBar, IconButton, Toolbar, Typography, Button, CssBaseline, useScrollTrigger} from '@mui/material';
 import PropTypes from 'prop-types';
 import '../App.css';
@@ -64,7 +64,7 @@ const Navbar = (props) => {
                             >&#127916; Stream Finder
                             </Typography>
                             <SearchBar setSearch={props.setSearch} setMovieList={props.setMovieList} />
-                            <Button color="inherit">Home</Button>
+                            <Button component={Link} to="/" color="inherit">Home</Button>
                             <Button color="inherit">Profile</Button>
                             <Button color="inherit">Sign Out</Button>
                         </Toolbar>

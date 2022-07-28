@@ -24,6 +24,8 @@ const SearchBar = (props) => {
       .catch(err => {
         console.log('oh no....', err);
       })
+      // props.setSearch(true)
+
   }
 
   const handleKeyDown = (e) => {

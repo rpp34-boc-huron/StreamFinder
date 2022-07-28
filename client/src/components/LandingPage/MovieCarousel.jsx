@@ -8,7 +8,7 @@ import MovieCard from './MovieCard.jsx';
 
 const MovieCarousel = ({ header, apiMethod }) => {
     // console.log('header: ', header);
-    // console.log('type of method: ', typeof apiMethod);
+    console.log('type of method: ', typeof apiMethod);
     const [trendingList, setTrendingList] = useState([]);
     const [error, setError] = useState(null);
     useEffect(() => {

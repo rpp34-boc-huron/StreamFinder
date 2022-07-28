@@ -48,6 +48,18 @@ const addToList = async (userID, id) => {
 }
 
 
+// const getSearchMovieResultsData = (keywords, page, cb) => {
+//   page = page || 1;
+//   axios(`/search/movies/${keywords}/${page}`)
+//   .then(result => {
+//     console.log('SEARCH MOVIES',result.data)
+//     cb(null, result.data);
+//   })
+//   .catch(err => {
+//     cb(err);
+//   })
+// };
+
 const getSearchMovieResultsData = async (keywords, page) => {
   page = page || 1;
     try {

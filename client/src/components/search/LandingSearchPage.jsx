@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar';
 import MovieList from './MovieList';
+
+import { getSearchMovieResultsData } from '../../utils/getTMDBdata.js';
 import MovieCarousel from '../LandingPage/MovieCarousel.jsx';
 
+import Carousel from 'react-material-ui-carousel';
+import { Paper, Button, Card, Grid } from '@mui/material';
+
 const LandingSearchPage = (props) => {
-  // console.log('listOfMovies => ', props.listOfMovies)
+  console.log('listOfMovies => ', props.listOfMovies)
   return (
     <div>
       {

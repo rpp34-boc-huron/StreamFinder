@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import MovieCard from './MovieCard';
 
+// import MovieCard from '../LandingPage/MovieCard';
+
 const MovieList = (props) => {
   return (
     <div className="movie-list">
