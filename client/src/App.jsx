@@ -3,20 +3,19 @@ import MultiActionAreaCard from './components/hoverCard/hoverCard.jsx';
 import LandingPage from  './components/LandingPage/LandingPage.jsx'
 import './style.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import LandingSearchPage from './components/search/LandingSearchPage';
 
 const App = () => {
   const [searchStatus, setSearchStatus] = useState(false);
-  const [listOfMovies, setListOfMovies] = useState(null);
+  const [searchMovieData, setSearchMovieData] = useState([]);
 
   return (
     <div className="app">
-      <Navbar setSearch={setSearchStatus} setMovieList={setListOfMovies}/>
+      <Navbar setSearch={setSearchStatus} setSearchMovieData={setSearchMovieData}/>
       Hello World From React
-      {searchStatus ? <LandingSearchPage listOfMovies={listOfMovies} setSearch={setSearchStatus} /> : <LandingPage />}
-
+      {searchStatus ? <LandingSearchPage searchMovieData={searchMovieData} setSearch={setSearchStatus} /> : <LandingPage />}
       <MultiActionAreaCard></MultiActionAreaCard>
 
     </div>

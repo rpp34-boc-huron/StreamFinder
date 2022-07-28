@@ -17,14 +17,12 @@ const SearchBar = (props) => {
     console.log(keywords, '<- search bar');
       getSearchMovieResultsData(keywords)
       .then(data => {
-        // console.log('search bar result?????', data)
         props.setSearch(true)
-        props.setMovieList(data.results)
+        props.setSearchMovieData(data)
       })
       .catch(err => {
         console.log('oh no....', err);
       })
-      // props.setSearch(true)
 
   }
 
@@ -40,7 +38,6 @@ const SearchBar = (props) => {
   return (
     <Paper className="search">
     <InputBase
-        // required={true}
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search for a movie..."
         inputProps={{ 'aria-label': 'search for a movie...' }}

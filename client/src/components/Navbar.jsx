@@ -5,7 +5,6 @@ import { Box, AppBar, IconButton, Toolbar, Typography, Button, CssBaseline, useS
 import PropTypes from 'prop-types';
 import '../App.css';
 
-
 // function ElevationScroll(props) {
 //     const { children, window } = props;
 //     // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -45,7 +44,7 @@ const Navbar = (props) => {
     return (
         <React.Fragment>
             <CssBaseline />
-            {/* <Box sx={{ flexGrow: 1 }} className="navigation"> */}
+            <Box sx={{ flexGrow: 1 }} className="navigation">
                 {/* <ElevationScroll {...props}> */}
                     <AppBar position="static">
                         <Toolbar>
@@ -63,14 +62,14 @@ const Navbar = (props) => {
                                 }}
                             >&#127916; Stream Finder
                             </Typography>
-                            <SearchBar setSearch={props.setSearch} setMovieList={props.setMovieList} />
+                            <SearchBar setSearch={props.setSearch} setSearchMovieData={props.setSearchMovieData} />
                             <Button component={Link} to="/" color="inherit">Home</Button>
                             <Button color="inherit">Profile</Button>
                             <Button color="inherit">Sign Out</Button>
                         </Toolbar>
                     </AppBar>
                 {/* </ElevationScroll> */}
-            {/* </Box> */}
+            </Box>
         </React.Fragment>
     );
 };

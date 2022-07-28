@@ -1,25 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../Navbar';
 import MovieList from './MovieList';
 
-import { getSearchMovieResultsData } from '../../utils/getTMDBdata.js';
-import MovieCarousel from '../LandingPage/MovieCarousel.jsx';
-
-import Carousel from 'react-material-ui-carousel';
-import { Paper, Button, Card, Grid } from '@mui/material';
+// make own carousel
+import { Container, Pagination, Stack } from '@mui/material';
 
 const LandingSearchPage = (props) => {
-  console.log('listOfMovies => ', props.listOfMovies)
+  console.log('searchMovieData => ', props.searchMovieData)
+  // return (
+  //   <div>
+  //     {
+  //       props.listOfMovies.length > 0 ?
+  //       <MovieList listOfMovies={props.listOfMovies} />
+  //       :
+  //       <p>Sorry, we couldn't find any results for your search.</p>
+  //     }
+  //   </div>
+  // );
+
+  const [page, setPage] = useState(1);
+  const handleChange = (event, value) => {
+    console.log('page???', value)
+    setPage(value);
+  };
+
   return (
-    <div>
-      {
-        props.listOfMovies.length > 0 ?
-        <MovieList listOfMovies={props.listOfMovies} />
+    <>
+      {props.searchMovieData.results.length > 0
+        ?
+        <Container sx={{ py: 10 }} maxWidth="md">
+          <MovieList listOfMovies={props.searchMovieData.results} />
+          <Stack spacing={4} sx={{ pt: '50px' }}>
+            <Pagination count={props.searchMovieData.total_pages}  page={page} onChange={handleChange}  />
+          </Stack>
+        </Container>
         :
         <p>Sorry, we couldn't find any results for your search.</p>
       }
-    </div>
+    </>
   );
 }
 
 export default LandingSearchPage;
+
+
+
+
