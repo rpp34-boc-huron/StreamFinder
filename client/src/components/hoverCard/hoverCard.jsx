@@ -38,22 +38,27 @@ export default function HoverCard() {
       .then((data) => {
         const movieInfo = data.movieInfo
         const streaming = data.streaming.results.US.flatrate
-
-        console.log(streaming)
         const netflixClick = getProvider(streaming, 'Netflix');
         const huluClick = getProvider(streaming, 'Hulu');
         const HBOClick = getProvider(streaming, 'HBO Now');
-
         const title = movieInfo.original_title;
         const description = movieInfo.overview;
         const poster_path = movieInfo.poster_path;
         const image = `https://image.tmdb.org/t/p/w500${poster_path}`
+        if(!netflixClick){
+          setNetflix(Netflix)
+        }
+        if(!huluClick){
+          setHulu(hulu)
+        }
+        if(!HBOClick){
+          setHBO(HBO)
+        }
         setMovieTitle(title)
         setMovieDescription(description)
         setMovieImage(image)
         setNetflixClick(netflixClick)
         setHuluClick(huluClick)
-        console.log(hboState)
         setHBOClick(HBOClick)
       })
   })
@@ -93,23 +98,21 @@ export default function HoverCard() {
           justifyContent="space-evenly"
           sx={{paddingBottom: "2px"}}
         >
-
-          {/* <CardActions > */}
               <Card sx={{minWidth:30, maxWidth:30}}>
-                <CardActionArea href="https://www.netflix.com/title/70126574" target="_blank" sx={{height: 30}}>
+                <CardActionArea href="https://www.netflix.com/" target="_blank" disabled={netflixState} sx={{height: 30}}>
                   <CardMedia
                         component="img"
                         height="30"
-                        image={Netflix}
+                        image={netflixIcon}
                   />
                 </CardActionArea>
               </Card>
             <Card sx={{minWidth:30, maxWidth: 30}}>
-              <CardActionArea href="https://hulu.com" target="_blank" sx={{maxHeight: 30}}>
+              <CardActionArea href="https://hulu.com" target="_blank" disabled={huluState} sx={{maxHeight: 30}}>
                 <CardMedia
                       component="img"
                       height="30"
-                      image={hulu}
+                      image={huluIcon}
                 />
               </CardActionArea>
             </Card>
@@ -118,14 +121,13 @@ export default function HoverCard() {
                 <CardMedia
                       component="img"
                       height="30"
-                      image={HBO}
+                      image={hboIcon}
                 />
               </CardActionArea>
             </Card>
             <AddToFavorites event={{addToFavorites}} movieID={{id}}/>
             <AddToList event={{addToList}} movieID={{id}} />
             </Stack>
-          {/* </CardActions> */}
       </Card>
     );
 }
