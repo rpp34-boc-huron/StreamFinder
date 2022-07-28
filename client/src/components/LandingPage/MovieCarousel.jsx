@@ -7,8 +7,8 @@ import MovieCard from './MovieCard.jsx';
 // import '../style.css';
 
 const MovieCarousel = ({ header, apiMethod }) => {
-    console.log('header: ', header);
-    console.log('type of method: ', typeof apiMethod);
+    // console.log('header: ', header);
+    // console.log('type of method: ', typeof apiMethod);
     const [trendingList, setTrendingList] = useState([]);
     const [error, setError] = useState(null);
     useEffect(() => {
@@ -16,10 +16,12 @@ const MovieCarousel = ({ header, apiMethod }) => {
         if (err) {
           setError(err);
         } else {
+          // console.log('res.data.results: ', res.data.results);
           let data = res.data.results.map(movie => {
             return {'image': `https://image.tmdb.org/t/p/w185${movie.poster_path}`};
-        });
-        setTrendingList(data);
+          });
+          setTrendingList(data);
+
         }
       })
     }, [])

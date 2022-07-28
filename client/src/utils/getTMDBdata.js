@@ -46,5 +46,27 @@ const addToFavorites = async (userID, id) => {
 const addToList = async (userID, id) => {
 
 }
-console.log('*', typeof getHorrorMovieData)
-export { addToList, addToFavorites, getMovieDetails, getTrendingMovieData, getHorrorMovieData, getActionMovieData };
+
+
+const getSearchMovieResultsData = async (keywords, page) => {
+  page = page || 1;
+    try {
+      const {data:response} = await axios.get(`/search/movies/${keywords}/${page}`)
+       return response;
+    }
+    catch (error) {
+      console.log(error);
+    }
+};
+
+
+// console.log('*', typeof getHorrorMovieData)
+export {
+  addToList,
+  addToFavorites,
+  getMovieDetails,
+  getTrendingMovieData,
+  getHorrorMovieData,
+  getActionMovieData,
+  getSearchMovieResultsData
+ };
