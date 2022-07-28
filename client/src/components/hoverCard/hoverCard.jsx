@@ -18,7 +18,7 @@ export default function HoverCard() {
   useEffect(() => {
     getMovieDetails(id)
       .then((data) => {
-        console.log(data)
+        // console.log(data)
         const title = data.original_title;
         const description = data.overview;
         const poster_path = data.poster_path;
