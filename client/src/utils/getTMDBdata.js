@@ -40,11 +40,29 @@ const getMovieDetails = async (id) => {
     }
 }
 const addToFavorites = async (userID, id) => {
-
+  try {
+    const response = await axios.post('/hover/favorites', {
+      userID: userID,
+      movieID: id
+    })
+    console.log(response)
+  }
+  catch (error){
+    console.log(error)
+  }
 }
 
 const addToList = async (userID, id) => {
-
+  try {
+    const response = await axios.post('/hover/list', {
+      userID: userID,
+      movieID: id
+    })
+    console.log(response)
+  }
+  catch (error){
+    console.log(error)
+  }
 }
 
 

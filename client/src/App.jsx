@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MultiActionAreaCard from './components/hoverCard/hoverCard.jsx';
+import HoverCard from './components/hoverCard/hoverCard.jsx';
 import LandingPage from  './components/LandingPage/LandingPage.jsx'
 import './style.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -17,7 +17,7 @@ const App = () => {
       Hello World From React
       {searchStatus ? <LandingSearchPage listOfMovies={listOfMovies} setSearch={setSearchStatus} /> : <LandingPage />}
 
-      <MultiActionAreaCard></MultiActionAreaCard>
+      <HoverCard></HoverCard>
 
     </div>
   );
