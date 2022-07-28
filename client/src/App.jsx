@@ -15,11 +15,11 @@ const App = () => {
   return (
     <div className="app">
       <Navbar setSearch={setSearchStatus} setMovieList={setListOfMovies}/>
-      {/* Hello World From React
+      Hello World From React
       {searchStatus ? <LandingSearchPage listOfMovies={listOfMovies} setSearch={setSearchStatus} /> : <LandingPage />}
 
-      <MultiActionAreaCard></MultiActionAreaCard> */}
-      <UserProfile />
+      <MultiActionAreaCard></MultiActionAreaCard>
+      {/* <UserProfile /> */}
 
     </div>
   );
