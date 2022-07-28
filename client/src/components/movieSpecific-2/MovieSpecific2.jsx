@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-const axios = require('axios');
-import Recommendationslist from './RecomendationsList';
+import RecomList from './RecomList';
 import ScrollableTabsButtonAuto from './TrailerList';
+const axios = require('axios');
 
-const MovieSpecific2 = () => {
+export default function MovieSpecific2 () {
   const [isLoading, setLoading] = useState(false);
   const [movieId, setMovieId] = useState(238);
   const [trailerKey, setTrailerKey] = useState('');
@@ -50,9 +50,7 @@ const MovieSpecific2 = () => {
     <p>MovieSpecific2</p>
     <ScrollableTabsButtonAuto />
     <iframe src={trailerUri + trailerKey} />
-    <Recommendationslist recommendations={recommendations} handleClick={handleClick} />
+    <RecomList recommendations={recommendations} handleClick={handleClick}/>
     </>
   );
 }
-
-export default MovieSpecific2;

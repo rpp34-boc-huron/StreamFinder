@@ -21,7 +21,7 @@ app.get('/trailers/:movieId', async (req, res) => {
     const { movieId } = req.params;
     const apiRes = await axios.get(`${uri}/${movieId}/videos`, {
       params: {
-        api_key: process.env.TMDB_API_KEY,
+        api_key: process.env.API_KEY,
         language: 'en-US'
       }
     });
@@ -40,7 +40,7 @@ app.get('/recommendations/:movieId', async (req, res) => {
     const { movieId } = req.params;
     const apiRes = await axios.get(`${uri}/${movieId}/recommendations`, {
       params: {
-        api_key: process.env.TMDB_API_KEY,
+        api_key: process.env.API_KEY,
         language: 'en-US'
       }
     });
