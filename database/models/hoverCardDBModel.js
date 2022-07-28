@@ -8,4 +8,4 @@ const addFavoritesModel = (userID, movieID) => {
 module.exports = {
   addListModel,
   addFavoritesModel
-}
+} 
