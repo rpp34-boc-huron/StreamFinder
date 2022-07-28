@@ -37,29 +37,33 @@ export default function HoverCard({ movieId }) {
     getMovieDetails(movieId)
       .then((data) => {
         const movieInfo = data.movieInfo
-        const streaming = data.streaming.results.US.flatrate
-        const netflixClick = getProvider(streaming, 'Netflix');
-        const huluClick = getProvider(streaming, 'Hulu');
-        const HBOClick = getProvider(streaming, 'HBO Now');
+        const streaming = data.streaming.results.US?.flatrate
+        if(streaming) {
+          const netflixClick = getProvider(streaming, 'Netflix');
+          const huluClick = getProvider(streaming, 'Hulu');
+          const HBOClick = getProvider(streaming, 'HBO Now');
+          if(!netflixClick){
+            setNetflix(Netflix)
+          }
+          if(!huluClick){
+            setHulu(hulu)
+          }
+          if(!HBOClick){
+            setHBO(HBO)
+          }
+          setNetflixClick(netflixClick)
+          setHuluClick(huluClick)
+          setHBOClick(HBOClick)
+        }
         const title = movieInfo.original_title;
         const description = movieInfo.overview;
         const poster_path = movieInfo.poster_path;
         const image = `https://image.tmdb.org/t/p/w500${poster_path}`
-        if(!netflixClick){
-          setNetflix(Netflix)
-        }
-        if(!huluClick){
-          setHulu(hulu)
-        }
-        if(!HBOClick){
-          setHBO(HBO)
-        }
+
         setMovieTitle(title)
         setMovieDescription(description)
         setMovieImage(image)
-        setNetflixClick(netflixClick)
-        setHuluClick(huluClick)
-        setHBOClick(HBOClick)
+
       })
   })
 
