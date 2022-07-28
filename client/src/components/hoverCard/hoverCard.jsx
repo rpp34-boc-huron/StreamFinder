@@ -11,7 +11,7 @@ import Netflix from '../../../assets/netflix.jpeg';
 import { getMovieDetails, addToFavorites, addToList } from '../../utils/getTMDBdata';
 
 
-export default function HoverCard() {
+export default function HoverCard({ movieId }) {
 
   const [movieTitle, setMovieTitle] = useState('');
   const [movieDescription, setMovieDescription] = useState('');
@@ -34,7 +34,7 @@ export default function HoverCard() {
   }
 
   useEffect(() => {
-    getMovieDetails(id)
+    getMovieDetails(movieId)
       .then((data) => {
         const movieInfo = data.movieInfo
         const streaming = data.streaming.results.US.flatrate
