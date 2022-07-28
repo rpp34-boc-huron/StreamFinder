@@ -31,13 +31,13 @@ const getActionMovieData = (cb) => {
 };
 
 const getMovieDetails = async (id) => {
-      try {
-        const {data:response} = await axios.get(`/hover/details/${id}`)
-         return response
+    try {
+      const {data:response} = await axios.get(`/hover/details/${id}`)
+        return response
       }
-      catch (error) {
+    catch (error) {
         console.log(error);
-      }
+    }
 }
 const addToFavorites = async (userID, id) => {
 
