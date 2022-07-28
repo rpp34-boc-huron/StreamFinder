@@ -2,7 +2,8 @@ import React, { useState, useEffect, useReducer } from "react";
 import { summaryFinder, posterFinder, providerFinder } from '../../../../server/controllers/movieSummaryHelper.js'
 import './movieSum.css';
 import costs from "./providersCost.js";
-import Chart from 'react-apexcharts';
+import { FaShare } from 'react-icons/fa';
+import {FcLike,FcBookmark} from 'react-icons/fc';
 
 export default function Moviesumm() {
     const [movieTitle, changeTitle] = useState('Avengers');
@@ -58,17 +59,19 @@ export default function Moviesumm() {
                 <h1 className="movieTitle">
                     {movieTitle}
                 </h1>
-                <span className="like">&#10084; </span>
+              
+                {/* <span className="like">&#10084; </span>
                 <span className="favorite"> &#128278;</span>
-                <span className="share">&lt;</span>
-                <svg className="circular-chart">
-                    <path className="circle"
-                        strokeDasharray="3, 5"
-                        d="M9 1
-      a 2 2 0 0 1 0 4
-      a 2 2 0 0 1 0 -4"
-                    />
-                </svg>
+                <span className="share">&lt;</span> */}
+                <span className="actionBar"> 
+                <FaShare className="share"/>
+                <FcLike  className="like"/>
+                <FcBookmark className="bookmark"/>
+                    </span> 
+                <div className="starRating">
+                    {/* <Stars rating={7.5} /> */}
+                    {'Score : 75%'}
+                </div>
                 <h2> Overview </h2>
                 <p>{movieDetail === '' ? null : movieDetail} </p>
             </div>
