@@ -11,12 +11,11 @@ const App = () => {
   const [searchStatus, setSearchStatus] = useState(false);
   const [searchMovieData, setSearchMovieData] = useState([]);
   const [keywords, setKeywords] = useState('');
-  const [page, setPage] = useState(1);
 
   return (
     <div className="app">
-      <Navbar setSearch={setSearchStatus} setSearchMovieData={setSearchMovieData} keywords={keywords} setKeywords={setKeywords} setPage={setPage}/>
-      {searchStatus ? <LandingSearchPage keywords={keywords} page={page} setPage={setPage} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} /> : <LandingPage />}
+      <Navbar setSearch={setSearchStatus} setSearchMovieData={setSearchMovieData} keywords={keywords} setKeywords={setKeywords} />
+      {searchStatus ? <LandingSearchPage keywords={keywords} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} /> : <LandingPage />}
       {/* <UserProfile /> */}
     </div>
   );

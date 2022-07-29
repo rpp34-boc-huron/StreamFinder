@@ -32,7 +32,8 @@ import '../App.css';
 
 
 const Navbar = (props) => {
-    const { setSearch, setSearchMovieData, keywords, setKeywords, setPage } = props;
+    const { setSearch, setSearchMovieData, keywords, setKeywords } = props;
+
     return (
         <React.Fragment>
             <CssBaseline />
@@ -54,7 +55,7 @@ const Navbar = (props) => {
                                 }}
                             >&#127916; Stream Finder
                             </Typography>
-                            <SearchBar setSearch={setSearch} setSearchMovieData={setSearchMovieData}  keywords={keywords} setKeywords={setKeywords} setPage={setPage}/>
+                            <SearchBar setSearch={setSearch} setSearchMovieData={setSearchMovieData}  keywords={keywords} setKeywords={setKeywords} />
                             <Button component={Link} to="/" color="inherit">Home</Button>
                             <Button color="inherit">Profile</Button>
                             <Button color="inherit">Sign Out</Button>

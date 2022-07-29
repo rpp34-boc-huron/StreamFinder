@@ -4,11 +4,15 @@ import { getSearchMovieResultsData } from '../../utils/getTMDBdata';
 import { Container, Pagination, Stack } from '@mui/material';
 
 const LandingSearchPage = (props) => {
-  const { searchMovieData, keywords, page, setPage, setSearchMovieData} = props;
-  console.log('searchMovieData => ', searchMovieData)
+  const { searchMovieData, keywords, setSearchMovieData } = props;
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    setPage(searchMovieData.page);
+  })
 
   const handleChange = (event, value) => {
-    console.log('page???', value)
+    console.log('clicked page???', value)
     getSearchMovieResultsData(keywords, value)
       .then(data => {
         setPage(data.page);

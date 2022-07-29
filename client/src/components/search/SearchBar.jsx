@@ -5,8 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { getSearchMovieResultsData } from '../../utils/getTMDBdata';
 
 const SearchBar = (props) => {
-  const searchButtonStyle = { cursor: 'pointer' };
-  const { setSearch, setSearchMovieData, keywords, setKeywords, setPage } = props;
+  const { setSearch, setSearchMovieData, keywords, setKeywords } = props;
 
   const handleInput = (e) => {
     let keywords = e.target.value;
@@ -19,10 +18,9 @@ const SearchBar = (props) => {
       .then(data => {
         setSearch(true);
         setSearchMovieData(data);
-        setPage(data.page);
       })
       .catch(err => {
-        console.log('oh no....', err);
+        console.log('Search Bar Error....', err);
       })
   }
 
