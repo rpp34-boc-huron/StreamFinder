@@ -1,20 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../Navbar';
 import MovieList from './MovieList';
-import MovieCarousel from '../LandingPage/MovieCarousel.jsx';
+import { getSearchMovieResultsData } from '../../utils/getTMDBdata';
+import { Container, Pagination, Stack } from '@mui/material';
 
 const LandingSearchPage = (props) => {
-  // console.log('listOfMovies => ', props.listOfMovies)
+  const { searchMovieData, keywords, setSearchMovieData } = props;
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    setPage(searchMovieData.page);
+  })
+
+  const handleChange = (event, value) => {
+    console.log('clicked page???', value)
+    getSearchMovieResultsData(keywords, value)
+      .then(data => {
+        setPage(data.page);
+        setSearchMovieData(data);
+      })
+      .catch(err => {
+        console.log('Landing Search Page Error....', err);
+      })
+  };
+
   return (
-    <div>
-      {
-        props.listOfMovies.length > 0 ?
-        <MovieList listOfMovies={props.listOfMovies} />
+    <>
+      {searchMovieData.results.length > 0
+        ?
+        <Container sx={{ py: 10 }} maxWidth="md">
+          <MovieList listOfMovies={searchMovieData.results} />
+          <Stack spacing={4} sx={{ pt: '50px' }}>
+            <Pagination count={searchMovieData.total_pages} page={page} onChange={handleChange} />
+          </Stack>
+        </Container>
         :
-        <p>Sorry, we couldn't find any results for your search.</p>
+        <p>Sorry, we couldn't find any results for "<b>{keywords}</b>"</p>
       }
-    </div>
+    </>
   );
 }
 
 export default LandingSearchPage;
+
+
+
+

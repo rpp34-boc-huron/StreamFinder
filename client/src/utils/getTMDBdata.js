@@ -39,6 +39,7 @@ const getMovieDetails = async (id) => {
         console.log(error);
     }
 }
+
 const addToFavorites = async (userID, id) => {
 
 }
@@ -46,7 +47,6 @@ const addToFavorites = async (userID, id) => {
 const addToList = async (userID, id) => {
 
 }
-
 
 const getSearchMovieResultsData = async (keywords, page) => {
   page = page || 1;
