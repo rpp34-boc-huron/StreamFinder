@@ -1,7 +1,61 @@
+// Variables
+$newBlack: rgba(0,0,0,0.85);
+
 .user-profile {
   position: relative;
   display: grid;
   grid-template-columns: 50% 40%;
   grid-column-gap: 10%;
-  background: red;
+  height: calc(100vh - 64px);
+}
+
+// About Me
+.user-profile-user-meta-information {
+  position: relative;
+  width: 60vw;
+//   min-width: 600px;
+  min-height: 300px;
+  display: grid;
+  grid-template-columns: max-content max-content;
+//   border: 1px solid black;
+}
+
+.user-profile-user-meta-image-container {
+  position: relative;
+  min-width: 300px;
+  height: 300px;
+}
+
+.replace-this-image {
+  position: relative;
+  top: 25px;
+  left: 25px;
+  width: 250px;
+  height: 250px;
+  border: 1px solid black;
+  border-radius: 100%;
+}
+
+.user-profile-user-meta-about-me-container {
+  position: relative;
+  top: 25px;
+  overflow: hidden;
+  max-width: calc(60vw - 300px);
+}
+
+.user-profile-username-text {
+  font-size: 25px;
+  font-weight: 900;
+  color: $newBlack;
+}
+
+.replace-profile-image-button {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  bottom: 50px;
+  right: 25px;
+  border: 1px solid black;
+  background: white;
+  border-radius: 100%;
 }
