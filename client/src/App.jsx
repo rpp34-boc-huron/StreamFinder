@@ -11,13 +11,12 @@ const App = () => {
   const [searchStatus, setSearchStatus] = useState(false);
   const [searchMovieData, setSearchMovieData] = useState([]);
   const [keywords, setKeywords] = useState('');
-  const [page, setPage] = useState(1);
 
   return (
     <div className="app">
-      <Navbar setSearch={setSearchStatus} setSearchMovieData={setSearchMovieData} keywords={keywords} setKeywords={setKeywords} setPage={setPage}/>
+      <Navbar setSearch={setSearchStatus} setSearchMovieData={setSearchMovieData} keywords={keywords} setKeywords={setKeywords} />
       Hello World From React
-      {searchStatus ? <LandingSearchPage keywords={keywords} page={page} setPage={setPage} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} /> : <LandingPage />}
+      {searchStatus ? <LandingSearchPage keywords={keywords} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} /> : <LandingPage />}
       <MultiActionAreaCard></MultiActionAreaCard>
 
     </div>
