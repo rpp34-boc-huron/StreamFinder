@@ -5,30 +5,29 @@ import SearchIcon from '@mui/icons-material/Search';
 import { getSearchMovieResultsData } from '../../utils/getTMDBdata';
 
 const SearchBar = (props) => {
-  const [keywords, setKeywords] = useState('');
   const searchButtonStyle = { cursor: 'pointer' };
+  const { setSearch, setSearchMovieData, keywords, setKeywords, setPage } = props;
 
   const handleInput = (e) => {
-    let input = e.target.value;
-    setKeywords(input);
+    let keywords = e.target.value;
+    setKeywords(keywords);
   }
 
   const handleSearch = () => {
     console.log(keywords, '<- search bar');
       getSearchMovieResultsData(keywords)
       .then(data => {
-        props.setSearch(true)
-        props.setSearchMovieData(data)
+        setSearch(true);
+        setSearchMovieData(data);
+        setPage(data.page);
       })
       .catch(err => {
         console.log('oh no....', err);
       })
-
   }
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      // console.log('search via Enter');
       handleSearch();
     }
     // search when type, change to KeyUp

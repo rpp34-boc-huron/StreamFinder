@@ -32,15 +32,7 @@ import '../App.css';
 
 
 const Navbar = (props) => {
-    // const navigate = useNavigate();
-    // return (
-    //     <nav className="Navbar">
-    //         <button onClick={() => { navigate('/'); }}>
-    //             <HomeIcon />
-    //         </button>
-    //         <SearchBar />
-    //     </nav>
-    // )
+    const { setSearch, setSearchMovieData, keywords, setKeywords, setPage } = props;
     return (
         <React.Fragment>
             <CssBaseline />
@@ -62,7 +54,7 @@ const Navbar = (props) => {
                                 }}
                             >&#127916; Stream Finder
                             </Typography>
-                            <SearchBar setSearch={props.setSearch} setSearchMovieData={props.setSearchMovieData} />
+                            <SearchBar setSearch={setSearch} setSearchMovieData={setSearchMovieData}  keywords={keywords} setKeywords={setKeywords} setPage={setPage}/>
                             <Button component={Link} to="/" color="inherit">Home</Button>
                             <Button color="inherit">Profile</Button>
                             <Button color="inherit">Sign Out</Button>
