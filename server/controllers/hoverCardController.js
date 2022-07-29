@@ -7,13 +7,6 @@ const API_KEY = require('../../apiToken.js').TOKEN;
 
 const getMovieInfo = async (req, res) => {
   const id = req.params.id
-  // axios(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`)
-  //   .then(response => {
-  //        res.json(response.data)
-  //     })
-  //     .catch(err => {
-  //         console.log(err)
-  //       })
           try {
             const {data:response} = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`) //use data destructuring to get data from the promise object
             res.json(response)

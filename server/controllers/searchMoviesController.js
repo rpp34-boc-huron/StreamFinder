@@ -1,6 +1,6 @@
 const axios = require('axios');
-// const API_KEY = process.env.API_KEY;
-const API_KEY = require('../../apiToken.js').TOKEN;
+const API_KEY = process.env.API_KEY;
+// const API_KEY = require('../../apiToken.js').TOKEN;
 
 const searchMovies = (req, res) => {
   const keywords = req.params.keywords;

@@ -18,7 +18,10 @@ const MovieCarousel = ({ header, apiMethod }) => {
         } else {
           // console.log('res.data.results: ', res.data.results);
           let data = res.data.results.map(movie => {
-            return {'image': `https://image.tmdb.org/t/p/w185${movie.poster_path}`};
+            return {
+              'image': `https://image.tmdb.org/t/p/w185${movie.poster_path}`,
+              'id': movie.id
+            };
           });
           setTrendingList(data);
 
@@ -56,7 +59,7 @@ const MovieCarousel = ({ header, apiMethod }) => {
   const CarouselScreen = (props) => {
     return (
         <Paper>
-            <MovieCard moviePoster={props.item.image}/>
+            <MovieCard moviePoster={props.item.image} movieId={props.item.id}/>
         </Paper>
     )
 }
