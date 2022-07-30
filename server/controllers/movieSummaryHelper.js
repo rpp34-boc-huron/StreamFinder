@@ -1,5 +1,6 @@
 const axios = require('axios');
 const key = require('../token.js');
+// const API_KEY = process.env.API_KEY;
 const summaryFinder =  (title) => {
        return axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key.key}&query=${title}`)
         .then((res) => {
