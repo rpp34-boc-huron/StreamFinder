@@ -6,15 +6,23 @@ import Stack from '@mui/material/Stack';
 const MovieList = (props) => {
   const { listOfMovies } = props;
 
+  // handle onClick -> pass movie id to Movie Specifc Page
+  const handleClickAMovie = (e) => {
+    const id = e.target.id;
+    console.log('clicked id ====>>', e.target);
+
+  }
+
   return (
     // <Container sx={{ py: 10 }} maxWidth="md">
       <Grid container spacing={4}>
         {listOfMovies.map((movie) => (
           <Grid item key={movie.id} xs={12} sm={4} md={3}>
-            <Card
+            <Card  onClick={handleClickAMovie}
               sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
             >
               <CardMedia
+              className={movie.id.toString()}
                 component="img"
                 sx={{
                   pt: '20%',
@@ -28,7 +36,7 @@ const MovieList = (props) => {
                 alt='Image Not Supported'
               />
               <CardContent sx={{ flexGrow: 1 }}>
-                <Typography gutterBottom variant="h5" component="h5">
+                <Typography gutterBottom variant="h5" component="h5" className={movie.id.toString()}>
                   {movie.title}
                 </Typography>
               </CardContent>
