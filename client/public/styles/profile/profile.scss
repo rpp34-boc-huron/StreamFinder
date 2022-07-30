@@ -1,0 +1,119 @@
+// Variables
+$newBlack: rgba(0,0,0,0.85);
+
+.user-profile {
+  position: relative;
+  display: grid;
+  grid-template-columns: 50% 40%;
+  grid-column-gap: 10%;
+  height: calc(100vh - 64px);
+}
+
+// About Me
+.user-profile-user-meta-information {
+  position: relative;
+  width: 60vw;
+//   min-width: 600px;
+  min-height: 300px;
+  display: grid;
+  grid-template-columns: max-content max-content;
+//   border: 1px solid black;
+}
+
+.user-profile-user-meta-image-container {
+  position: relative;
+  min-width: 300px;
+  height: 300px;
+}
+
+.replace-this-image {
+  position: relative;
+  top: 25px;
+  left: 25px;
+  width: 250px;
+  height: 250px;
+  border: 1px solid black;
+  border-radius: 100%;
+}
+
+.user-profile-user-meta-about-me-container {
+  position: relative;
+  top: 25px;
+  overflow: hidden;
+  max-width: calc(60vw - 300px);
+}
+
+.user-profile-username-text {
+  font-size: 25px;
+  font-weight: 900;
+  color: $newBlack;
+}
+
+.replace-profile-image-button {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  bottom: 25px;
+  right: 25px;
+  border: 1px solid black;
+  background: white;
+  border-radius: 100%;
+}
+
+//  Settings
+.user-profile-settings {
+  position: relative;
+  display: grid;
+  grid-row-gap: 15px;
+  width: calc(60vw - 25px);
+  height: max-content;
+  left: 25px;
+}
+
+.user-profile-password-settings, .user-profile-username-settings {
+  position: relative;
+  display: grid;
+  grid-template-columns: 500px max-content;
+  grid-column-gap: 10px;
+  max-width: 50%;
+}
+
+.user-profile-owned-subscriptions-carousel, .user-profile-add-subscriptions-carousel {
+  height: 100px;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0.035);
+  min-width: 500px;
+}
+
+.user-profile-account-text, .user-profile-owned-subscriptions-text, .user-profile-add-subscriptions-text {
+  font-size: 20px;
+  font-weight: 900;
+  color: $newBlack;
+}
+
+// Friends
+.user-profile-friends {
+  margin-left: 4vw;
+  width: 35vw;
+  max-width: 800px;
+  height: calc(100vh - 70px);
+  display: grid;
+  grid-template-rows: 50px 50px 50px max-content;
+}
+
+.user-profile-header {
+  height: 50px;
+  font-weight: 900;
+  color: $newBlack;
+  font-size: 25px;
+  display: grid;
+  place-items: center;
+  background-color: rgba(0,0,0,0.035);
+}
+
+.user-profile-friends-list {
+  width: 35vw;
+  max-width: 800px;
+  height: 88%;
+  border-radius: 5px;
+}

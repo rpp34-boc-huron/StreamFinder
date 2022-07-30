@@ -1,0 +1,16 @@
+.movie-item {
+  width: 160px;
+  padding: 10px;
+  margin: 10px;
+  height: 240px;
+}
+/* note for Derek commented this out because it's moving the netflix icon down some how?? */
+/* .MuiPaper-root {
+  margin: 10px;
+} */
+
+.carousel-header {
+  font-size: 20px;
+  font-weight: 300;
+  padding-left: 20px;
+}
