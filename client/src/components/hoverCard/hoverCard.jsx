@@ -1,4 +1,4 @@
-import {Card, CardContent, CardMedia, CardActionArea, CardActions,Typography, Stack } from '@mui/material';
+import {Card, CardContent, CardMedia, CardActionArea, Typography, Stack } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import AddToFavorites from './addToFavoritesButton';
 import AddToList from './addToListButton';

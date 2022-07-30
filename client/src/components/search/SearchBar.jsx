@@ -5,30 +5,27 @@ import SearchIcon from '@mui/icons-material/Search';
 import { getSearchMovieResultsData } from '../../utils/getTMDBdata';
 
 const SearchBar = (props) => {
-  const [keywords, setKeywords] = useState('');
-  const searchButtonStyle = { cursor: 'pointer' };
+  const { setSearch, setSearchMovieData, keywords, setKeywords } = props;
 
   const handleInput = (e) => {
-    let input = e.target.value;
-    setKeywords(input);
+    let keywords = e.target.value;
+    setKeywords(keywords);
   }
 
   const handleSearch = () => {
     console.log(keywords, '<- search bar');
       getSearchMovieResultsData(keywords)
       .then(data => {
-        // console.log('search bar result?????', data)
-        props.setSearch(true)
-        props.setMovieList(data.results)
+        setSearch(true);
+        setSearchMovieData(data);
       })
       .catch(err => {
-        console.log('oh no....', err);
+        console.log('Search Bar Error....', err);
       })
   }
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      // console.log('search via Enter');
       handleSearch();
     }
     // search when type, change to KeyUp
@@ -38,7 +35,6 @@ const SearchBar = (props) => {
   return (
     <Paper className="search">
     <InputBase
-        // required={true}
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search for a movie..."
         inputProps={{ 'aria-label': 'search for a movie...' }}

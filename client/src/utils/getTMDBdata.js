@@ -39,6 +39,7 @@ const getMovieDetails = async (id) => {
         console.log(error);
     }
 }
+
 const addToFavorites = async (userID, id) => {
   try {
     const response = await axios.post('/hover/favorites', {
@@ -64,7 +65,6 @@ const addToList = async (userID, id) => {
     console.log(error)
   }
 }
-
 
 const getSearchMovieResultsData = async (keywords, page) => {
   page = page || 1;
