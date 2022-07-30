@@ -8,7 +8,7 @@ const searchMoviesRoutes = require('../server/routes/searchMovies.js');
 const port = process.env.port || 8080;
 const publicPath = path.join(__dirname, '..', 'client', 'public');
 const indexHtmlPath = path.join(publicPath, 'index.html');
-const API_KEY = process.env.API_KEY;
+// const API_KEY = process.env.API_KEY;
 
 app.use(express.json());
 app.use(express.static(publicPath));
