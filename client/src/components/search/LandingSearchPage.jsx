@@ -9,6 +9,7 @@ const LandingSearchPage = (props) => {
 
   useEffect(() => {
     setPage(searchMovieData.page);
+    window.scrollTo(0, 0);
   })
 
   const handleChange = (event, value) => {
