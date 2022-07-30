@@ -3,6 +3,7 @@ import AboutMe from './AboutMe.jsx';
 import AccountSettings from './AccountSettings.jsx';
 import FriendsList from './FriendsList.jsx';
 import Account from './UserSecurity.jsx';
+import UserServices from './UserServices.jsx';
 
 var mockUser = {
   username: 'Sase',
@@ -16,7 +17,6 @@ var mockUser = {
 };
 
 const UserProfile = (props) => {
-
   const [user, setUser] = useState(mockUser);
   // User should be passed down...
 
@@ -26,6 +26,7 @@ const UserProfile = (props) => {
         <AboutMe user={user}/>
         {/* <AccountSettings /> */}
         <Account user={user}/>
+        <UserServices user={user}/>
       </div>
 
       <div className="user-friends-list-container">
