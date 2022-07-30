@@ -20,6 +20,13 @@ $newBlack: rgba(0,0,0,0.85);
 //   border: 1px solid black;
 }
 
+.user-profile-edit-bio {
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+  z-index: 5;
+}
+
 .user-profile-user-meta-image-container {
   position: relative;
   min-width: 300px;
@@ -55,8 +62,8 @@ $newBlack: rgba(0,0,0,0.85);
   height: 75px;
   bottom: 25px;
   right: 25px;
-  border: 1px solid black;
-  background: white;
+  // border: 1px solid black;
+  // background: white;
   border-radius: 100%;
 }
 

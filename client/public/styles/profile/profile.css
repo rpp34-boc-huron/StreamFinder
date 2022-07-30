@@ -15,6 +15,13 @@
   grid-template-columns: max-content max-content;
 }
 
+.user-profile-edit-bio {
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+  z-index: 5;
+}
+
 .user-profile-user-meta-image-container {
   position: relative;
   min-width: 300px;
@@ -50,8 +57,6 @@
   height: 75px;
   bottom: 25px;
   right: 25px;
-  border: 1px solid black;
-  background: white;
   border-radius: 100%;
 }
 
