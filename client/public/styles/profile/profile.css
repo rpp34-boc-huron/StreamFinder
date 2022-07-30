@@ -187,4 +187,27 @@
   top: -20px;
   z-index: 100;
   color: black;
+}
+
+.user-profile-edit-text {
+  width: 800px;
+  height: 400px;
+}
+
+.user-profile-edit-text {
+  position: fixed;
+  z-index: 1000;
+  width: 800px;
+  height: 300px;
+  top: calc(50vh - 150px);
+  left: calc(50vw - 400px);
+  background: rgba(0, 0, 0, 0.285);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  display: grid;
+  grid-template-rows: -webkit-max-content -webkit-max-content -webkit-max-content;
+  grid-template-rows: max-content max-content max-content;
+  grid-row-gap: 10px;
+  box-sizing: border-box;
+  padding: 10px;
 }/*# sourceMappingURL=profile.css.map */
