@@ -68,7 +68,7 @@ export default function Moviesumm() {
                 </div>
                 <h2> Overview </h2>
                 <p>{movieDetail === '' ? null : movieDetail} </p>
-            </div>
+            </div>  
         </div>
     )
 }
