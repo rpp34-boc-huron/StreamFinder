@@ -3,7 +3,8 @@ import { TextField, Button } from '@mui/material';
 
 const UserSettings = (props) => {
 
-    //
+    const [ownedSubscriptions, setOwnedSubscriptions] = useState([""]);
+    const [allServices, setAllServices] = useState([]);
 
     return (
     <div className="user-profile-settings">
@@ -21,12 +22,24 @@ const UserSettings = (props) => {
       <Button sx={{width: 'max-content'}}>Reset Password</Button>
 
       <div className="user-profile-owned-subscriptions-text">Owned Subscriptions</div>
-      <div className="user-profile-owned-subscriptions-carousel"></div>
+      <div className="user-profile-owned-subscriptions-carousel">
+        <NoSubscriptionsText render={ownedSubscriptions.length >= 0}/>
+      </div>
 
       <div className="user-profile-add-subscriptions-text">Add a Supported Service</div>
       <TextField variant="standard" sx={{width: '500px'}} label="Search Services" size="small" fullWidth/>
       <div className="user-profile-add-subscriptions-carousel"></div>
 
+    </div>
+  );
+};
+
+const NoSubscriptionsText = (props) => {
+  if(!props.render) return;
+
+  return (
+    <div className="profile-you-have-no-subscriptions-text">
+      You Have No Services Added
     </div>
   );
 };
