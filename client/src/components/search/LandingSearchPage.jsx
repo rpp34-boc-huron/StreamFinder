@@ -29,7 +29,7 @@ const LandingSearchPage = (props) => {
         ?
         <Container sx={{ py: 10 }} maxWidth="md">
           <MovieList listOfMovies={searchMovieData.results} />
-          <Stack spacing={4} sx={{ pt: '50px' }}>
+          <Stack spacing={4} sx={{ pt: '50px' }} justifyContent="space-evenly" alignItems="center">
             <Pagination count={searchMovieData.total_pages} page={page} onChange={handleChange} />
           </Stack>
         </Container>
