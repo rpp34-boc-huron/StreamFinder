@@ -67,8 +67,7 @@ export default function HoverCard({ movieId }) {
 
       })
   })
-
-
+  if(movieImage !== '') {
     return (
       <Card sx={{ maxWidth: 345, maxHeight: 330, position: 'absolute', zIndex: 5 }}>
         <CardActionArea>
@@ -143,5 +142,7 @@ export default function HoverCard({ movieId }) {
             </Stack>
       </Card>
     );
+  }
+
 }
 
