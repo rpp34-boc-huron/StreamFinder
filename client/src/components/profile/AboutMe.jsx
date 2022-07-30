@@ -20,7 +20,6 @@ const AboutMe = (props) => {
     <div className="user-profile-user-meta-information">
       <div className="user-profile-edit-bio"><Button>Edit</Button></div>
       <div className="user-profile-user-meta-image-container">
-        {/* <img src="#" alt={`${(user.name || fakeUser.name)}'s Profile Picture`} /> */}
         <div className="replace-this-image"></div>
         <div className="replace-profile-image-button"><CameraAltIcon sx={{width: '50px', height: '50px', background: 'lightgrey', position: 'relative', left: '25px', borderRadius: '100%', padding: '5px'}}/></div>
       </div>

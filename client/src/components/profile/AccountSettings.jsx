@@ -3,8 +3,23 @@ import { TextField, Button } from '@mui/material';
 
 const UserSettings = (props) => {
 
+    const mockServices = {
+      Netflix: {
+        price: '$12.99/m',
+        className: 'user-subscription-netflix',
+      },
+      Hulu: {
+        price: '$14.99/m',
+        className: 'user-subscription-hulu',
+      },
+      HBO: {
+        price: '$6.99/m',
+        className: 'user-subscription-hbo',
+      }
+    };
+
     const [ownedSubscriptions, setOwnedSubscriptions] = useState([""]);
-    const [allServices, setAllServices] = useState([]);
+    const [allServices, setAllServices] = useState(['Netflix', 'Hulu', 'HBO']);
 
     return (
     <div className="user-profile-settings">
