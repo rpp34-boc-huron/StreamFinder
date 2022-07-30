@@ -36,6 +36,7 @@
   height: 250px;
   border: 1px solid black;
   border-radius: 100%;
+  background: url("../../../assets/empty user.webp");
 }
 
 .user-profile-user-meta-about-me-container {
@@ -87,6 +88,46 @@
   background-color: rgba(0, 0, 0, 0.035);
   min-width: 500px;
   align-content: center;
+  grid-template-columns: -webkit-max-content -webkit-max-content -webkit-max-content -webkit-max-content -webkit-max-content -webkit-max-content -webkit-max-content -webkit-max-content -webkit-max-content -webkit-max-content;
+  grid-template-columns: max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content;
+  grid-column-gap: 20px;
+}
+
+.user-profile-service {
+  width: 75px;
+  height: 75px;
+  position: relative;
+  top: 10px;
+  border-radius: 5px;
+  background-color: black;
+  position: relative;
+}
+
+.user-profile-service:hover {
+  transition: all 1000ms;
+  transform: rotateY(360deg);
+  cursor: pointer;
+}
+
+.user-subscription-hbo {
+  background: url("../../imgs/hbo.webp");
+  background-size: cover;
+  width: 75px;
+  height: 75px;
+}
+
+.user-subscription-netflix {
+  background: url("../../imgs/netflix.png");
+  background-size: contain;
+  width: 75px;
+  height: 75px;
+}
+
+.user-subscription-hulu {
+  background: url("../../imgs/hulu.png");
+  background-size: cover;
+  width: 75px;
+  height: 75px;
 }
 
 .user-profile-account-text, .user-profile-owned-subscriptions-text, .user-profile-add-subscriptions-text {
@@ -127,4 +168,23 @@
   position: absolute;
   place-self: center;
   color: rgba(0, 0, 0, 0.285);
+}
+
+.more-info-on-service {
+  text-align: center;
+  width: 75px;
+  height: 75px;
+  position: absolute;
+  background-color: black;
+  color: white;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+}
+
+.more-info-on-service-price {
+  position: relative;
+  top: -20px;
+  z-index: 100;
+  color: black;
 }/*# sourceMappingURL=profile.css.map */
