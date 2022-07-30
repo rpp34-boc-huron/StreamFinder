@@ -18,12 +18,49 @@ var mockServices = {
   }
 };
 
+var mockUser = {
+  name: 'Georgeus',
+  password: 'dFIWENqnwieo09!!'
+};
+
 const UserSettings = (props) => {
 
 
     const [ownedSubscriptions, setOwnedSubscriptions] = useState([]);
     const [allServices, setAllServices] = useState(['Netflix', 'Hulu', 'HBO']);
     const [searchedService, setSearchedService] = useState(allServices);
+    const [usernameButtonText, setUsernameButtonText] = useState('Edit');
+    const [passwordButtonText, setPasswordButtonText] = useState('Edit');
+
+    const [usernameHelperText, setUsernameHelperText] = useState("");
+    const [passwordHelperText, setPasswordHelperText] = useState("");
+
+    const enterNewUsername = () => {
+      if (usernameButtonText === 'Save') {
+        setUsernameButtonText('Edit');
+        setUsernameHelperText("");
+        document.querySelector('#user-username').disabled=true;
+        return;
+      }
+      setUsernameButtonText('Save');
+      setUsernameHelperText('Enter New Username');
+      document.querySelector('#user-username').focus();
+      document.querySelector('#user-username').select();
+      document.querySelector('#user-username').disabled=false;
+    };
+    const enterNewPassword = () => {
+      if (passwordButtonText === 'Save') {
+        setPasswordButtonText('Edit');
+        setPasswordHelperText("");
+        document.querySelector('#user-password').disabled=true;
+        return;
+      }
+      setPasswordButtonText('Save');
+      setPasswordHelperText('Enter New Password');
+      document.querySelector('#user-password').focus();
+      document.querySelector('#user-password').select();
+      document.querySelector('#user-password').disabled=false;
+    };
 
     const handleServiceSearch = (e) => {
       let query = e.target.value;
@@ -50,13 +87,13 @@ const UserSettings = (props) => {
     <div className="user-profile-settings">
       <div className="user-profile-account-text">Account</div>
       <div className="user-profile-username-settings">
-        <TextField value={'aUserName'} disabled variant="outlined" label="Username" size="small" fullWidth/>
-        <Button>Edit</Button>
+        <TextField id="user-username" helperText={usernameHelperText} defaultValue={mockUser.name} variant="outlined" label="Username" size="small" fullWidth/>
+        <Button sx={{height: '40px'}} onClick={enterNewUsername}>{usernameButtonText}</Button>
       </div>
 
       <div className="user-profile-password-settings">
-        <TextField value={'aUserName'} type="password" disabled variant="outlined" label="Password" size="small" fullWidth/>
-        <Button>Edit</Button>
+        <TextField id="user-password" helperText={passwordHelperText} defaultValue={mockUser.password} type="password" variant="outlined" label="Password" size="small" fullWidth/>
+        <Button sx={{height: '40px'}} onClick={enterNewPassword}>{passwordButtonText}</Button>
       </div>
 
       <Button sx={{width: 'max-content'}}>Reset Password</Button>
