@@ -107,8 +107,8 @@ $newBlack: rgba(0,0,0,0.85);
   position: relative;
 }
 .user-profile-service:hover {
-  transition: all 1000ms;
-  transform: rotateY(360deg);
+  transition: all 600ms;
+  transform: rotateY(-360deg);
   cursor: pointer;
 }
 .user-subscription-hbo {
