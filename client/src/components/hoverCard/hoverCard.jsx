@@ -19,14 +19,14 @@ export default function HoverCard({ movieId }) {
   const [netflixIcon, setNetflix] = useState(netflixgrey);
   const [huluIcon, setHulu] = useState(hulugrey);
   const [hboIcon, setHBO] = useState(hbogrey);
-  const [netflixState, setNetflixClick] = useState(false);
-  const [huluState, setHuluClick] = useState(false);
-  const [hboState, setHBOClick] = useState(false);
+  const [netflixState, setNetflixClick] = useState(true);
+  const [huluState, setHuluClick] = useState(true);
+  const [hboState, setHBOClick] = useState(true);
 
   //9615 -> HBO
   //122066 -> HUlu
   //881957 -> netflix
-  const id = 881957
+  const id = movieId
 
   const getProvider = (arr, type) => {
     const index = arr.map(obj => obj.provider_name).indexOf(type);
@@ -55,6 +55,7 @@ export default function HoverCard({ movieId }) {
           setHuluClick(huluClick)
           setHBOClick(HBOClick)
         }
+
         const title = movieInfo.original_title;
         const description = movieInfo.overview;
         const poster_path = movieInfo.poster_path;
@@ -69,7 +70,7 @@ export default function HoverCard({ movieId }) {
 
 
     return (
-      <Card sx={{ maxWidth: 345, maxHeight: 330 }}>
+      <Card sx={{ maxWidth: 345, maxHeight: 330, position: 'absolute', zIndex: 5 }}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -77,7 +78,15 @@ export default function HoverCard({ movieId }) {
             image={movieImage}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography gutterBottom variant="h5" component="div"
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: "1",
+                WebkitBoxOrient: "vertical",
+              }}
+            >
               {movieTitle}
             </Typography>
             <Typography
