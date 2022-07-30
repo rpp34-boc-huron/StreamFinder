@@ -1,0 +1,19 @@
+$HeaderBlack: rgba(0,0,0,0.65);
+$RegularBlack: rgba(0,0,0,0.5);
+$HeaderFontSize: 20px;
+
+.user-profile-security {
+  position: relative;
+  width: 25vw;
+  display: grid;
+  grid-template-rows: max-content max-content max-content;
+  grid-row-gap: 20px;
+  min-width: 500px;
+  left: 25px;
+}
+
+.user-profile-security-text {
+  color: $HeaderBlack;
+  font-size: $HeaderFontSize;
+  font-weight: 900;
+}

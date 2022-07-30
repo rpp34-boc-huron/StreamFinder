@@ -1,3 +1,20 @@
+.user-profile-security {
+  position: relative;
+  width: 25vw;
+  display: grid;
+  grid-template-rows: -webkit-max-content -webkit-max-content -webkit-max-content;
+  grid-template-rows: max-content max-content max-content;
+  grid-row-gap: 20px;
+  min-width: 500px;
+  left: 25px;
+}
+
+.user-profile-security-text {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 20px;
+  font-weight: 900;
+}
+
 .user-profile {
   position: relative;
   display: grid;

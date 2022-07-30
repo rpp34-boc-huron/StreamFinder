@@ -1,6 +1,9 @@
 // Variables
 $newBlack: rgba(0,0,0,0.85);
 
+// Imports
+@import './profileAccountSection';
+
 .user-profile {
   position: relative;
   display: grid;

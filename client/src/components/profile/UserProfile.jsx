@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import AboutMe from './AboutMe.jsx';
 import AccountSettings from './AccountSettings.jsx';
 import FriendsList from './FriendsList.jsx';
+import Account from './UserSecurity.jsx';
 
 var mockUser = {
   username: 'Sase',
@@ -23,7 +24,8 @@ const UserProfile = (props) => {
     <div className="user-profile">
       <div className="user-information-container">
         <AboutMe user={user}/>
-        <AccountSettings />
+        {/* <AccountSettings /> */}
+        <Account user={user}/>
       </div>
 
       <div className="user-friends-list-container">
