@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { TextField, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import ClearIcon from '@mui/icons-material/Clear';
 
 var mockServices = {
   Netflix: {
@@ -39,6 +40,12 @@ const UserSettings = (props) => {
       setOwnedSubscriptions(services);
     };
 
+    const removeService = (service) => {
+      let services = [...ownedSubscriptions];
+      services.splice(services.indexOf(service), 1);
+      setOwnedSubscriptions(services);
+    };
+
     return (
     <div className="user-profile-settings">
       <div className="user-profile-account-text">Account</div>
@@ -57,7 +64,7 @@ const UserSettings = (props) => {
       <div className="user-profile-owned-subscriptions-text">Owned Subscriptions</div>
       <div className="user-profile-owned-subscriptions-carousel">
         {ownedSubscriptions.map((serviceName, i) => {
-          return <UnOwnedServices key={`owned-service-${i}`} name={serviceName}/>
+          return <OwnedServices key={`owned-service-${i}`} name={serviceName} removeService={removeService}/>
         })}
         <NoSubscriptionsText ownedSubscriptions={ownedSubscriptions}/>
       </div>
@@ -109,6 +116,30 @@ const MoreServiceInfo = (props) => {
         {mockServices[name].price}
       </div>
       <AddIcon sx={{color: 'grey', width: '50px', height: '50px', position: 'absolute', top: '12.5px', left: '12.5px'}}/>
+    </div>
+  );
+};
+
+const OwnedServices = (props) => {
+  const {name, removeService} = props;
+  const [renderMore, setRenderMore] = useState(false);
+
+  return (
+    <div className='user-profile-service' onMouseEnter={() => setRenderMore(true)} onMouseLeave={() => setRenderMore(false)}>
+      <div className="base-black"></div>
+      <div className={`${mockServices[name].className}`}></div>
+      <MoreServiceInfoOwned render={renderMore} name={name} removeService={removeService}/>
+    </div>
+  );
+};
+
+const MoreServiceInfoOwned = (props) => {
+  let {name, render, removeService} = props;
+  if (!render) return;
+
+  return (
+    <div className="more-info-on-service" onClick={() => removeService(name)}>
+      <ClearIcon sx={{color: 'grey', width: '50px', height: '50px', position: 'absolute', top: '12.5px', left: '12.5px'}}/>
     </div>
   );
 };
