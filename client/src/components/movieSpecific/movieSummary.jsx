@@ -6,16 +6,12 @@ import { FaShare } from 'react-icons/fa';
 import { FcLike, FcBookmark } from 'react-icons/fc';
 
 export default function Moviesumm() {
-    const [movieTitle, changeTitle] = useState('Titanic');
+    const [movieTitle, changeTitle] = useState('The Godfather');
     const [movieDetail, changeDetail] = useState('');
     const [moviePoster, changePoster] = useState(null);
     const [movieProviders, changeProvider] = useState([]);
     const [movieScore, changeScore] = useState(null);
-    // useEffect(() => {
-    //     fetch(`https://api.themoviedb.org/3/search/movie?api_key=e066819a2f669fa15e8e97c4a23c8075&query=${movieTitle}`)
-    //     .then((res) => res.json())
-    //     .then((data) => changeDetail(data.results[0].overview));
-    // })
+
     useEffect(() => {
         posterFinder(movieTitle)
             .then(res => {
