@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const username = process.env.MONGOUSER;
 const password = process.env.MONGOPASS;
+const { USER } = require('./schema.js');
 
 mongoose.connect(`mongodb+srv://${username}:${password}@streamfinder01.5jdg2kb.mongodb.net/?retryWrites=true&w=majority`, (err) => {
   if (err) {
@@ -10,20 +11,82 @@ mongoose.connect(`mongodb+srv://${username}:${password}@streamfinder01.5jdg2kb.m
   }
 });
 
-// EVERYTHING IS ASYNC
+const User = {
+  find: async (findBy={}) => {
+    // Example findBy {username: "sase"}
+    try {
+      const results = await USER.find(findBy);
+      return results;
+    } catch {
+      return "Err Finding User";
+    }
+  },
 
-// Getting Data
-// <model>.find({<propName>: <propValue>})
-// Has things like or and, less than, strict equal and so on...
+  create: async (userData) => {
+    // Make sure userData matches Schema
+    try {
+      let users = await User.find({username: userData.username});
+      if (users.length > 0) {
+        return "Err Username Taken";
+      }
+      let doc = new USER(userData);
+      try {
+        await doc.save();
+        return true;
+      } catch {
+        return "Err Saving User";
+      }
+    } catch {
+      return "Err Checking If User Exists"
+    }
+  },
 
-// Removing Data
-// <model>.findOneAndDelete({<propsName>: <propValue>})
+  update: async (findBy, newValues) => {
+    // Example newValues: {username: "doe", password: "john"}
+    try {
+      let user =  (await USER.find(findBy))[0];
+      Object.keys(newValues).forEach(prop => {
+        user[prop] = newValues[prop];
+      });
+      try {
+        await user.save();
+        return true;
+      } catch {
+        return "Found User, But Could Not Update";
+      }
+    } catch {
+      return "Err Finding User, Could Not Update";
+    }
+  },
 
-// Update Data
-// let doc = <model>.find({<propName>: <propValue>});
-// doc.<propName> = <newPropValue>
-// await doc.save()
+  updateArrayProp: async(findBy={}, propName, items=[], addToArray=true) => {
+    try {
+      let user = (await USER.find(findBy))[0];
+      let prop = user[propName].slice();
+      if (addToArray) {
+        items.forEach(item => {
+          if (prop.indexOf(item) === -1) prop.push(item);
+        });
+      } else {
+        items.forEach((item) => {
+          let index = prop.indexOf(item);
+          if (index !== -1) prop.splice(index, 1);
+        });
+      }
+      try {
+        user[propName] = prop;
+        await user.save();
+        return true;
+      } catch {
+        return "Found User, But Could Not Update"
+      }
+    } catch {
+      return "Err Finding User";
+    }
+  }
+};
 
-// Creating Entries
-// let doc = new <model>({<object with data>})
-// await doc.save
+module.exports = {
+  User
+  //Import using "import { User } from '<this_location>' "
+};
