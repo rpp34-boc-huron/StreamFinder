@@ -1,5 +1,4 @@
 const axios = require('axios');
-const key = require('../token.js');
 const API_KEY = process.env.API_KEY;
 
 const summaryFinder =  (req, res) => {

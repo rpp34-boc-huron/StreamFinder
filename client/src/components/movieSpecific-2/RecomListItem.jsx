@@ -7,8 +7,8 @@ export default function RecomListItem({ backdropUrl, movie_id, title, release_da
   return (
     <ImageListItem
       sx={{
-        width: 300,
-        height: 170
+        width: 280,
+        height: 150
       }}
     >
       <img

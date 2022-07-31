@@ -47,7 +47,9 @@ export default function MovieSpecific2 ({ movieId, handleClick }) {
     <>
     {/* <ScrollableTabsButtonAuto /> */}
     <iframe src={trailerUri + trailerKey} />
-    <RecomList recommendations={recommendations} handleClick={handleClick}/>
+    <RecomList
+      recommendations={recommendations}
+      handleClick={handleClick}/>
     </>
   );
 }
