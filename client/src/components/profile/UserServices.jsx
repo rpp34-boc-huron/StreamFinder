@@ -14,11 +14,12 @@ const iconStyle = {
 
 const UserServices = (props) => {
   const {user} = props;
+  const [query, setQuery] = useState('');
 
   const userDoesNotHaveFilter = (dataSet) => {
     let result = [];
     dataSet.forEach(item => {
-      if (user.ownedServices.indexOf(item)) {
+      if (user.ownedServices.indexOf(item) && item.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
         result.push(item);
       }
     });
@@ -35,7 +36,13 @@ const UserServices = (props) => {
       />
 
       <div className="user-profile-service-header">Unowned Services</div>
-      <TextField label="Search Services" variant="standard" sx={{width: '500px'}}/>
+      <TextField 
+        label="Search Services" 
+        variant="standard" 
+        sx={{width: '500px'}} 
+        onKeyUp={e => setQuery(e.target.value)}
+      />
+
       <ServiceCarousel 
         items={Object.keys(SERVICES)} 
         name={'Unowned Services'}
