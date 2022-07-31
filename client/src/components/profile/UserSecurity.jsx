@@ -26,8 +26,14 @@ const Account = (props) => {
 
       <Button sx={{
         width: 'max-content',
-        justifyContent: 'left'
-      }}>
+        justifyContent: 'left',
+        height: 'max-content',
+        position: 'relative',
+        top: '-5px',
+        padding: '5px 0 5px'
+      }}
+      disableRipple
+      >
         Reset Password
       </Button>
     </div>
