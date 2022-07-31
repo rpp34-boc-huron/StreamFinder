@@ -4,7 +4,7 @@ const password = process.env.MONGOPASS;
 
 mongoose.connect(`mongodb+srv://${username}:${password}@streamfinder01.5jdg2kb.mongodb.net/?retryWrites=true&w=majority`, (err) => {
   if (err) {
-    console.log('Could not connect to MongoDB');
+    console.log('Could not connect to MongoDB', err);
   } else {
     console.log('Connected to MongoDB');
   }
