@@ -6,6 +6,7 @@ const app = express();
 const moviesRoutes = require('../server/routes/movies.js');
 const hoverRoutes = require('../server/routes/hoverCard.js');
 const searchMoviesRoutes = require('../server/routes/searchMovies.js');
+const{ summaryFinder, posterFinder, providersFinder } = require('./controllers/movieSummaryHelper.js');
 const port = process.env.port || 8080;
 const publicPath = path.join(__dirname, '..', 'client', 'public');
 const indexHtmlPath = path.join(publicPath, 'index.html');
@@ -61,6 +62,13 @@ app.get('/recommendations/:movieId', async (req, res) => {
 })
 
 //------------------movie-specific2------------------//
+app.get('/poster/:movieTitle', posterFinder);
+app.get('/summary/:movieTitle', summaryFinder);
+app.get('/providers/:movieTitle', providersFinder);
+//------------------movie-specific1------------------//
+
+
+
 app.listen(port, () => {
   console.log('Server listening on port: ', port);
 });

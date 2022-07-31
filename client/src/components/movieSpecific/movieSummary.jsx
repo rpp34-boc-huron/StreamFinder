@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { summaryFinder, posterFinder, providerFinder } from '../../../../server/controllers/movieSummaryHelper.js'
+// import { summaryFinder, posterFinder, providerFinder } from '../../../../server/controllers/movieSummaryHelper.js'
 import './movieSum.css';
 import costs from "./providersCost.js";
 import { FaShare } from 'react-icons/fa';
 import { FcLike, FcBookmark } from 'react-icons/fc';
+const axios = require('axios');
 
 export default function Moviesumm() {
     const [movieTitle, changeTitle] = useState('The Godfather');
@@ -12,27 +13,40 @@ export default function Moviesumm() {
     const [movieProviders, changeProvider] = useState([]);
     const [movieScore, changeScore] = useState(null);
 
+    const getPoster = async () => {
+        try {
+            const { data } = await axios.get(`/poster/${movieTitle}`);
+            changePoster(data);
+        } catch (err) {
+            console.error('get poster error', err);
+        }
+    }
+
+    const getSummary = async () => {
+        try {
+            const { data } = await axios.get(`/summary/${movieTitle}`);
+            changeDetail(data.overview);
+            changeScore(data.vote_average.toFixed(1));
+        } catch (err) {
+            console.error('get summary error', err);
+        }
+    }
+
+    const getProviders = async () => {
+        try {
+            const { data } = await axios.get(`/providers/${movieTitle}`);
+            changeProvider(data);
+        } catch (err) {
+            console.error('get providers error', err);
+        }
+    }
+
     useEffect(() => {
-        posterFinder(movieTitle)
-            .then(res => {
-                changePoster(res)
-            })
+        getPoster();
+        getSummary();
+        getProviders()
     }, [movieTitle]);
-    useEffect(() => {
-        summaryFinder(movieTitle)
-            .then(res => {
-                console.log(res);
-                changeDetail(res.overview)
-                changeScore(res.vote_average.toFixed(1))
-            })
-    }, [movieTitle]);
-    useEffect(() => {
-        providerFinder(movieTitle)
-            .then(res => {
-                changeProvider(res)
-            })
-    }, [movieTitle]);
-    // { console.log(Object.keys(costs), 'costss') }
+
     return (
         <div className="container">
             <div className="posterandprovider">
@@ -68,7 +82,7 @@ export default function Moviesumm() {
                 </div>
                 <h2> Overview </h2>
                 <p>{movieDetail === '' ? null : movieDetail} </p>
-            </div>  
+            </div>
         </div>
     )
 }
