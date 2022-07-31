@@ -9,7 +9,6 @@ const API_KEY = process.env.API_KEY;
 router.get('/trending', (req, res) => {
   axios(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`)
   .then(response => {
-    // console.log('trending',response.data)
     res.json(response.data);
   })
   .catch(err => {
