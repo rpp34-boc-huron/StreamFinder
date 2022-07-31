@@ -1,4 +1,4 @@
-const { addListModel, addFavoritesModel } = require('../../database/models/hoverCardDBModel')
+// const { addListModel, addFavoritesModel } = require('../../database/models/hoverCardDBModel')
 const axios = require('axios');
 const API_KEY = process.env.API_KEY;
 
