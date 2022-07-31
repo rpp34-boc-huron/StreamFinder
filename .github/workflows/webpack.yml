@@ -23,6 +23,8 @@ jobs:
         cd /home/ubuntu/actions-runner/_work/StreamFinder/StreamFinder/server
         touch .env
         echo API_KEY=${{ secrets.API_KEY }} >> .env
+        echo API_KEY=${{ secrets.MONGOUSER }} >> .env
+        echo API_KEY=${{ secrets.MONGOPASS }} >> .env
         cat .env
 
     - name: Use Node.js ${{ matrix.node-version }}
