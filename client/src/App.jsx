@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import LandingSearchPage from './components/search/LandingSearchPage';
 import UserProfile from './components/profile/UserProfile.jsx';
-import MovieSpecific2 from './components/movieSpecific-2/MovieSpecific2';
 
 const App = () => {
   const [searchStatus, setSearchStatus] = useState(false);
@@ -16,16 +15,15 @@ const App = () => {
 
   return (
     <div className="app">
-      <div> 
+      <div>
       <Moviesumm />
-      <MovieSpecific2 />
     </div>
       <Navbar setSearch={setSearchStatus} setSearchMovieData={setSearchMovieData} keywords={keywords} setKeywords={setKeywords} />
       {searchStatus ? <LandingSearchPage keywords={keywords} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} /> : <LandingPage />}
       {/* <UserProfile /> */}
       Hello World From React
     </div>
-    
+
   );
 
   //tests

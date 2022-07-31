@@ -27,9 +27,9 @@ app.get('/', (req, res) => {
 
 
 //------------------movie-specific------------------//
-app.get('/poster/:movieTitle', posterFinder);
-app.get('/summary/:movieTitle', summaryFinder);
-app.get('/providers/:movieTitle', providersFinder);
+app.get('/poster/:movieId', posterFinder);
+app.get('/summary/:movieId', summaryFinder);
+app.get('/providers/:movieId', providersFinder);
 app.get('/trailers/:movieId', searchTrailers);
 app.get('/recommendations/:movieId', searchRecommendations);
 //------------------movie-specific------------------//
