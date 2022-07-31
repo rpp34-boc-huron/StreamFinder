@@ -33,7 +33,6 @@ const AboutMe = (props) => {
               height: '50px', 
               background: 'lightgrey', 
               position: 'relative', 
-              left: '25px', 
               borderRadius: '100%', 
               padding: '5px'
             }}

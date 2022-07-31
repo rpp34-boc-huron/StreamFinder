@@ -4,6 +4,7 @@ $newBlack: rgba(0,0,0,0.85);
 // Imports
 @import './profileAccountSection';
 @import './profileServices';
+@import './variables';
 
 .user-profile {
   position: relative;
@@ -16,12 +17,15 @@ $newBlack: rgba(0,0,0,0.85);
 // About Me
 .user-profile-user-meta-information {
   position: relative;
-  width: 60vw;
-//   min-width: 600px;
+  width: calc(60vw - 25px);
+  left: 25px;
   min-height: 300px;
   display: grid;
   grid-template-columns: max-content max-content;
-//   border: 1px solid black;
+  background: $CarouselGrey;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 50px 10px 50px 10px;
 }
 
 .user-profile-edit-bio {
@@ -33,24 +37,28 @@ $newBlack: rgba(0,0,0,0.85);
 
 .user-profile-user-meta-image-container {
   position: relative;
-  min-width: 300px;
-  height: 300px;
+  min-width: 200px;
+  height: 200px;
 }
 
 .replace-this-image {
   position: relative;
-  top: 25px;
-  left: 25px;
-  width: 250px;
-  height: 250px;
-  border: 1px solid black;
+  top: 12.5px;
+  left: 12.5px;
+  width: 175px;
+  height: 175px;
+  border: 1px solid rgba(0,0,0,0.125);
   border-radius: 100%;
-  background: url('../../../assets/empty\ user.webp');
+  background: url('../../imgs/empty-user.webp');
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: lightgray;
 }
 
 .user-profile-user-meta-about-me-container {
   position: relative;
-  top: 25px;
+  top: 12.5px;
   overflow: hidden;
   max-width: calc(60vw - 300px);
 }
@@ -58,18 +66,20 @@ $newBlack: rgba(0,0,0,0.85);
 .user-profile-username-text {
   font-size: 25px;
   font-weight: 900;
-  color: $newBlack;
+  color: $HeaderBlack;
+}
+.user-profile-about-me-text {
+  color: rgba(0,0,0,0.65);
 }
 
 .replace-profile-image-button {
   position: absolute;
-  width: 75px;
-  height: 75px;
-  bottom: 25px;
-  right: 25px;
-  // border: 1px solid black;
-  // background: white;
+  width: 50px;
+  height: 50px;
+  bottom: 12.5px;
+  right: 12.5px;
   border-radius: 100%;
+  background-color: black;
 }
 
 //  Settings
