@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import SERVICES from './SERVICEDATA.js';
 import AddIcon from '@mui/icons-material/Add';
 import ClearIcon from '@mui/icons-material/Clear';
+import { TextField } from '@mui/material';
 
 const iconStyle = {
   position: 'absolute',
@@ -14,10 +15,19 @@ const iconStyle = {
 const UserServices = (props) => {
   const {user} = props;
 
+  const userDoesNotHaveFilter = (dataSet) => {
+    let result = [];
+    dataSet.forEach(item => {
+      if (user.ownedServices.indexOf(item)) {
+        result.push(item);
+      }
+    });
+    return result;
+  };
+
   return (
     <div className="user-profile-services">
       <div className="user-profile-service-header">Owned Services</div>
-      
       <ServiceCarousel 
         items={user.ownedServices} 
         name={'Owned Services'}
@@ -25,10 +35,12 @@ const UserServices = (props) => {
       />
 
       <div className="user-profile-service-header">Unowned Services</div>
+      <TextField label="Search Services" variant="standard" sx={{width: '500px'}}/>
       <ServiceCarousel 
         items={Object.keys(SERVICES)} 
         name={'Unowned Services'}
         FlipModal={UnownedServiceDetail}
+        filter={userDoesNotHaveFilter}
       />
 
     </div>
@@ -77,11 +89,12 @@ const ServiceDisplayModal = (props) => {
 };
 
 const ServiceCarousel = (props) => {
-  const {items, name, FlipModal} = props;
+  const {items, name, FlipModal, filter} = props;
+  let dataFilter = filter || function(item) {return item};
     
   return (
     <div className="service-carousel">
-      {items.map((service, i) => {
+      {dataFilter(items).map((service, i) => {
         return (
           <ServiceDisplayModal 
             key={`service-carousel-${service}-${name}-${i}`} 

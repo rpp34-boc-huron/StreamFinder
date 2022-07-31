@@ -3,6 +3,9 @@
   left: 25px;
   width: calc(60vw - 25px);
   height: max-content;
+  display: grid;
+  grid-template-rows: max-content max-content max-content max-content max-content;
+  grid-row-gap: 5px;
 }
 
 @mixin carousel-header {
