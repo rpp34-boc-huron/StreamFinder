@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import AboutMe from './AboutMe.jsx';
-import AccountSettings from './AccountSettings.jsx';
 import FriendsList from './FriendsList.jsx';
 import Account from './UserSecurity.jsx';
 import UserServices from './UserServices.jsx';
@@ -24,7 +23,6 @@ const UserProfile = (props) => {
     <div className="user-profile">
       <div className="user-information-container">
         <AboutMe user={user}/>
-        {/* <AccountSettings /> */}
         <Account user={user}/>
         <UserServices user={user}/>
       </div>
