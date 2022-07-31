@@ -1,5 +1,4 @@
 .env
 node_modules
 client/public/dist/
-server/token.js
-apiToken.js
+token.js

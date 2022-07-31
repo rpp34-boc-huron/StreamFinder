@@ -9,7 +9,6 @@ const summaryFinder =  (req, res) => {
          let id = apiRes.data.results[0].id;
          return axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
              .then(apiRes => {
-                console.log(apiRes.data.overview);
                res.status(200).send(apiRes.data);
              })
          })
