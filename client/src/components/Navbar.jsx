@@ -56,7 +56,8 @@ const Navbar = (props) => {
                             >&#127916; Stream Finder
                             </Typography>
                             <SearchBar setSearch={setSearch} setSearchMovieData={setSearchMovieData}  keywords={keywords} setKeywords={setKeywords} />
-                            <Button component={Link} to="/" color="inherit">Home</Button>
+                            {/* <Button component={Link} to="/" color="inherit">Home</Button> */}
+                            <Button onClick={(e)=> {setSearch(false)}} color="inherit">Home</Button>
                             <Button color="inherit">Profile</Button>
                             <Button color="inherit">Sign Out</Button>
                         </Toolbar>

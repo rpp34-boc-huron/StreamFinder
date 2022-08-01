@@ -35,7 +35,9 @@ const LandingSearchPage = (props) => {
           </Stack>
         </Container>
         :
-        <p>Sorry, we couldn't find any results for "<b>{keywords}</b>"</p>
+        <div className="no-results-found">
+          <p>Sorry, we couldn't find any results for "<b>{keywords}</b>"</p>
+        </div>
       }
     </>
   );
