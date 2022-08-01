@@ -14,6 +14,7 @@ const SearchBar = (props) => {
 
   const handleSearch = () => {
     console.log(keywords, '<- search bar');
+    if (keywords !== '') {
       getSearchMovieResultsData(keywords)
       .then(data => {
         setSearch(true);
@@ -22,6 +23,7 @@ const SearchBar = (props) => {
       .catch(err => {
         console.log('Search Bar Error....', err);
       })
+    }
   }
 
   const handleKeyDown = (e) => {
