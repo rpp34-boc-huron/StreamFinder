@@ -83,6 +83,12 @@ const User = {
     } catch {
       return "Err Finding User";
     }
+  },
+
+  updateList: async(userName, listName, movieObj) => {
+    const result = USER.findOne({username: userName})
+    return result.select(listName)
+
   }
 };
 
@@ -90,3 +96,8 @@ module.exports = {
   User
   //Import using "import { User } from '<this_location>' "
 };
+
+// {
+//   'image': 'https://image.tmdb.org/t/p/w185/3bhkrj58Vtu7enYsRolD1fZdja1.jpg',
+//   'id': '238'
+// }

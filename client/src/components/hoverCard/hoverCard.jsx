@@ -1,4 +1,4 @@
-import {Card, CardContent, CardMedia, CardActionArea, Typography, Stack } from '@mui/material';
+import {Card, CardContent, CardMedia, CardActionArea, Typography, Stack, Grid, Paper, IconButton } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import AddToFavorites from './addToFavoritesButton';
 import AddToList from './addToListButton';
@@ -22,7 +22,8 @@ export default function HoverCard({ movieId }) {
   const [netflixState, setNetflixClick] = useState(true);
   const [huluState, setHuluClick] = useState(true);
   const [hboState, setHBOClick] = useState(true);
-
+  const [spacing, setSpacing] = useState(2);
+  const [poster, setPoster] =useState('');
   //9615 -> HBO
   //122066 -> HUlu
   //881957 -> netflix
@@ -60,16 +61,17 @@ export default function HoverCard({ movieId }) {
         const description = movieInfo.overview;
         const poster_path = movieInfo.poster_path;
         const image = `https://image.tmdb.org/t/p/w500${poster_path}`
-
+        setPoster(poster_path)
         setMovieTitle(title)
         setMovieDescription(description)
         setMovieImage(image)
 
       })
   })
+
   if(movieImage !== '') {
     return (
-      <Card sx={{ maxWidth: 345, maxHeight: 330, position: 'absolute', zIndex: 5 }}>
+      <Card sx={{ maxWidth: 300, maxHeight: 330, position: 'absolute', zIndex: 5 }}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -108,7 +110,7 @@ export default function HoverCard({ movieId }) {
           spacing={1}
           direction="row"
           justifyContent="space-evenly"
-          sx={{paddingBottom: "2px"}}
+          sx={{paddingBottom: "2px", paddingLeft: "12px"}}
         >
               <Card sx={{minWidth:30, maxWidth:30}}>
                 <CardActionArea href="https://www.netflix.com/" target="_blank" disabled={netflixState} sx={{height: 30}}>
@@ -119,30 +121,44 @@ export default function HoverCard({ movieId }) {
                   />
                 </CardActionArea>
               </Card>
-            <Card sx={{minWidth:30, maxWidth: 30}}>
+            {/* <Card sx={{minWidth:30, maxWidth: 30 ,                            color: '#ffff',
+                            opacity: 0}}>
               <CardActionArea href="https://hulu.com" target="_blank" disabled={huluState} sx={{maxHeight: 30}}>
                 <CardMedia
                       component="img"
                       height="30"
-                      image={huluIcon}
+                      image={white}
                 />
               </CardActionArea>
             </Card>
-            <Card sx={{minWidth:30, maxWidth: 30}}>
-              <CardActionArea href="https://hbo.com" target="_blank" disabled={hboState}>
-                <CardMedia
-                      component="img"
-                      height="30"
-                      image={hboIcon}
-                />
-              </CardActionArea>
-            </Card>
-            <AddToFavorites event={{addToFavorites}} movieID={{id}}/>
-            <AddToList event={{addToList}} movieID={{id}} />
+            <Card sx={{minWidth:30, maxWidth: 30,      color: '#ffff',
+                            opacity: 0}}>
+
+            </Card> */}
+             {/* <Grid sx={{ flexGrow: 1 }} container spacing={2}>
+      <Grid item xs={12}>
+        <Grid container spacing={spacing}>
+
+                    {/* {[0,1,2,3].map((value) => (
+                      <Grid key={value} item>
+                        <Paper
+                          sx={{
+                            height: 30,
+                            width: 30,
+                            color: '#ffff',
+                            opacity: 0
+                          }}
+                        />
+                      </Grid>
+
+                    ))} */}
+                  {/* </Grid>
+                </Grid>
+              </Grid>  */}
+            <AddToFavorites event={{addToFavorites}} movieID={{id}} poster={{poster}}/>
+            <AddToList event={{addToList}} movieID={{id}} poster={{poster}} />
             </Stack>
       </Card>
     );
   }
-
 }
-

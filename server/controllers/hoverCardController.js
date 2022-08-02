@@ -1,7 +1,6 @@
-// const { addListModel, addFavoritesModel } = require('../../database/models/hoverCardDBModel')
 const axios = require('axios');
 const API_KEY = process.env.API_KEY;
-
+const { User } = require('../../database/index.js')
 
 
 const getMovieInfo = async (req, res) => {
@@ -20,7 +19,11 @@ const getMovieInfo = async (req, res) => {
 }
 
 const addList = (req, res) => {
-  addListModel(req.body)
+  const test = User.updateList('sase', 'test', 'dog')
+  test
+    .then((data) => {
+      console.log(data)
+    })
   res.status(201).send('addList route is working')
 }
 const addFavorites = (req, res) => {
