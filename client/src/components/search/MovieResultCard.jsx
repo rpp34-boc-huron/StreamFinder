@@ -3,7 +3,7 @@ import { Button, Container, Grid, Card, CardMedia, CardContent, CardActionArea, 
 import { makeStyles } from '@material-ui/core/styles';
 
 const MovieResultCard = (props) => {
-  const { movie, setSearchStatus } = props;
+  const { movie, setSearchStatus, setMovieId } = props;
   const [state, setState] = useState({
     raised: false,
     shadow: 1,
@@ -22,18 +22,14 @@ const MovieResultCard = (props) => {
 
   const classes = useStyles();
 
-  // handle when clicked, it should have an effect when clicked and pass movie id to Movie Specific Page
   const handleClicked = (e) => {
     const tagName = e.target.tagName;
     let id = e.target.parentElement.id;
-    console.log('tagName??????', tagName)
     if (tagName === 'H5') {
       id = e.target.parentElement.parentElement.id;
     }
-    console.log('id??????', id)
-    console.log('typeof??????', typeof id)
-
-    // wait for a props function to change/set movie id, and set search status to false
+    setMovieId(parseInt(id));
+    setSearchStatus(false);
   }
 
   return (

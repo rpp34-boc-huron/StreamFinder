@@ -5,7 +5,7 @@ import { Container, Pagination, Stack, Grid } from '@mui/material';
 import MovieResultCard from './MovieResultCard';
 
 const LandingSearchPage = (props) => {
-  const { searchMovieData, keywords, setSearchMovieData, setSearchStatus } = props;
+  const { searchMovieData, keywords, setSearchMovieData, setSearchStatus, setMovieId } = props;
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const LandingSearchPage = (props) => {
           {/* <MovieList listOfMovies={searchMovieData.results} /> */}
           <Grid container spacing={4} mt={0} >
               {searchMovieData.results.map((movie) => (
-                <MovieResultCard key={movie.id} movie={movie} setSearchStatus={setSearchStatus} />
+                <MovieResultCard key={movie.id} movie={movie} setSearchStatus={setSearchStatus} setMovieId={setMovieId} />
               ))}
           </Grid>
           <Stack spacing={4} sx={{ pt: '50px' }} justifyContent="space-evenly" alignItems="center">
