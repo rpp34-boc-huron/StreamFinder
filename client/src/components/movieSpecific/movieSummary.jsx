@@ -6,8 +6,8 @@ import { FcLike, FcBookmark } from 'react-icons/fc';
 const axios = require('axios');
 import MovieSpecific2 from '../movieSpecific-2/MovieSpecific2';
 
-export default function Moviesumm() {
-    const [movieId, setMovieId] = useState(238);
+export default function Moviesumm({movieId, handleClick}) {
+    // const [movieId, setMovieId] = props;
     const [movieTitle, changeTitle] = useState('The Godfather');
     const [movieDetail, changeDetail] = useState('');
     const [moviePoster, changePoster] = useState(null);
@@ -28,6 +28,7 @@ export default function Moviesumm() {
             const { data } = await axios.get(`/summary/${movieId}`);
             changeDetail(data.overview);
             changeScore(data.vote_average.toFixed(1));
+            changeTitle(data.original_title);
         } catch (err) {
             console.error('get summary error', err);
         }
@@ -48,11 +49,11 @@ export default function Moviesumm() {
         getProviders()
     }, [movieId]);
 
-    const handleClick = (e) => {
-        e.preventDefault();
-        const movieId = e.target.id;
-        setMovieId(movieId);
-    }
+    // const handleClick = (e) => {
+    //     e.preventDefault();
+    //     const movieId = e.target.id;
+    //     setMovieId(movieId);
+    // }
 
     return (
         <>
@@ -86,7 +87,7 @@ export default function Moviesumm() {
                         <FaShare className="share" />
                     </span>
                     <div className="starRating">
-                        {`Score : ${movieScore}`}
+                        {`Score : ${movieScore}`} 
                     </div>
                     <h2> Overview </h2>
                     <p>{movieDetail === '' ? null : movieDetail} </p>

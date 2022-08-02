@@ -2,3 +2,5 @@
 node_modules
 client/public/dist/
 token.js
+apiToken.js
+token.js

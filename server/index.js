@@ -1,5 +1,5 @@
 require('dotenv').config();
-const axios = require('axios');
+require('../database/index.js');
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -13,10 +13,14 @@ const { searchTrailers, searchRecommendations }= require('./controllers/movieSpe
 const port = process.env.port || 8080;
 const publicPath = path.join(__dirname, '..', 'client', 'public');
 const indexHtmlPath = path.join(publicPath, 'index.html');
+const bodyParser = require('body-parser')
 
 
+// app.use(cors())
 app.use(express.json());
 app.use(express.static(publicPath));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/movies', moviesRoutes);
 app.use('/hover', hoverRoutes);

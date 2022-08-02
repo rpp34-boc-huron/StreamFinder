@@ -2,16 +2,17 @@ import * as React from 'react';
 import {IconButton, Alert, Snackbar, Button} from '@mui/material';
 import Add from '@mui/icons-material/Add';
 
-export default function addToList() {
+export default function addToList({event, movieID}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const {addToFavorite} = event;
-  console.log(addToFavorite)
+  const {addToList} = event;
+  const { id } = movieID;
+
   const actionWrapper = e => {
     handleOpen()
-    // addToFavorite()
+    addToList('fake userID', id)
   }
 
     return (

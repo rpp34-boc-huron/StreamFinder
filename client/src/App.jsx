@@ -12,11 +12,18 @@ const App = () => {
   const [searchStatus, setSearchStatus] = useState(false);
   const [searchMovieData, setSearchMovieData] = useState([]);
   const [keywords, setKeywords] = useState('');
+  const [movieId, setMovieId] = useState(238)
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    const movieId = e.target.id;
+    setMovieId(movieId);
+}
 
   return (
     <div className="app">
       <div>
-      <Moviesumm />
+      <Moviesumm movieId={movieId} handleClick={handleClick}/>
     </div>
       <Navbar setSearch={setSearchStatus} setSearchMovieData={setSearchMovieData} keywords={keywords} setKeywords={setKeywords} />
       {searchStatus ? <LandingSearchPage keywords={keywords} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} /> : <LandingPage />}

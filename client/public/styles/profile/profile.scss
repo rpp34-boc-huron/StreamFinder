@@ -1,6 +1,11 @@
 // Variables
 $newBlack: rgba(0,0,0,0.85);
 
+// Imports
+@import './profileAccountSection';
+@import './profileServices';
+@import './variables';
+
 .user-profile {
   position: relative;
   display: grid;
@@ -12,33 +17,48 @@ $newBlack: rgba(0,0,0,0.85);
 // About Me
 .user-profile-user-meta-information {
   position: relative;
-  width: 60vw;
-//   min-width: 600px;
+  width: calc(60vw - 25px);
+  left: 25px;
   min-height: 300px;
   display: grid;
   grid-template-columns: max-content max-content;
-//   border: 1px solid black;
+  background: $CarouselGrey;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 50px 10px 50px 10px;
+}
+
+.user-profile-edit-bio {
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+  z-index: 5;
 }
 
 .user-profile-user-meta-image-container {
   position: relative;
-  min-width: 300px;
-  height: 300px;
+  min-width: 200px;
+  height: 200px;
 }
 
 .replace-this-image {
   position: relative;
-  top: 25px;
-  left: 25px;
-  width: 250px;
-  height: 250px;
-  border: 1px solid black;
+  top: 12.5px;
+  left: 12.5px;
+  width: 175px;
+  height: 175px;
+  border: 1px solid rgba(0,0,0,0.125);
   border-radius: 100%;
+  background: url('../../imgs/empty-user.webp');
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: lightgray;
 }
 
 .user-profile-user-meta-about-me-container {
   position: relative;
-  top: 25px;
+  top: 12.5px;
   overflow: hidden;
   max-width: calc(60vw - 300px);
 }
@@ -46,18 +66,20 @@ $newBlack: rgba(0,0,0,0.85);
 .user-profile-username-text {
   font-size: 25px;
   font-weight: 900;
-  color: $newBlack;
+  color: $HeaderBlack;
+}
+.user-profile-about-me-text {
+  color: rgba(0,0,0,0.65);
 }
 
 .replace-profile-image-button {
   position: absolute;
-  width: 75px;
-  height: 75px;
-  bottom: 25px;
-  right: 25px;
-  border: 1px solid black;
-  background: white;
+  width: 50px;
+  height: 50px;
+  bottom: 12.5px;
+  right: 12.5px;
   border-radius: 100%;
+  background-color: black;
 }
 
 //  Settings
@@ -79,10 +101,47 @@ $newBlack: rgba(0,0,0,0.85);
 }
 
 .user-profile-owned-subscriptions-carousel, .user-profile-add-subscriptions-carousel {
+  display: grid;
   height: 100px;
   border-radius: 5px;
   background-color: rgba(0,0,0,0.035);
   min-width: 500px;
+  align-content: center;
+  grid-template-columns: max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content;
+  grid-column-gap: 20px;
+}
+
+.user-profile-service {
+  width: 75px;
+  height: 75px;
+  position: relative;
+  top: 5px;
+  border-radius: 5px;
+  background-color: black;
+  position: relative;
+}
+.user-profile-service:hover {
+  transition: all 600ms;
+  transform: rotateY(-360deg);
+  cursor: pointer;
+}
+.user-subscription-hbo {
+  background: url('../../imgs/hbo.webp');
+  background-size: cover;
+  width: 75px;
+  height: 75px;
+}
+.user-subscription-netflix {
+  background: url('../../imgs/netflix.png');
+  background-size: contain;
+  width: 75px;
+  height: 75px;
+}
+.user-subscription-hulu {
+  background: url('../../imgs/hulu.png');
+  background-size: cover;
+  width: 75px;
+  height: 75px;
 }
 
 .user-profile-account-text, .user-profile-owned-subscriptions-text, .user-profile-add-subscriptions-text {
@@ -116,4 +175,50 @@ $newBlack: rgba(0,0,0,0.85);
   max-width: 800px;
   height: 88%;
   border-radius: 5px;
+}
+
+.profile-you-have-no-subscriptions-text {
+  display: grid;
+  position: absolute;
+  place-self: center;
+  color: rgba(0,0,0,0.285);
+}
+
+.more-info-on-service {
+  text-align: center;
+  width: 75px;
+  height: 75px;
+  position: absolute;
+  background-color: black;
+  color: white;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+}
+.more-info-on-service-price {
+  position: relative;
+  top: -20px;
+  z-index: 100;
+  color: black;
+}
+
+.user-profile-edit-text {
+  width: 800px;
+  height: 400px;
+}
+
+.user-profile-edit-text {
+  position: fixed;
+  z-index: 1000;
+  width: 800px;
+  height: 300px;
+  top: calc(50vh - 150px);
+  left: calc(50vw - 400px);
+  background: rgba(0,0,0,0.285);
+  backdrop-filter: blur(2px);
+  display: grid;
+  grid-template-rows: max-content max-content max-content;
+  grid-row-gap: 10px;
+  box-sizing: border-box;
+  padding: 10px;
 }
