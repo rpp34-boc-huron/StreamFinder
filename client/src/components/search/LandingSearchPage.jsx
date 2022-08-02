@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import MovieList from './MovieList';
 import { getSearchMovieResultsData } from '../../utils/getTMDBdata';
-import { Container, Pagination, Stack } from '@mui/material';
+import { Container, Pagination, Stack, Grid } from '@mui/material';
+// import MovieList from './MovieList';
+import MovieResultCard from './MovieResultCard';
 
 const LandingSearchPage = (props) => {
-  const { searchMovieData, keywords, setSearchMovieData } = props;
+  const { searchMovieData, keywords, setSearchMovieData, setSearchStatus } = props;
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -12,7 +13,7 @@ const LandingSearchPage = (props) => {
     window.scrollTo(0, 0);
   })
 
-  const handleChange = (event, value) => {
+  const handleChangePage = (event, value) => {
     console.log('clicked page???', value)
     getSearchMovieResultsData(keywords, value)
       .then(data => {
@@ -28,10 +29,15 @@ const LandingSearchPage = (props) => {
     <>
       {searchMovieData.results.length > 0
         ?
-        <Container sx={{ py: 10 }} maxWidth="md">
-          <MovieList listOfMovies={searchMovieData.results} />
+        <Container sx={{ margin: '50px auto'}} >
+          {/* <MovieList listOfMovies={searchMovieData.results} /> */}
+          <Grid container spacing={4} mt={0} >
+              {searchMovieData.results.map((movie) => (
+                <MovieResultCard key={movie.id} movie={movie} setSearchStatus={setSearchStatus} />
+              ))}
+          </Grid>
           <Stack spacing={4} sx={{ pt: '50px' }} justifyContent="space-evenly" alignItems="center">
-            <Pagination count={searchMovieData.total_pages} page={page} onChange={handleChange} />
+            <Pagination count={searchMovieData.total_pages} page={page} onChange={handleChangePage} />
           </Stack>
         </Container>
         :

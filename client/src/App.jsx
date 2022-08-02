@@ -15,7 +15,7 @@ const App = () => {
   return (
     <div className="app">
       <Navbar setSearch={setSearchStatus} setSearchMovieData={setSearchMovieData} keywords={keywords} setKeywords={setKeywords} />
-      {searchStatus ? <LandingSearchPage keywords={keywords} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} /> : <LandingPage />}
+        {searchStatus ? <LandingSearchPage keywords={keywords} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} setSearchStatus={setSearchStatus} /> : <LandingPage />}
       {/* <UserProfile /> */}
     </div>
   );
