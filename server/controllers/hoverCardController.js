@@ -19,12 +19,10 @@ const getMovieInfo = async (req, res) => {
 }
 
 const addList = (req, res) => {
-  const test = User.updateList('sase', 'test', 'dog')
-  test
-    .then((data) => {
-      console.log(data)
-    })
-  res.status(201).send('addList route is working')
+  const test = User.updateList('sase', 'test', 'dog', (err, resultCode)=>{
+    res.status(201).send(resultCode)
+  })
+
 }
 const addFavorites = (req, res) => {
   addFavoritesModel(req.body)

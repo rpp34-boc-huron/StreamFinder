@@ -85,11 +85,50 @@ const User = {
     }
   },
 
-  updateList: async(userName, listName, movieObj) => {
-    const result = USER.findOne({username: userName})
-    return result.select(listName)
+  updateList: async (userName, placeholder, movieObj2, callback) => {
+    const result = USER.findOne({username: 'sase'})
+    const selected = result.select('favorites')
+    const movieObj =  {
+         'image': 'test insert',
+         'id': '99999'
+       };
+       const listName = 'favorites'
+      //  result
+      //  .then(d => {
+      //    console.log(d)
+      //  })
+    selected
+      .then((list) => {
+        let arr = list[listName]
+        const index = arr.findIndex(obj => obj.id === movieObj.id)
+        if(index > -1) {
+          arr.splice(index, 1)
+          //remove movie
+            USER.findOneAndUpdate({username: 'sase'}, {[listName]: arr}, {upsert: true, new: true}, (err, result) => {
+              // console.log(result)
+              if(err) {
+                callback(err, null)
+              } else {
+                callback(null, 'removed')
+              }
+            })
 
-  }
+
+        } else {
+          arr.push(movieObj)
+        USER.findOneAndUpdate({username: 'sase'}, {[listName]: arr}, {upsert: true, returnDocument: 'after'}, (err, result) => {
+          // console.log(result)
+          //returns 2 for adding
+          if(err) {
+            callback(err, null)
+          } else {
+            callback(null, 'added')
+          }
+        })
+        }
+      })
+    }
+
 };
 
 module.exports = {
@@ -97,7 +136,3 @@ module.exports = {
   //Import using "import { User } from '<this_location>' "
 };
 
-// {
-//   'image': 'https://image.tmdb.org/t/p/w185/3bhkrj58Vtu7enYsRolD1fZdja1.jpg',
-//   'id': '238'
-// }
