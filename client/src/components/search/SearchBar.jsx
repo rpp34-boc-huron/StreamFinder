@@ -5,7 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { getSearchMovieResultsData } from '../../utils/getTMDBdata';
 
 const SearchBar = (props) => {
-  const { setSearch, setSearchMovieData, keywords, setKeywords } = props;
+  const { setSearch, setSearchMovieData, keywords, setKeywords, backToLandingPage } = props;
 
   const handleInput = (e) => {
     let keywords = e.target.value;
