@@ -26,7 +26,7 @@ const App = () => {
       <Moviesumm movieId={movieId} handleClick={handleClick}/>
     </div>
       <Navbar setSearch={setSearchStatus} setSearchMovieData={setSearchMovieData} keywords={keywords} setKeywords={setKeywords} />
-      {searchStatus ? <LandingSearchPage keywords={keywords} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} /> : <LandingPage />}
+        {searchStatus ? <LandingSearchPage keywords={keywords} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} setSearchStatus={setSearchStatus} setMovieId={setMovieId} /> : <LandingPage />}
       {/* <UserProfile /> */}
       Hello World From React
     </div>
