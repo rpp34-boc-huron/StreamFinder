@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 require('dotenv').config();
 const API_KEY = process.env.API_KEY;
+const db = require('../controllers/getFavoritesAndWatchlistController.js');
 // const API_KEY = require('../../apiToken.js').TOKEN;
 
 
@@ -33,6 +34,26 @@ router.get('/action', (req, res) => {
   })
   .catch(err => {
     res.json(err)
+  })
+})
+
+router.get('/:user/favorites', (req, res) => {
+  db.getUserData(req.params.user, 'favorites')
+  .then(data => {
+    res.json(data)
+  })
+  .catch(err => {
+    res.json(err);
+  })
+})
+
+router.get('/:user/watchlist', (req, res) => {
+  db.getUserData(req.params.user, 'watchlist')
+  .then(data => {
+    res.json(data)
+  })
+  .catch(err => {
+    res.json(err);
   })
 })
 

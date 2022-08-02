@@ -6,27 +6,35 @@ import { Paper, Button, Card, Grid } from '@mui/material';
 import MovieCard from './MovieCard.jsx';
 // import '../style.css';
 
-const MovieCarousel = ({ header, apiMethod }) => {
-    // console.log('header: ', header);
-    console.log('type of method: ', typeof apiMethod);
+const MovieCarousel = ({ header, apiMethod, user }) => {
     const [trendingList, setTrendingList] = useState([]);
     const [error, setError] = useState(null);
     useEffect(() => {
-      apiMethod((err, res) => {
-        if (err) {
-          setError(err);
-        } else {
-          // console.log('res.data.results: ', res.data.results);
-          let data = res.data.results.map(movie => {
-            return {
-              'image': `https://image.tmdb.org/t/p/w185${movie.poster_path}`,
-              'id': movie.id
-            };
-          });
-          setTrendingList(data);
+      if (user) {
+        apiMethod((err, res) => {
+          if (err) {
+            setError(err);
+          } else {
+            setTrendingList(res.data);
+          }
+        }, user)
+      } else {
+        apiMethod((err, res) => {
+          if (err) {
+            setError(err);
+          } else {
+            let data = res.data.results.map(movie => {
+              return {
+                'image': `https://image.tmdb.org/t/p/w185${movie.poster_path}`,
+                'id': movie.id
+              };
+            });
+            setTrendingList(data);
 
-        }
-      })
+          }
+        })
+      }
+
     }, [])
 
     const sliderItems = trendingList.length > 6 ? 6 : trendingList.length;
