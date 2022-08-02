@@ -3,6 +3,7 @@ const username = process.env.MONGOUSER;
 const password = process.env.MONGOPASS;
 const { USER } = require('./schema.js');
 
+console.log(username,password)
 mongoose.connect(`mongodb+srv://${username}:${password}@streamfinder01.5jdg2kb.mongodb.net/?retryWrites=true&w=majority`, (err) => {
   if (err) {
     console.log('Could not connect to MongoDB', err);
@@ -85,18 +86,14 @@ const User = {
     }
   },
 
-  updateList: async (userName, placeholder, movieObj2, callback) => {
-    const result = USER.findOne({username: 'sase'})
-    const selected = result.select('favorites')
-    const movieObj =  {
-         'image': 'test insert',
-         'id': '99999'
-       };
-       const listName = 'favorites'
-      //  result
-      //  .then(d => {
-      //    console.log(d)
-      //  })
+  updateList: async (userName, listName, movieObj, callback) => {
+    //movieObj format, listName e.g 'favorites' or 'watchList
+    // movieObj =  {
+    //      'image': 'test insert',
+    //      'id': '99999'
+    //    };
+    const result = USER.findOne({username: userName})
+    const selected = result.select(listName)
     selected
       .then((list) => {
         let arr = list[listName]
@@ -104,21 +101,19 @@ const User = {
         if(index > -1) {
           arr.splice(index, 1)
           //remove movie
-            USER.findOneAndUpdate({username: 'sase'}, {[listName]: arr}, {upsert: true, new: true}, (err, result) => {
-              // console.log(result)
+            USER.findOneAndUpdate({username: userName}, {[listName]: arr}, {upsert: true, new: true}, (err, result) => {
+              console.log(result)
               if(err) {
                 callback(err, null)
               } else {
                 callback(null, 'removed')
               }
             })
-
-
         } else {
-          arr.push(movieObj)
-        USER.findOneAndUpdate({username: 'sase'}, {[listName]: arr}, {upsert: true, returnDocument: 'after'}, (err, result) => {
-          // console.log(result)
-          //returns 2 for adding
+        arr.push(movieObj)
+          //add movie
+        USER.findOneAndUpdate({username: userName}, {[listName]: arr}, {upsert: true, returnDocument: 'after'}, (err, result) => {
+          console.log(result)
           if(err) {
             callback(err, null)
           } else {
@@ -128,7 +123,6 @@ const User = {
         }
       })
     }
-
 };
 
 module.exports = {

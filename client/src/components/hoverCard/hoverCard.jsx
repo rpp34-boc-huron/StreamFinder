@@ -11,7 +11,7 @@ import Netflix from '../../../assets/netflix.jpeg';
 import { getMovieDetails, addToFavorites, addToList } from '../../utils/getTMDBdata';
 
 
-export default function HoverCard({ movieId }) {
+export default function HoverCard({ movieId, handleClick }) {
 
   const [movieTitle, setMovieTitle] = useState('');
   const [movieDescription, setMovieDescription] = useState('');
@@ -28,7 +28,6 @@ export default function HoverCard({ movieId }) {
   //122066 -> HUlu
   //881957 -> netflix
   const id = movieId
-
   const getProvider = (arr, type) => {
     const index = arr.map(obj => obj.provider_name).indexOf(type);
     return index >= 0 ? false : true;
@@ -72,7 +71,9 @@ export default function HoverCard({ movieId }) {
   if(movieImage !== '') {
     return (
       <Card sx={{ maxWidth: 300, maxHeight: 330, position: 'absolute', zIndex: 5 }}>
-        <CardActionArea>
+        <CardActionArea
+          onClick = {(e) => handleClick(e, id)}
+        >
           <CardMedia
             component="img"
             height="140"

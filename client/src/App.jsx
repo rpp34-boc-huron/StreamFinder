@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Moviesumm from './components/movieSpecific/movieSummary';
 import LandingPage from  './components/LandingPage/LandingPage.jsx'
 import './style.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -11,14 +12,28 @@ const App = () => {
   const [searchStatus, setSearchStatus] = useState(false);
   const [searchMovieData, setSearchMovieData] = useState([]);
   const [keywords, setKeywords] = useState('');
+  const [movieId, setMovieId] = useState(238)
+
+  const handleClick = (e, movieID) => {
+    e.preventDefault();
+    const movieId = e.target.id || movieID
+    setMovieId(movieId);
+}
 
   return (
     <div className="app">
-      <Navbar setSearch={setSearchStatus} setSearchMovieData={setSearchMovieData} keywords={keywords} setKeywords={setKeywords} />
-      {searchStatus ? <LandingSearchPage keywords={keywords} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} /> : <LandingPage />}
-      {/* <UserProfile /> */}
+      <div>
+      <Moviesumm movieId={movieId} handleClick={ handleClick }/>
     </div>
+      <Navbar setSearch={setSearchStatus} setSearchMovieData={setSearchMovieData} keywords={keywords} setKeywords={setKeywords} />
+        {searchStatus ? <LandingSearchPage keywords={keywords} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} setSearchStatus={setSearchStatus} setMovieId={setMovieId} /> : <LandingPage handleClick={handleClick}/>}
+      {/* <UserProfile /> */}
+      Hello World From React
+    </div>
+
   );
+
+  //tests
 };
 
 export default App;

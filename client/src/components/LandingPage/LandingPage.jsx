@@ -6,12 +6,13 @@ import {
   getActionMovieData
 } from '../../utils/getTMDBdata.js';
 
-const LandingPage = () => {
+const LandingPage = (props) => {
+  const { handleClick } = props
   return (
     <>
-      <MovieCarousel header={'Trending'} apiMethod={getTrendingMovieData} />
-      <MovieCarousel header={'Horror'} apiMethod={getHorrorMovieData} />
-      <MovieCarousel header={'Action'} apiMethod={getActionMovieData} />
+      <MovieCarousel header={'Trending'} apiMethod={getTrendingMovieData} handleClick={handleClick}/>
+      <MovieCarousel header={'Horror'} apiMethod={getHorrorMovieData} handleClick={handleClick}/>
+      <MovieCarousel header={'Action'} apiMethod={getActionMovieData} handleClick={handleClick}/>
     </>
 
   )
