@@ -4,7 +4,12 @@ import {
   getTrendingMovieData,
   getHorrorMovieData,
   getActionMovieData,
-  getFavoritesMovieData
+  getFavoritesMovieData,
+  getMysteryMovieData,
+  getComedyMovieData,
+  getDocumentaryMovieData,
+  getDramaMovieData,
+  getSciFiMovieData
 } from '../../utils/getTMDBdata.js';
 
 const LandingPage = () => {
@@ -15,6 +20,11 @@ const LandingPage = () => {
       <MovieCarousel header={'Trending'} apiMethod={getTrendingMovieData} />
       <MovieCarousel header={'Horror'} apiMethod={getHorrorMovieData} />
       <MovieCarousel header={'Action'} apiMethod={getActionMovieData} />
+      <MovieCarousel header={'Comedy'} apiMethod={getComedyMovieData} />
+      <MovieCarousel header={'Documentary'} apiMethod={getDocumentaryMovieData} />
+      <MovieCarousel header={'Drama'} apiMethod={getDramaMovieData} />
+      <MovieCarousel header={'Science Fiction'} apiMethod={getSciFiMovieData} />
+      <MovieCarousel header={'Mystery'} apiMethod={getMysteryMovieData} />
     </>
 
   )

@@ -30,6 +30,56 @@ const getActionMovieData = (cb) => {
   })
 };
 
+const getComedyMovieData = (cb) => {
+  axios('/movies/comedy')
+  .then(data => {
+    cb(null, data);
+  })
+  .catch(err => {
+    cb(err);
+  })
+};
+
+const getDocumentaryMovieData = (cb) => {
+  axios('/movies/documentary')
+  .then(data => {
+    cb(null, data);
+  })
+  .catch(err => {
+    cb(err);
+  })
+};
+
+const getDramaMovieData = (cb) => {
+  axios('/movies/drama')
+  .then(data => {
+    cb(null, data);
+  })
+  .catch(err => {
+    cb(err);
+  })
+};
+
+const getSciFiMovieData = (cb) => {
+  axios('/movies/scifi')
+  .then(data => {
+    cb(null, data);
+  })
+  .catch(err => {
+    cb(err);
+  })
+};
+
+const getMysteryMovieData = (cb) => {
+  axios('/movies/mystery')
+  .then(data => {
+    cb(null, data);
+  })
+  .catch(err => {
+    cb(err);
+  })
+};
+
 const getMovieDetails = async (id) => {
     try {
       const {data:response} = await axios.get(`/hover/details/${id}`)
@@ -107,5 +157,10 @@ export {
   getActionMovieData,
   getSearchMovieResultsData,
   getFavoritesMovieData,
-  getWatchlistMovieData
+  getWatchlistMovieData,
+  getComedyMovieData,
+  getDocumentaryMovieData,
+  getDramaMovieData,
+  getSciFiMovieData,
+  getMysteryMovieData
  };

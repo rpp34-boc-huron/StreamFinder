@@ -37,6 +37,56 @@ router.get('/action', (req, res) => {
   })
 })
 
+router.get('/comedy', (req, res) => {
+  axios(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=35`)
+  .then(response => {
+    res.json(response.data);
+  })
+  .catch(err => {
+    res.json(err)
+  })
+})
+
+router.get('/documentary', (req, res) => {
+  axios(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=99`)
+  .then(response => {
+    res.json(response.data);
+  })
+  .catch(err => {
+    res.json(err)
+  })
+})
+
+router.get('/drama', (req, res) => {
+  axios(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=18`)
+  .then(response => {
+    res.json(response.data);
+  })
+  .catch(err => {
+    res.json(err)
+  })
+})
+
+router.get('/scifi', (req, res) => {
+  axios(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=878`)
+  .then(response => {
+    res.json(response.data);
+  })
+  .catch(err => {
+    res.json(err)
+  })
+})
+
+router.get('/mystery', (req, res) => {
+  axios(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=9648`)
+  .then(response => {
+    res.json(response.data);
+  })
+  .catch(err => {
+    res.json(err)
+  })
+})
+
 router.get('/:user/favorites', (req, res) => {
   db.getUserData(req.params.user, 'favorites')
   .then(data => {
