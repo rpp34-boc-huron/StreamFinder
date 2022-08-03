@@ -5,12 +5,10 @@ const MovieCard = ({ moviePoster, movieId, handleClick }) => {
   const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
     setIsHovering(true);
-    console.log('mouse over!');
   };
 
   const handleMouseOut = () => {
     setIsHovering(false);
-    console.log('mouse out!');
   };
   return (
     <div className="movie-item" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>

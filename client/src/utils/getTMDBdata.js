@@ -30,6 +30,56 @@ const getActionMovieData = (cb) => {
   })
 };
 
+const getComedyMovieData = (cb) => {
+  axios('/movies/comedy')
+  .then(data => {
+    cb(null, data);
+  })
+  .catch(err => {
+    cb(err);
+  })
+};
+
+const getDocumentaryMovieData = (cb) => {
+  axios('/movies/documentary')
+  .then(data => {
+    cb(null, data);
+  })
+  .catch(err => {
+    cb(err);
+  })
+};
+
+const getDramaMovieData = (cb) => {
+  axios('/movies/drama')
+  .then(data => {
+    cb(null, data);
+  })
+  .catch(err => {
+    cb(err);
+  })
+};
+
+const getSciFiMovieData = (cb) => {
+  axios('/movies/scifi')
+  .then(data => {
+    cb(null, data);
+  })
+  .catch(err => {
+    cb(err);
+  })
+};
+
+const getMysteryMovieData = (cb) => {
+  axios('/movies/mystery')
+  .then(data => {
+    cb(null, data);
+  })
+  .catch(err => {
+    cb(err);
+  })
+};
+
 const getMovieDetails = async (id) => {
     try {
       const {data:response} = await axios.get(`/hover/details/${id}`)
@@ -79,8 +129,27 @@ const getSearchMovieResultsData = async (keywords, page) => {
     }
 };
 
+const getFavoritesMovieData = (cb, user) => {
+  axios.get(`/movies/${user}/favorites`)
+  .then(data => {
+    cb(null, data);
+  })
+  .catch(err => {
+    cb(err);
+  })
+};
 
-// console.log('*', typeof getHorrorMovieData)
+const getWatchlistMovieData = (cb, user) => {
+  axios.get(`/movies/${user}/watchlist`)
+  .then(data => {
+    cb(null, data);
+  })
+  .catch(err => {
+    cb(err);
+  })
+};
+
+
 export {
   addToList,
   addToFavorites,
@@ -88,5 +157,12 @@ export {
   getTrendingMovieData,
   getHorrorMovieData,
   getActionMovieData,
-  getSearchMovieResultsData
+  getSearchMovieResultsData,
+  getFavoritesMovieData,
+  getWatchlistMovieData,
+  getComedyMovieData,
+  getDocumentaryMovieData,
+  getDramaMovieData,
+  getSciFiMovieData,
+  getMysteryMovieData
  };
