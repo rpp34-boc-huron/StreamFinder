@@ -6,12 +6,10 @@ const MovieCard = ({ moviePoster, movieId }) => {
 
   const handleMouseOver = () => {
     setIsHovering(true);
-    console.log('mouse over!');
   };
 
   const handleMouseOut = () => {
     setIsHovering(false);
-    console.log('mouse out!');
   };
 
   return (
