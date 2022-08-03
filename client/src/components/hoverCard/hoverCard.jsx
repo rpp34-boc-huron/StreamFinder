@@ -9,6 +9,7 @@ import hulugrey from '../../../assets/hulu_grey.png';
 import hulu from '../../../assets/hulu.png';
 import Netflix from '../../../assets/netflix.jpeg';
 import { getMovieDetails, addToFavorites, addToList } from '../../utils/getTMDBdata';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function HoverCard({ movieId, handleClick }) {
@@ -32,6 +33,8 @@ export default function HoverCard({ movieId, handleClick }) {
     const index = arr.map(obj => obj.provider_name).indexOf(type);
     return index >= 0 ? false : true;
   }
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getMovieDetails(movieId)
@@ -72,7 +75,7 @@ export default function HoverCard({ movieId, handleClick }) {
     return (
       <Card sx={{ maxWidth: 300, maxHeight: 330, position: 'absolute', zIndex: 5 }}>
         <CardActionArea
-          onClick = {(e) => handleClick(e, id)}
+          onClick = {(e) => navigate(`/movie/${id}`)}
         >
           <CardMedia
             component="img"

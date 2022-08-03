@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SearchBar from './search/SearchBar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Box, AppBar, IconButton, Toolbar, Typography, Button, CssBaseline, useScrollTrigger } from '@mui/material';
 import PropTypes from 'prop-types';
 import '../App.css';
+
+
+
 
 const Navbar = (props) => {
     const { setSearch, setSearchMovieData, keywords, setKeywords } = props;
@@ -16,6 +19,9 @@ const Navbar = (props) => {
         // Need to clean input filed's value
             // ref.current.value = '';
     }
+
+
+    const navigate = useNavigate();
 
     return (
         <React.Fragment>
@@ -38,8 +44,8 @@ const Navbar = (props) => {
                         >&#127916; Stream Finder
                         </Typography>
                         <SearchBar setSearch={setSearch} setSearchMovieData={setSearchMovieData} keywords={keywords} setKeywords={setKeywords} backToLandingPage={backToLandingPage} />
-                        <Button onClick={backToLandingPage} color="inherit">Home</Button>
-                        <Button color="inherit">Profile</Button>
+                        <Button onClick={() => navigate('/')} color="inherit">Home</Button>
+                        <Button onClick={() => navigate('/profile')} color="inherit">Profile</Button>
                         <Button color="inherit">Sign Out</Button>
                     </Toolbar>
                 </AppBar>

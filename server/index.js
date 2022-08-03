@@ -25,9 +25,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use('/movies', moviesRoutes);
 app.use('/hover', hoverRoutes);
 app.use('/search', searchMoviesRoutes);
-app.get('/', (req, res) => {
-  res.sendFile(indexHtmlPath);
-});
+
 
 
 //------------------movie-specific------------------//

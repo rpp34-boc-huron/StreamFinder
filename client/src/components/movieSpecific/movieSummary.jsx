@@ -5,9 +5,13 @@ import { FaShare } from 'react-icons/fa';
 import { FcLike, FcBookmark } from 'react-icons/fc';
 const axios = require('axios');
 import MovieSpecific2 from '../movieSpecific-2/MovieSpecific2';
+import { useParams } from 'react-router-dom';
 
-export default function Moviesumm({movieId, handleClick}) {
+export default function Moviesumm({ handleClick}) {
     // const [movieId, setMovieId] = props;
+
+    const { movieId } = useParams();
+    console.log(typeof movieId);
     const [movieTitle, changeTitle] = useState('The Godfather');
     const [movieDetail, changeDetail] = useState('');
     const [moviePoster, changePoster] = useState(null);
@@ -16,7 +20,7 @@ export default function Moviesumm({movieId, handleClick}) {
 
     const getPoster = async () => {
         try {
-            const { data } = await axios.get(`/poster/${movieId}`);
+            const { data }  = await axios.get(`/poster/${movieId}`);
             changePoster(data);
         } catch (err) {
             console.error('get poster error', err);
@@ -87,7 +91,7 @@ export default function Moviesumm({movieId, handleClick}) {
                         <FaShare className="share" />
                     </span>
                     <div className="starRating">
-                        {`Score : ${movieScore}`} 
+                        {`Score : ${movieScore}`}
                     </div>
                     <h2> Overview </h2>
                     <p>{movieDetail === '' ? null : movieDetail} </p>
