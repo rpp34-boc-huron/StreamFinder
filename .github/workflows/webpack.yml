@@ -39,7 +39,7 @@ jobs:
       run: |
         npm install
         npx webpack
-        cd /actions-runner/_work/StreamFinder/StreamFinder/server
+        cd /home/ubuntu/actions-runner/_work/StreamFinder/StreamFinder/server
         sudo pm2 index.js --update-env
         
 
