@@ -20,16 +20,19 @@ const App = () => {
     setMovieId(movieId);
 }
 
+
   return (
+    <BrowserRouter>
     <div className="app">
-      <div>
-      <Moviesumm movieId={movieId} handleClick={ handleClick }/>
-    </div>
       <Navbar setSearch={setSearchStatus} setSearchMovieData={setSearchMovieData} keywords={keywords} setKeywords={setKeywords} />
-        {searchStatus ? <LandingSearchPage keywords={keywords} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} setSearchStatus={setSearchStatus} setMovieId={setMovieId} /> : <LandingPage handleClick={handleClick}/>}
-      {/* <UserProfile /> */}
-      Hello World From React
+
+        <Routes>
+          <Route exact path='/' element={searchStatus ? <LandingSearchPage keywords={keywords} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} setSearchStatus={setSearchStatus} setMovieId={setMovieId} /> : <LandingPage handleClick={handleClick}/>}/>
+          <Route exact path='/profile' element={<UserProfile />} />
+          <Route exact path='/movie/:movieId' element={<Moviesumm handleClick={ handleClick }/>} />
+        </Routes>
     </div>
+    </BrowserRouter>
 
   );
 
