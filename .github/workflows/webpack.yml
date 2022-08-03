@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     runs-on: self-hosted
-    timeout-minutes: 30
+    timeout-minutes: 45
 
     strategy:
       matrix:
@@ -37,6 +37,6 @@ jobs:
       run: |
         npm install
         npx webpack
-        sudo pm2 restart Server 
+        sudo pm2 restart Server --kill-timeout 4500
         
 
