@@ -90,11 +90,12 @@ const getMovieDetails = async (id) => {
     }
 }
 
-const addToFavorites = async (userID, id) => {
+const addToFavorites = async (userID, id, poster) => {
   try {
     const response = await axios.post('/hover/favorites', {
       userID: userID,
-      movieID: id
+      movieID: id,
+      image: poster
     })
     console.log(response)
   }
@@ -107,7 +108,8 @@ const addToList = async (userID, id) => {
   try {
     const response = await axios.post('/hover/list', {
       userID: userID,
-      movieID: id
+      movieID: id,
+      // image: poster
     })
     console.log(response)
   }

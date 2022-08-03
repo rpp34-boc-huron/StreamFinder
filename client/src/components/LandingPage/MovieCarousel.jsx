@@ -7,6 +7,7 @@ import MovieCard from './MovieCard.jsx';
 // import '../style.css';
 
 const MovieCarousel = ({ header, apiMethod, user }) => {
+
     const [trendingList, setTrendingList] = useState([]);
     const [error, setError] = useState(null);
     useEffect(() => {
@@ -45,7 +46,7 @@ const MovieCarousel = ({ header, apiMethod, user }) => {
             <Card raised className="Banner" style={{ padding: 20 }} key={i.toString()}>
             <Grid container spacing={0} className="BannerGrid">
                 {trendingList.slice(i, i + sliderItems).map((movies, index) => {
-                return <CarouselScreen key={index.toString()} item={movies} />;
+                return <CarouselScreen key={index.toString()} item={movies} handleClick={handleClick} />;
                 })}
             </Grid>
             </Card>
@@ -67,7 +68,7 @@ const MovieCarousel = ({ header, apiMethod, user }) => {
   const CarouselScreen = (props) => {
     return (
         <Paper>
-            <MovieCard moviePoster={props.item.image} movieId={props.item.id}/>
+            <MovieCard moviePoster={props.item.image} movieId={props.item.id} handleClick={props.handleClick} />
         </Paper>
     )
 }

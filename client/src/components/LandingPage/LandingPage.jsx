@@ -12,7 +12,8 @@ import {
   getSciFiMovieData
 } from '../../utils/getTMDBdata.js';
 
-const LandingPage = () => {
+const LandingPage = (props) => {
+  const { handleClick } = props
   return (
     <>
       <MovieCarousel header={'Watch List'} apiMethod={getFavoritesMovieData} user={'sase'}/>

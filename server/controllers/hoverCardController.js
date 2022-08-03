@@ -1,7 +1,6 @@
-// const { addListModel, addFavoritesModel } = require('../../database/models/hoverCardDBModel')
 const axios = require('axios');
 const API_KEY = process.env.API_KEY;
-
+const { User } = require('../../database/index.js')
 
 
 const getMovieInfo = async (req, res) => {
@@ -20,12 +19,22 @@ const getMovieInfo = async (req, res) => {
 }
 
 const addList = (req, res) => {
-  addListModel(req.body)
-  res.status(201).send('addList route is working')
+  const movieObj =  {
+    'image': 'test insert watchList',
+    'id': '99999'
+  };
+  User.updateList('sase', 'watchList', movieObj, (err, resultCode)=>{
+    res.status(201).send(resultCode)
+  })
 }
 const addFavorites = (req, res) => {
-  addFavoritesModel(req.body)
-  res.status(201).send('addFavorites route is working')
+  const movieObj =  {
+    'image': 'test insert favorites',
+    'id': '199999'
+  };
+  User.updateList('sase', 'favorites', movieObj, (err, resultCode)=>{
+    res.status(201).send(resultCode)
+  })
 }
 
 

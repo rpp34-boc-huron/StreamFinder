@@ -14,19 +14,19 @@ const App = () => {
   const [keywords, setKeywords] = useState('');
   const [movieId, setMovieId] = useState(238)
 
-  const handleClick = (e) => {
+  const handleClick = (e, movieID) => {
     e.preventDefault();
-    const movieId = e.target.id;
+    const movieId = e.target.id || movieID
     setMovieId(movieId);
 }
 
   return (
     <div className="app">
       <div>
-      <Moviesumm movieId={movieId} handleClick={handleClick}/>
+      <Moviesumm movieId={movieId} handleClick={ handleClick }/>
     </div>
       <Navbar setSearch={setSearchStatus} setSearchMovieData={setSearchMovieData} keywords={keywords} setKeywords={setKeywords} />
-        {searchStatus ? <LandingSearchPage keywords={keywords} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} setSearchStatus={setSearchStatus} setMovieId={setMovieId} /> : <LandingPage />}
+        {searchStatus ? <LandingSearchPage keywords={keywords} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} setSearchStatus={setSearchStatus} setMovieId={setMovieId} /> : <LandingPage handleClick={handleClick}/>}
       {/* <UserProfile /> */}
       Hello World From React
     </div>

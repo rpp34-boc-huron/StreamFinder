@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {IconButton, Alert, Snackbar, Button} from '@mui/material';
+import {IconButton, Alert, Snackbar} from '@mui/material';
 import Add from '@mui/icons-material/Add';
 
-export default function addToList({event, movieID}) {
+export default function addToList({event, movieID, poster}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -12,7 +12,7 @@ export default function addToList({event, movieID}) {
 
   const actionWrapper = e => {
     handleOpen()
-    addToList('fake userID', id)
+    addToList('fake userID', id, poster)
   }
 
     return (
