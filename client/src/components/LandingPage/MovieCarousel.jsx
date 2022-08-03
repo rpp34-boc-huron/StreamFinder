@@ -46,7 +46,7 @@ const MovieCarousel = ({ header, apiMethod, user }) => {
             <Card raised className="Banner" style={{ padding: 20 }} key={i.toString()}>
             <Grid container spacing={0} className="BannerGrid">
                 {trendingList.slice(i, i + sliderItems).map((movies, index) => {
-                return <CarouselScreen key={index.toString()} item={movies} handleClick={handleClick} />;
+                return <CarouselScreen key={index.toString()} item={movies} />;
                 })}
             </Grid>
             </Card>
@@ -68,7 +68,7 @@ const MovieCarousel = ({ header, apiMethod, user }) => {
   const CarouselScreen = (props) => {
     return (
         <Paper>
-            <MovieCard moviePoster={props.item.image} movieId={props.item.id} handleClick={props.handleClick} />
+            <MovieCard moviePoster={props.item.image} movieId={props.item.id}/>
         </Paper>
     )
 }
