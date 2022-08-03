@@ -40,6 +40,6 @@ jobs:
         npm install
         npx webpack
         cd /home/ubuntu/actions-runner/_work/StreamFinder/StreamFinder/server
-        sudo pm2 index.js --update-env
+        sudo pm2 restart Server --update-env
         
 
