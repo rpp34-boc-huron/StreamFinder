@@ -21,7 +21,7 @@ jobs:
     
     - name: create env file for server
       run: |
-        cd /home/ubuntu/actions-runner/_work/StreamFinder/StreamFinder/server
+        cd /home/ubuntu/actions-runner/_work/StreamFinder/StreamFinder
         touch .env
         echo API_KEY=${{ secrets.API_KEY }} >> .env
         echo MONGOUSER=${{ secrets.MONGOUSER }} >> .env
@@ -39,6 +39,6 @@ jobs:
       run: |
         npm install
         npx webpack
-        sudo pm2 restart server/index.js
+        node server/index.js
         
 
