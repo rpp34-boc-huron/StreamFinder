@@ -44,7 +44,7 @@ const Navbar = (props) => {
                         >&#127916; Stream Finder
                         </Typography>
                         <SearchBar setSearch={setSearch} setSearchMovieData={setSearchMovieData} keywords={keywords} setKeywords={setKeywords} backToLandingPage={backToLandingPage} />
-                        <Button onClick={backToLandingPage} color="inherit">Home</Button>
+                        <Button onClick={() => navigate('/')} color="inherit">Home</Button>
                         <Button onClick={() => navigate('/profile')} color="inherit">Profile</Button>
                         <Button color="inherit">Sign Out</Button>
                     </Toolbar>

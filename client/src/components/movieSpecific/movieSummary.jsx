@@ -53,11 +53,6 @@ export default function Moviesumm({ handleClick}) {
         getProviders()
     }, [movieId]);
 
-    console.log('title: ', movieTitle);
-    console.log('detail: ', movieTitle);
-    console.log('poster: ', movieTitle);
-    console.log('providers: ', movieTitle);
-    console.log('score: ', movieTitle);
     // const handleClick = (e) => {
     //     e.preventDefault();
     //     const movieId = e.target.id;
