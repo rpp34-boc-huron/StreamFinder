@@ -98,7 +98,7 @@ router.get('/:user/favorites', (req, res) => {
 })
 
 router.get('/:user/watchlist', (req, res) => {
-  db.getUserData(req.params.user, 'watchlist')
+  db.getUserData(req.params.user, 'watchList')
   .then(data => {
     res.json(data)
   })

@@ -9,10 +9,10 @@ export default function addToList({event, movieID, poster}) {
 
   const {addToList} = event;
   const { id } = movieID;
-
   const actionWrapper = e => {
     handleOpen()
-    addToList('fake userID', id, poster)
+    //sase username is hardcoded
+    addToList('sase', id, poster)
   }
 
     return (
