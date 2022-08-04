@@ -5,13 +5,13 @@ import { FaShare } from 'react-icons/fa';
 import { FcLike, FcBookmark } from 'react-icons/fc';
 const axios = require('axios');
 import MovieSpecific2 from '../movieSpecific-2/MovieSpecific2';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation} from 'react-router-dom';
 import { FormControlUnstyledContext } from "@mui/base";
 // import { addList, addFavorites,getMovieInfo} from '../../../../server/controllers/hoverCardController'
 
 export default function Moviesumm({ handleClick}) {
     // const [movieId, setMovieId] = props;
-
+    const location = useLocation();
     const { movieId } = useParams();
     console.log(typeof movieId);
     const [movieTitle, changeTitle] = useState('The Godfather');
@@ -121,7 +121,9 @@ export default function Moviesumm({ handleClick}) {
                          })
                          .catch(err => console.log(err))
                         }}/>
-                        {/* <FaShare className="share" /> */}
+                        <FaShare className="share" onClick={() => {
+                            console.log(location,'cxcx')
+                        }}/>
                     </span>
                     <div className="starRating">
                         {`Score : ${movieScore}`}
