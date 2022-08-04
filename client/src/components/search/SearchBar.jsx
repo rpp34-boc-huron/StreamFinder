@@ -3,9 +3,12 @@ import axios from 'axios';
 import {Paper, InputBase, IconButton} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { getSearchMovieResultsData } from '../../utils/getTMDBdata';
+import { useNavigate } from 'react-router-dom';
 
 const SearchBar = (props) => {
-  const { setSearch, setSearchMovieData, keywords, setKeywords, backToLandingPage } = props;
+  const { setSearchMovieData } = props;
+  const [keywords, setKeywords] = useState('');
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
     let keywords = e.target.value;
@@ -13,12 +16,12 @@ const SearchBar = (props) => {
   }
 
   const handleSearch = () => {
-    console.log(keywords, '<- search bar');
     if (keywords !== '') {
       getSearchMovieResultsData(keywords)
       .then(data => {
-        setSearch(true);
         setSearchMovieData(data);
+        navigate(`/search_movies/${keywords}/${data.page}`);
+        setKeywords('');
       })
       .catch(err => {
         console.log('Search Bar Error....', err);
@@ -42,6 +45,7 @@ const SearchBar = (props) => {
         inputProps={{ 'aria-label': 'search for a movie...' }}
         onChange={handleInput}
         onKeyDown={handleKeyDown}
+        value={keywords}
       />
       <IconButton type="submit" sx={{ p: '10px' }} aria-label="search" onClick={handleSearch}>
         <SearchIcon />
