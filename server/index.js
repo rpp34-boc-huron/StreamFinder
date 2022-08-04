@@ -27,6 +27,9 @@ app.use('/api/auth', require('./routes/login'));
 app.use('/movies', moviesRoutes);
 app.use('/hover', hoverRoutes);
 app.use('/search', searchMoviesRoutes);
+app.use('/favorites',hoverRoutes);
+app.use('/list', hoverRoutes)
+app.use('/details/:movieId',hoverRoutes)
 
 
 
