@@ -38,16 +38,19 @@ const SearchBar = (props) => {
   }
 
   return (
-    <Paper className="search">
+    <Paper
+    className="search"
+    sx={{borderRadius: '19px', 'width': '40%', display:'flex'}}
+    >
     <InputBase
-        sx={{ ml: 1, flex: 1 }}
+        sx={{ ml: 3, py: 1, flex: 1 }}
         placeholder="Search for a movie..."
         inputProps={{ 'aria-label': 'search for a movie...' }}
         onChange={handleInput}
         onKeyDown={handleKeyDown}
         value={keywords}
       />
-      <IconButton type="submit" sx={{ p: '10px' }} aria-label="search" onClick={handleSearch}>
+      <IconButton type="submit" sx={{mr: 3, p: 1 }} aria-label="search" onClick={handleSearch}>
         <SearchIcon />
       </IconButton>
     </Paper>
