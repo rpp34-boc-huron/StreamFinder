@@ -6,12 +6,19 @@ import { FcLike, FcBookmark } from 'react-icons/fc';
 const axios = require('axios');
 import MovieSpecific2 from '../movieSpecific-2/MovieSpecific2';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-export default function Moviesumm({ handleClick}) {
-    // const [movieId, setMovieId] = props;
+import { FormControlUnstyledContext } from "@mui/base";
+// import { addList, addFavorites,getMovieInfo} from '../../../../server/controllers/hoverCardController'
 
+
+export default function Moviesumm() {
+    // React-Router: get movieId from URL
     const { movieId } = useParams();
-    console.log(typeof movieId);
+
+    // React-Router: set movieId in URL
+    const navigate = useNavigate();
+
     const [movieTitle, changeTitle] = useState('The Godfather');
     const [movieDetail, changeDetail] = useState('');
     const [moviePoster, changePoster] = useState(null);
@@ -47,17 +54,18 @@ export default function Moviesumm({ handleClick}) {
         }
     }
 
+    const handleClick = (e) => {
+        e.preventDefault();
+        const movieId = e.target.id;
+        navigate(`/movie/${movieId}`);
+    }
+
     useEffect(() => {
         getPoster();
         getSummary();
         getProviders()
     }, [movieId]);
 
-    // const handleClick = (e) => {
-    //     e.preventDefault();
-    //     const movieId = e.target.id;
-    //     setMovieId(movieId);
-    // }
 
     return (
         <>
@@ -86,9 +94,40 @@ export default function Moviesumm({ handleClick}) {
 
 
                     <span className="actionBar">
-                        <FcLike className="like" />
-                        <FcBookmark className="bookmark" />
-                        <FaShare className="share" />
+                        <FcLike className="like" onClick={() => {
+                            // axios.post('/favorites')
+                            // .then((res) => {
+                            //     console.log('yesss')
+                            // })
+                            // .catch(err => console.log(err))
+                                axios.get(`/details/${movieId}/details/${movieId}`)
+                                .then((res) => {
+                                    console.log(res)
+                                    const movieObj =  {
+                                        'image': `https://image.tmdb.org/t/p/w185/${res.data.movieInfo.poster_path}`,
+                                        'id': movieId
+                                      };
+                                    axios.post('/favorites',movieObj)
+                                    .then(res => console.log('liked it'))
+                                    .catch((err => console.log(err)))
+                                })
+                                .catch(err => console.log(err))
+                        }}/>
+                        <FcBookmark className="bookmark" onClick={() => {
+                         axios.get(`/details/${movieId}/details/${movieId}`)
+                         .then((res) => {
+                             console.log(res)
+                             const movieObj =  {
+                                 'image': `https://image.tmdb.org/t/p/w185/${res.data.movieInfo.poster_path}`,
+                                 'id': movieId
+                               };
+                             axios.post('/list',movieObj)
+                             .then(res => console.log('bookmarked it'))
+                             .catch((err => console.log(err)))
+                         })
+                         .catch(err => console.log(err))
+                        }}/>
+                        {/* <FaShare className="share" /> */}
                     </span>
                     <div className="starRating">
                         {`Score : ${movieScore}`}

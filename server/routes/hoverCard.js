@@ -8,5 +8,7 @@ router.get('/details/:id', getMovieInfo)
 router.post('/favorites', addFavorites)
 //route to post to watch list
 router.post('/list', addList)
+//route to post to watch list
+
 
 module.exports = router;

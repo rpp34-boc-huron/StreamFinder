@@ -3,3 +3,70 @@ $RegularBlack: rgba(0,0,0,0.5);
 $HeaderFontSize: 20px;
 $CarouselGrey:rgba(0,0,0,0.015);
 ;
+
+.carousel {
+  position: relative;
+  width: 100vw; 
+  height: 300px;
+} 
+
+.carousel-name {
+  font-size: 25px;
+  font-weight: 600;
+  color: $HeaderBlack;
+  position: absolute;
+  top: -30px;
+  left: 10px;
+}
+
+.carousel-rectangle {
+  position: relative;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100vw;
+  max-height: 300px;
+  display: grid;
+  grid-template-columns: max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content;
+  justify-content: space-between;
+//   grid-column-gap: 20px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.carousel-rectangle::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-item {
+  width: 200px;
+  height: calc(260px);
+  background: whitesmoke;
+  border-radius: 5px;
+  box-shadow: 5px 5px 8px rgba(0,0,0,0.115);
+  overflow: hidden;
+}
+
+.carousel-item:hover {
+  transition: all 0.5s;
+  width: 400px;
+}
+
+.carousel-next {
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  bottom: -25px;
+  left: calc(50vw - 100px);
+  display: grid;
+  grid-template-columns: max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content;
+  place-items: center;
+  justify-content: space-around;
+}
+
+.carousel-ball {
+  width: 18px;
+  height: 18px;
+  background: lightgray;
+  border-radius: 100%;
+}

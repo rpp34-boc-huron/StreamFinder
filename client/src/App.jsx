@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import Moviesumm from './components/movieSpecific/movieSummary';
-import LandingPage from  './components/LandingPage/LandingPage.jsx'
 import './style.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import LandingPage from  './components/LandingPage/LandingPage.jsx'
+import Moviesumm from './components/movieSpecific/movieSummary';
 import LandingSearchPage from './components/search/LandingSearchPage';
 import UserProfile from './components/profile/UserProfile.jsx';
 
 const App = () => {
-  const [searchStatus, setSearchStatus] = useState(false);
   const [searchMovieData, setSearchMovieData] = useState([]);
-  const [keywords, setKeywords] = useState('');
   const [movieId, setMovieId] = useState(238)
 
   const handleClick = (e, movieID) => {
@@ -20,19 +17,18 @@ const App = () => {
     setMovieId(movieId);
 }
 
-
   return (
-    <BrowserRouter>
+    <HashRouter>
     <div className="app">
-      <Navbar setSearch={setSearchStatus} setSearchMovieData={setSearchMovieData} keywords={keywords} setKeywords={setKeywords} />
-
+      <Navbar setSearchMovieData={setSearchMovieData} />
         <Routes>
-          <Route exact path='/' element={searchStatus ? <LandingSearchPage keywords={keywords} searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} setSearchStatus={setSearchStatus} setMovieId={setMovieId} /> : <LandingPage handleClick={handleClick}/>}/>
+          <Route exact path='/' element={ <LandingPage handleClick={handleClick}/>} />
+          <Route exact path='/search_movies/:keywords/:page' element={<LandingSearchPage searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} /> } />
           <Route exact path='/profile' element={<UserProfile />} />
-          <Route exact path='/movie/:movieId' element={<Moviesumm handleClick={ handleClick }/>} />
+          <Route exact path='/movie/:movieId' element={<Moviesumm />} />
         </Routes>
     </div>
-    </BrowserRouter>
+    </HashRouter>
 
   );
 

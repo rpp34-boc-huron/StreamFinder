@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { getSearchMovieResultsData } from '../../utils/getTMDBdata';
 import { Container, Pagination, Stack, Grid } from '@mui/material';
-// import MovieList from './MovieList';
 import MovieResultCard from './MovieResultCard';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const LandingSearchPage = (props) => {
-  const { searchMovieData, keywords, setSearchMovieData, setSearchStatus, setMovieId } = props;
+  const { searchMovieData, setSearchMovieData } = props;
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
+  const { keywords } = useParams();
 
   useEffect(() => {
     setPage(searchMovieData.page);
@@ -14,11 +16,11 @@ const LandingSearchPage = (props) => {
   })
 
   const handleChangePage = (event, value) => {
-    console.log('clicked page???', value)
     getSearchMovieResultsData(keywords, value)
       .then(data => {
         setPage(data.page);
         setSearchMovieData(data);
+        navigate(`/search_movies/${keywords}/${data.page}`);
       })
       .catch(err => {
         console.log('Landing Search Page Error....', err);
@@ -30,10 +32,9 @@ const LandingSearchPage = (props) => {
       {searchMovieData.results.length > 0
         ?
         <Container sx={{ margin: '50px auto'}} >
-          {/* <MovieList listOfMovies={searchMovieData.results} /> */}
           <Grid container spacing={4} mt={0} >
               {searchMovieData.results.map((movie) => (
-                <MovieResultCard key={movie.id} movie={movie} setSearchStatus={setSearchStatus} setMovieId={setMovieId} />
+                <MovieResultCard key={movie.id} movie={movie}/>
               ))}
           </Grid>
           <Stack spacing={4} sx={{ pt: '50px' }} justifyContent="space-evenly" alignItems="center">

@@ -1,4 +1,5 @@
 const axios = require('axios');
+// require('dotenv').config()
 const API_KEY = process.env.API_KEY;
 const { User } = require('../../database/index.js')
 
