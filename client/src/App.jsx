@@ -26,7 +26,7 @@ const App = () => {
           <Route exact path='/' element={ <LandingPage handleClick={handleClick}/>} />
           <Route exact path='/search_movies/:keywords/:page' element={<LandingSearchPage searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} /> } />
           <Route exact path='/profile' element={<UserProfile />} />
-          <Route exact path='/movie/:movieId' element={<Moviesumm handleClick={ handleClick }/>} />
+          <Route exact path='/movie/:movieId' element={<Moviesumm />} />
         </Routes>
     </div>
     </BrowserRouter>
