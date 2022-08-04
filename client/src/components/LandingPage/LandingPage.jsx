@@ -9,14 +9,15 @@ import {
   getComedyMovieData,
   getDocumentaryMovieData,
   getDramaMovieData,
-  getSciFiMovieData
+  getSciFiMovieData,
+  getWatchlistMovieData
 } from '../../utils/getTMDBdata.js';
 
 const LandingPage = (props) => {
   const { handleClick } = props
   return (
     <>
-      <MovieCarousel header={'Watch List'} apiMethod={getFavoritesMovieData} user={'sase'}/>
+      <MovieCarousel header={'Watch List'} apiMethod={getWatchlistMovieData} user={'sase'}/>
       <MovieCarousel header={'My Favorites'} apiMethod={getFavoritesMovieData} user={'sase'}/>
       <MovieCarousel header={'Trending'} apiMethod={getTrendingMovieData} />
       <MovieCarousel header={'Horror'} apiMethod={getHorrorMovieData} />
