@@ -12,9 +12,9 @@ const Navbar = (props) => {
     return (
         <React.Fragment>
             <CssBaseline />
-            <Box sx={{ flexGrow: 1 }} className="navigation">
-                <AppBar position="static">
-                    <Toolbar>
+            <Box sx={{ flexGrow: 1, color: 'black'}} className="navigation">
+                <AppBar position="static" sx={{ color: 'black', backgroundColor: 'gray'}}>
+                    <Toolbar sx={{justifyContent: 'space-between'}}>
                         <Typography
                             variant="h4"
                             noWrap
@@ -30,6 +30,11 @@ const Navbar = (props) => {
                         >&#127916; Stream Finder
                         </Typography>
                         <SearchBar setSearchMovieData={setSearchMovieData} />
+                        {/* <Button onClick={() => navigate('/')} color="inherit">Home</Button>
+                        <Button onClick={() => navigate('/profile')} color="inherit">Profile</Button>
+                        <Button color="inherit">Sign Out</Button> */}
+                    </Toolbar>
+                    <Toolbar sx={{fontWeight: 700, justifyContent: 'end'}}>
                         <Button onClick={() => navigate('/')} color="inherit">Home</Button>
                         <Button onClick={() => navigate('/profile')} color="inherit">Profile</Button>
                         <Button color="inherit">Sign Out</Button>
