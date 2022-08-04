@@ -22,6 +22,8 @@ app.use(express.static(publicPath));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use('/api/auth', require('./routes/register'));
+app.use('/api/auth', require('./routes/login'));
 app.use('/movies', moviesRoutes);
 app.use('/hover', hoverRoutes);
 app.use('/search', searchMoviesRoutes);
