@@ -6,11 +6,11 @@ const { addList, addFavorites, getMovieInfo } = require('../controllers/hoverCar
 //route to grab movie data
 router.get('/details/:id', getMovieInfo)
 //route to post to watch list
-router.post('/favorites', addFavorites)
+router.post('/', addFavorites)
 
 
 //route to post to favorites
-router.post('/list', addList)
+router.post('/', addList)
 
 
 module.exports = router;
