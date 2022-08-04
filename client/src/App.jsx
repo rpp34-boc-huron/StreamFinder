@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import LandingPage from  './components/LandingPage/LandingPage.jsx'
 import Moviesumm from './components/movieSpecific/movieSummary';
@@ -19,7 +18,7 @@ const App = () => {
 }
 
   return (
-    <BrowserRouter>
+    <HashRouter>
     <div className="app">
       <Navbar setSearchMovieData={setSearchMovieData} />
         <Routes>
@@ -29,7 +28,7 @@ const App = () => {
           <Route exact path='/movie/:movieId' element={<Moviesumm />} />
         </Routes>
     </div>
-    </BrowserRouter>
+    </HashRouter>
 
   );
 
