@@ -6,14 +6,19 @@ import { FcLike, FcBookmark } from 'react-icons/fc';
 const axios = require('axios');
 import MovieSpecific2 from '../movieSpecific-2/MovieSpecific2';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 import { FormControlUnstyledContext } from "@mui/base";
 // import { addList, addFavorites,getMovieInfo} from '../../../../server/controllers/hoverCardController'
 
-export default function Moviesumm({ handleClick}) {
-    // const [movieId, setMovieId] = props;
 
+export default function Moviesumm() {
+    // React-Router: get movieId from URL
     const { movieId } = useParams();
-    console.log(typeof movieId);
+
+    // React-Router: set movieId in URL
+    const navigate = useNavigate();
+
     const [movieTitle, changeTitle] = useState('The Godfather');
     const [movieDetail, changeDetail] = useState('');
     const [moviePoster, changePoster] = useState(null);
@@ -49,17 +54,18 @@ export default function Moviesumm({ handleClick}) {
         }
     }
 
+    const handleClick = (e) => {
+        e.preventDefault();
+        const movieId = e.target.id;
+        navigate(`/movie/${movieId}`);
+    }
+
     useEffect(() => {
         getPoster();
         getSummary();
         getProviders()
     }, [movieId]);
 
-    // const handleClick = (e) => {
-    //     e.preventDefault();
-    //     const movieId = e.target.id;
-    //     setMovieId(movieId);
-    // }
 
     return (
         <>
