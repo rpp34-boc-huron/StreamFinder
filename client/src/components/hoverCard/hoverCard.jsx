@@ -12,8 +12,7 @@ import { getMovieDetails, addToFavorites, addToList } from '../../utils/getTMDBd
 import { useNavigate } from 'react-router-dom';
 
 
-export default function HoverCard({ movieId, handleClick }) {
-
+export default function HoverCard({ movieId, set }) {
   const [movieTitle, setMovieTitle] = useState('');
   const [movieDescription, setMovieDescription] = useState('');
   const [movieImage, setMovieImage] = useState('');
@@ -71,11 +70,20 @@ export default function HoverCard({ movieId, handleClick }) {
       })
   })
 
+  const onMouseLeave = (e) => {
+    let { top, left, bottom, right } = e.target.getBoundingClientRect();
+    if (e.clientX > right || e.clientX < left || e.clientY > bottom || e.clientY < top) {
+      set(false);
+    }
+  }
+
   if(movieImage !== '') {
     return (
+      <div onMouseMove={(e) => onMouseLeave(e)} >
       <Card sx={{ maxWidth: 300, maxHeight: 330, position: 'absolute', zIndex: 5 }}>
         <CardActionArea
           onClick = {(e) => navigate(`/movie/${id}`)}
+          // onMouseOut = { set(false) }
         >
           <CardMedia
             component="img"
@@ -163,6 +171,7 @@ export default function HoverCard({ movieId, handleClick }) {
             <AddToList event={{addToList}} movieID={{id}} poster={{poster}} />
             </Stack>
       </Card>
+      </div>
     );
   }
 }
