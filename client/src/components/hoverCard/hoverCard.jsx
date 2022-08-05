@@ -2,12 +2,6 @@ import {Card, CardContent, CardMedia, CardActionArea, Typography, Stack, Grid, P
 import React, { useEffect, useState } from 'react';
 import AddToFavorites from './addToFavoritesButton';
 import AddToList from './addToListButton';
-import HBO from '../../../assets/hbo.png';
-import hbogrey from '../../../assets/hbo_grey.png';
-import netflixgrey from '../../../assets/netflix_grey.png';
-import hulugrey from '../../../assets/hulu_grey.png';
-import hulu from '../../../assets/hulu.png';
-import Netflix from '../../../assets/netflix.jpeg';
 import { getMovieDetails, addToFavorites, addToList } from '../../utils/getTMDBdata';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,18 +10,10 @@ export default function HoverCard({ movieId, set }) {
   const [movieTitle, setMovieTitle] = useState('');
   const [movieDescription, setMovieDescription] = useState('');
   const [movieImage, setMovieImage] = useState('');
-  const [netflixIcon, setNetflix] = useState(netflixgrey);
-  const [huluIcon, setHulu] = useState(hulugrey);
-  const [hboIcon, setHBO] = useState(hbogrey);
-  const [netflixState, setNetflixClick] = useState(true);
-  const [huluState, setHuluClick] = useState(true);
-  const [hboState, setHBOClick] = useState(true);
   const [spacing, setSpacing] = useState(2);
   const [poster, setPoster] =useState('');
   const [providerArr, setProviderArr] = useState([])
-  //9615 -> HBO
-  //122066 -> HUlu
-  //881957 -> netflix
+
   const id = movieId
   const getProvider = (arr, type) => {
     const index = arr.map(obj => obj.provider_name).indexOf(type);
@@ -119,7 +105,7 @@ export default function HoverCard({ movieId, set }) {
         >
           {providerArr.map((provider) => (
               <Card sx={{paddingTop: "3px", minWidth:30, maxWidth:30}}>
-                  <CardActionArea href="https://www.netflix.com/" target="_blank" disabled={netflixState} sx={{height: 30}}>
+                  <CardActionArea href="https://www.netflix.com/" target="_blank" disabled={true} sx={{height: 30}}>
                         <CardMedia
                         component="img"
                         height="30"

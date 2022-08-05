@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {IconButton, Alert, Snackbar} from '@mui/material';
-import ButtonAlert from './buttonAlert';
 import Add from '@mui/icons-material/Add';
 
 export default function addToList({event, movieID, poster}) {

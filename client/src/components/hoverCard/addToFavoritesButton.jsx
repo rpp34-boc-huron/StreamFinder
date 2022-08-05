@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {IconButton, Alert, Snackbar} from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import Add from '@mui/icons-material/Add';
 
 export default function addToFavorites({event, movieID, poster}) {
   const [open, setOpen] = React.useState(false);
