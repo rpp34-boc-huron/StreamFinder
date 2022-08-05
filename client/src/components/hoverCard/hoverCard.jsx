@@ -91,7 +91,11 @@ export default function HoverCard({ movieId, set }) {
             image={movieImage}
             sx={{height: 200, media: {width: 10}}}
           />
-          <CardContent>
+          <CardContent
+            sx={{
+              height: '115px'
+            }}
+          >
             <Typography gutterBottom variant="h5" component="div"
               sx={{
                 overflow: "hidden",
@@ -99,7 +103,7 @@ export default function HoverCard({ movieId, set }) {
                 display: "-webkit-box",
                 WebkitLineClamp: "1",
                 WebkitBoxOrient: "vertical",
-              }}
+            }}
             >
               {movieTitle}
             </Typography>
@@ -112,7 +116,7 @@ export default function HoverCard({ movieId, set }) {
               display: "-webkit-box",
               WebkitLineClamp: "2",
               WebkitBoxOrient: "vertical",
-                  }}
+              }}
             >
             {movieDescription}
             </Typography>
@@ -123,7 +127,7 @@ export default function HoverCard({ movieId, set }) {
           spacing={1}
           direction="row"
           justifyContent="space-evenly"
-          sx={{paddingBottom: "2px", paddingLeft: "12px"}}
+          sx={{paddingBottom: "2px", paddingLeft: "12px", background:"white", '&:hover': {background: 'white'}}}
         >
               <Card sx={{minWidth:30, maxWidth:30}}>
                 <CardActionArea href="https://www.netflix.com/" target="_blank" disabled={netflixState} sx={{height: 30}}>
