@@ -31,7 +31,11 @@ app.use('/favorites',hoverRoutes);
 app.use('/list', hoverRoutes)
 app.use('/details/:movieId',hoverRoutes)
 
-
+// Profile
+app.post('/user/profileUrl');
+app.post('/user/aboutMe');
+app.post('/user/service');
+app.post('/user/friends');
 
 //------------------movie-specific------------------//
 app.get('/poster/:movieId', posterFinder);
