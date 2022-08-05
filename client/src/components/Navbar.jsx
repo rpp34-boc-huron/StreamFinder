@@ -30,7 +30,7 @@ const Navbar = (props) => {
                     <Toolbar sx={{ justifyContent: 'end', fontSize: '1.25rem' }}>
                         <Button onClick={() => navigate('/')} color="inherit" sx={{ fontSize: 'inherit' }}>Home</Button>
                         <Button onClick={() => navigate('/profile')} color="inherit" sx={{ fontSize: 'inherit' }} >Profile</Button>
-                        <Button color="inherit" sx={{ fontSize: 'inherit' }} >Sign Out</Button>
+                        <Button onClick={() => location.reload()} color="inherit" sx={{ fontSize: 'inherit' }}>Sign Out</Button>
                     </Toolbar>
                 </Toolbar>
                 {/* <Toolbar sx={{ justifyContent: 'end', margin: '0px 1%' }}>

@@ -2,13 +2,13 @@ $HeaderBlack: rgba(0,0,0,0.65);
 $RegularBlack: rgba(0,0,0,0.5);
 $HeaderFontSize: 20px;
 $CarouselGrey:rgba(0,0,0,0.015);
-;
 
 .carousel {
   position: relative;
-  width: 100vw; 
+  width: calc(95vw - 15px);
+  left: calc(2.5vw - 7.5px);
   height: 300px;
-} 
+}
 
 .carousel-name {
   font-size: 25px;
@@ -16,31 +16,24 @@ $CarouselGrey:rgba(0,0,0,0.015);
   color: $HeaderBlack;
   position: absolute;
   top: -30px;
-  left: 10px;
 }
 
 .carousel-rectangle {
   position: relative;
   box-sizing: border-box;
-  padding: 10px;
-  width: 100vw;
   max-height: 300px;
-  display: grid;
-  grid-template-columns: max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content;
-  justify-content: space-between;
-//   grid-column-gap: 20px;
-  overflow-x: scroll;
-  overflow-y: hidden;
+  height: 300px;
+  display: flex;
+  flex-direction: row;
   -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.carousel-rectangle::-webkit-scrollbar {
-  display: none;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .carousel-item {
   width: 200px;
-  height: calc(260px);
+  height: calc(280px);
+  // margin-right: 60px;
   background: whitesmoke;
   border-radius: 5px;
   box-shadow: 5px 5px 8px rgba(0,0,0,0.115);
@@ -48,19 +41,23 @@ $CarouselGrey:rgba(0,0,0,0.015);
 }
 
 .carousel-item:hover {
-  transition: all 0.5s;
-  width: 400px;
+  transition: all 0.1s;
+  width: 300px;
+  height: 350px;
+  overflow: visible;
+  z-index: 10000;
+  background: whitesmoke;
 }
 
 .carousel-next {
   position: absolute;
-  width: 200px;
-  height: 50px;
-  bottom: -25px;
+  width: 100px;
+  height: 30px;
+  bottom: -30px;
   left: calc(50vw - 100px);
-  display: grid;
-  grid-template-columns: max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content;
-  place-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-around;
 }
 
@@ -69,4 +66,29 @@ $CarouselGrey:rgba(0,0,0,0.015);
   height: 18px;
   background: lightgray;
   border-radius: 100%;
+}
+
+.movie-carousels {
+  display: grid;
+  grid-template-rows: max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content;
+  grid-row-gap: 50px;
+  margin-top: 55px;
+}
+
+.bruh {
+  width: 100%;
+  height: 100%;
+  transform: scale(1);
+}
+
+.overlay-blur {
+  margin-top: 0;
+  margin-left: 0;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  backdrop-filter: blur(4px);
 }

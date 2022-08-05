@@ -7,15 +7,24 @@ import Moviesumm from './components/movieSpecific/movieSummary';
 import LandingSearchPage from './components/search/LandingSearchPage';
 import NoResultsPage from './components/search/NoResultsPage';
 import UserProfile from './components/profile/UserProfile.jsx';
+import Login from './components/Authentication/login';
+import useToken from './components/Authentication/useToken';
+
 
 const App = () => {
   const [searchMovieData, setSearchMovieData] = useState([]);
   const [movieId, setMovieId] = useState(238)
+  const [token, setToken] = useState();
+  const [userData, setUserData] = useState();
 
   const handleClick = (e, movieID) => {
     e.preventDefault();
     const movieId = e.target.id || movieID
     setMovieId(movieId);
+  }
+
+  if (!token) {
+    return <Login setToken={setToken} setUserData={setUserData} />
   }
 
   return (

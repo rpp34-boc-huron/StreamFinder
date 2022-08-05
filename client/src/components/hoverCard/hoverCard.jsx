@@ -12,8 +12,7 @@ import { getMovieDetails, addToFavorites, addToList } from '../../utils/getTMDBd
 import { useNavigate } from 'react-router-dom';
 
 
-export default function HoverCard({ movieId, handleClick }) {
-
+export default function HoverCard({ movieId, set, toBeWatched, favorited, name }) {
   const [movieTitle, setMovieTitle] = useState('');
   const [movieDescription, setMovieDescription] = useState('');
   const [movieImage, setMovieImage] = useState('');
@@ -71,18 +70,32 @@ export default function HoverCard({ movieId, handleClick }) {
       })
   })
 
+  const onMouseLeave = (e) => {
+    let { top, left, bottom, right } = e.target.getBoundingClientRect();
+    if (e.clientX > right || e.clientX < left || e.clientY > bottom || e.clientY < top) {
+      set(false);
+    }
+  }
+
   if(movieImage !== '') {
     return (
-      <Card sx={{ maxWidth: 300, maxHeight: 330, position: 'absolute', zIndex: 5 }}>
+      <div onMouseLeave={() => set(false)} className="bruh">
+      <Card sx={{ width: '300px', height: '350px', position: 'relative', zIndex: 5 }}>
         <CardActionArea
           onClick = {(e) => navigate(`/movie/${id}`)}
+          // onMouseOut = { set(false) }
         >
           <CardMedia
             component="img"
-            height="140"
+            height="175px"
             image={movieImage}
+            sx={{height: 200, media: {width: 10}}}
           />
-          <CardContent>
+          <CardContent
+            sx={{
+              height: '115px'
+            }}
+          >
             <Typography gutterBottom variant="h5" component="div"
               sx={{
                 overflow: "hidden",
@@ -90,7 +103,7 @@ export default function HoverCard({ movieId, handleClick }) {
                 display: "-webkit-box",
                 WebkitLineClamp: "1",
                 WebkitBoxOrient: "vertical",
-              }}
+            }}
             >
               {movieTitle}
             </Typography>
@@ -103,7 +116,7 @@ export default function HoverCard({ movieId, handleClick }) {
               display: "-webkit-box",
               WebkitLineClamp: "2",
               WebkitBoxOrient: "vertical",
-                  }}
+              }}
             >
             {movieDescription}
             </Typography>
@@ -114,7 +127,7 @@ export default function HoverCard({ movieId, handleClick }) {
           spacing={1}
           direction="row"
           justifyContent="space-evenly"
-          sx={{paddingBottom: "2px", paddingLeft: "12px"}}
+          sx={{paddingBottom: "2px", paddingLeft: "12px", background:"white", '&:hover': {background: 'white'}}}
         >
               <Card sx={{minWidth:30, maxWidth:30}}>
                 <CardActionArea href="https://www.netflix.com/" target="_blank" disabled={netflixState} sx={{height: 30}}>
@@ -159,10 +172,11 @@ export default function HoverCard({ movieId, handleClick }) {
                   {/* </Grid>
                 </Grid>
               </Grid>  */}
-            <AddToFavorites event={{addToFavorites}} movieID={{id}} poster={{poster}}/>
-            <AddToList event={{addToList}} movieID={{id}} poster={{poster}} />
+            <AddToFavorites event={{addToFavorites}} movieID={{id}} poster={{poster}} favorited={favorited}/>
+            <AddToList event={{addToList}} movieID={{id}} poster={{poster}} toBeWatched={toBeWatched}/>
             </Stack>
       </Card>
+      </div>
     );
   }
 }
