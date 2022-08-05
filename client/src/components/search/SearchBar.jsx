@@ -44,7 +44,7 @@ const SearchBar = (props) => {
   return (
     <Paper
     className="search"
-    sx={{borderRadius: '19px', 'width': '40%', display:'flex'}}
+    sx={{borderRadius: '19px', 'width': '33.33%', display:'flex'}}
     >
     <InputBase
         sx={{ ml: 3, py: 1, flex: 1 }}

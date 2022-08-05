@@ -10,7 +10,7 @@ const NoResultsPage = (props) => {
     //   <p>Sorry, we couldn't find any results for "<b>{keywords}</b>"</p>
     // </div>
     <Container
-    sx={{ margin: '50px auto', 'font-size': '25px', 'padding-top': '50px' }}>
+    sx={{ fontSize: '25px', 'padding-top': '50px', textAlign: 'center' }}>
       <div className="no-results-found">
         <p>Sorry, we couldn't find any results for "<b>{keywords}</b>"</p>
       </div>
