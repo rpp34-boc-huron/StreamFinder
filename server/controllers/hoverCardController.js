@@ -23,7 +23,7 @@ const addList = (req, res) => {
   const movieObj =  req.body;
   const username = movieObj.username;
   const movieData = movieObj.movieObj;
-  User.updateList(username, 'watchList', movieData, (err, resultCode)=>{
+  User.updateList(username, 'watchList', movieObj, (err, resultCode)=>{
     res.status(201).send(resultCode)
   })
 }
@@ -31,7 +31,7 @@ const addFavorites = (req, res) => {
   const movieObj =  req.body;
   const username = movieObj.username;
   const movieData = movieObj.movieObj;
-  User.updateList(username, 'favorites', movieData, (err, resultCode)=>{
+  User.updateList(username, 'favorites', movieObj, (err, resultCode)=>{
     res.status(201).send(resultCode)
   })
 }

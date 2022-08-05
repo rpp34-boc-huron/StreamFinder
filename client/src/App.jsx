@@ -14,7 +14,7 @@ import useToken from './components/Authentication/useToken';
 const App = () => {
   const [searchMovieData, setSearchMovieData] = useState([]);
   const [movieId, setMovieId] = useState(238)
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(null);
   const [userData, setUserData] = useState();
 
   const handleClick = (e, movieID) => {
@@ -22,8 +22,8 @@ const App = () => {
     const movieId = e.target.id || movieID
     setMovieId(movieId);
   }
-
-  if (!token) {
+  const loginSession = token || sessionStorage.getItem('token')
+  if (!loginSession) {
     return <Login setToken={setToken} setUserData={setUserData} />
   }
 
