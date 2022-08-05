@@ -84,7 +84,7 @@
   grid-template-rows: max-content max-content max-content;
   grid-row-gap: 20px;
   min-width: 500px;
-  left: 25px;
+  left: 55px;
 }
 
 .user-profile-security-text {
@@ -95,7 +95,7 @@
 
 .user-profile-services {
   position: relative;
-  left: 25px;
+  left: 55px;
   width: calc(60vw - 25px);
   height: -webkit-max-content;
   height: -moz-max-content;
@@ -123,7 +123,6 @@
   grid-template-columns: max-content max-content max-content max-content max-content;
   align-items: center;
   box-sizing: border-box;
-  padding-left: 12.5px;
   grid-column-gap: 20px;
 }
 
@@ -361,6 +360,7 @@ img {
   grid-template-columns: -webkit-max-content -webkit-max-content -webkit-max-content -webkit-max-content -webkit-max-content -webkit-max-content -webkit-max-content -webkit-max-content -webkit-max-content -webkit-max-content;
   grid-template-columns: max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content;
   grid-column-gap: 20px;
+  left: 15px;
 }
 
 .user-profile-service {
@@ -407,9 +407,11 @@ img {
 }
 
 .user-profile-friends {
-  margin-left: 4vw;
+  margin-left: 55px;
+  margin-top: 55px;
   width: 35vw;
   max-width: 800px;
+  max-height: calc(100vh - 120px);
   height: calc(100vh - 70px);
   display: grid;
   grid-template-rows: 50px 50px 50px -webkit-max-content;
