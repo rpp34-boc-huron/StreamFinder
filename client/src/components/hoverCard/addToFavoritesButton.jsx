@@ -2,7 +2,7 @@ import * as React from 'react';
 import {IconButton, Alert, Snackbar} from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-export default function addToFavorites({event, movieID, poster}) {
+export default function addToFavorites({event, movieID, poster, favorited}) {
   const [open, setOpen] = React.useState(false);
   const [showBanner, setBanner] =React.useState(null);
   const handleOpen = () => setOpen(true);
@@ -25,7 +25,7 @@ export default function addToFavorites({event, movieID, poster}) {
       })
   }
   const buttonSides = 64;
-
+  const heartFillColor = favorited ? 'red' : 'gray';
     return (
       <IconButton
       aria-label="add"
@@ -40,7 +40,7 @@ export default function addToFavorites({event, movieID, poster}) {
         "& .MuiButton-startIcon": { margin: 0 }}
       }
       >
-      <FavoriteIcon onClick={actionWrapper} />
+      <FavoriteIcon onClick={actionWrapper} style={{ fill: heartFillColor }}/>
         <Snackbar open={open} autoHideDuration={1000} onClose={handleClose} anchorOrigin={{vertical:'top', horizontal: 'bottom'}} sx={{ height: "100%", opacity: "transparent" }}>
         {showBanner ? <Alert onClose={()=>{
               setOpen(false)
@@ -53,6 +53,7 @@ export default function addToFavorites({event, movieID, poster}) {
             }} severity="success">
               Added to Favorites!
             </Alert>}
+
       </Snackbar>
     </IconButton>
   )

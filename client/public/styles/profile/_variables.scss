@@ -29,9 +29,6 @@ $CarouselGrey:rgba(0,0,0,0.015);
   align-items: center;
   justify-content: space-between;
 }
-.carousel-rectangle::-webkit-scrollbar {
-  // display: none;
-}
 
 .carousel-item {
   width: 200px;
@@ -82,4 +79,16 @@ $CarouselGrey:rgba(0,0,0,0.015);
   width: 100%;
   height: 100%;
   transform: scale(1);
+}
+
+.overlay-blur {
+  margin-top: 0;
+  margin-left: 0;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  backdrop-filter: blur(4px);
 }

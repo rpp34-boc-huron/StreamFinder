@@ -13,14 +13,15 @@ const { searchTrailers, searchRecommendations }= require('./controllers/movieSpe
 const port = process.env.port || 8080;
 const publicPath = path.join(__dirname, '..', 'client', 'public');
 const indexHtmlPath = path.join(publicPath, 'index.html');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const userController = require('./controllers/profile.js');
 
 
 // app.use(cors())
 app.use(express.json());
 app.use(express.static(publicPath));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json({limit: '5mb'}));
+app.use(bodyParser.urlencoded({extended: true, limit: '5mb'}));
 
 app.use('/api/auth', require('./routes/register'));
 app.use('/api/auth', require('./routes/login'));
@@ -31,7 +32,13 @@ app.use('/favorites',hoverRoutes);
 app.use('/list', hoverRoutes)
 app.use('/details/:movieId',hoverRoutes)
 
-
+// Profile
+app.get('/user/profile/:username', userController.getUserProfile);
+app.post('/user/profileUrl', userController.saveProfilePicture);
+app.post('/user/service', userController.updatePofileArr);
+app.post('/user/password/reset', userController.resetPassword);
+app.post('/user/aboutMe', userController.saveProfileData);
+// app.post('/user/friends', userController.addFriend);
 
 //------------------movie-specific------------------//
 app.get('/poster/:movieId', posterFinder);

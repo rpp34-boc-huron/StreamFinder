@@ -1,6 +1,6 @@
 .user-profile-services {
   position: relative;
-  left: 25px;
+  left: 55px;
   width: calc(60vw - 25px);
   height: max-content;
   display: grid;
@@ -28,7 +28,6 @@
   grid-template-columns: max-content max-content max-content max-content max-content;
   align-items: center;
   box-sizing: border-box;
-  padding-left: 12.5px;
   grid-column-gap: 20px;
 }
 
