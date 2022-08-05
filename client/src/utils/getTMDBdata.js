@@ -90,12 +90,15 @@ const getMovieDetails = async (id) => {
     }
 }
 
-const addToFavorites = async (userID, id, poster) => {
+const addToFavorites = async (username, id, poster) => {
+  const movieObj =  {
+    image: `https://image.tmdb.org/t/p/w185${poster.poster}`,
+    id: `${id}`
+};
   try {
     const response = await axios.post('/hover/favorites', {
-      userID: userID,
-      movieID: id,
-      image: poster
+      username: username,
+      movieObj: movieObj
     })
     console.log(response)
   }
@@ -104,12 +107,15 @@ const addToFavorites = async (userID, id, poster) => {
   }
 }
 
-const addToList = async (userID, id) => {
+const addToList = async (username, id, poster) => {
+  const movieObj =  {
+      image: `https://image.tmdb.org/t/p/w185${poster.poster}`,
+      id: `${id}`
+    };
   try {
     const response = await axios.post('/hover/list', {
-      userID: userID,
-      movieID: id,
-      // image: poster
+      username: username,
+      movieObj: movieObj
     })
     console.log(response)
   }

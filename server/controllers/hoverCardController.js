@@ -1,4 +1,5 @@
 const axios = require('axios');
+// require('dotenv').config()
 const API_KEY = process.env.API_KEY;
 const { User } = require('../../database/index.js')
 
@@ -19,20 +20,16 @@ const getMovieInfo = async (req, res) => {
 }
 
 const addList = (req, res) => {
-  const movieObj =  {
-    'image': 'test insert watchList',
-    'id': '99999'
-  };
-  User.updateList('sase', 'watchList', movieObj, (err, resultCode)=>{
+  const username = req.body.username
+  const movieObj = req.body.movieObj
+  User.updateList(username, 'watchList', movieObj, (err, resultCode)=>{
     res.status(201).send(resultCode)
   })
 }
 const addFavorites = (req, res) => {
-  const movieObj =  {
-    'image': 'test insert favorites',
-    'id': '199999'
-  };
-  User.updateList('sase', 'favorites', movieObj, (err, resultCode)=>{
+  const username = req.body.username
+  const movieObj = req.body.movieObj
+  User.updateList(username, 'favorites', movieObj, (err, resultCode)=>{
     res.status(201).send(resultCode)
   })
 }

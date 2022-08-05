@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from './search/SearchBar';
 import { useNavigate } from 'react-router-dom';
-import { Box, AppBar, IconButton, Toolbar, Typography, Button, CssBaseline } from '@mui/material';
-// import PropTypes from 'prop-types';
+import { AppBar, IconButton, Toolbar, Typography, Button, CssBaseline } from '@mui/material';
 import '../App.css';
 
 const Navbar = (props) => {
@@ -11,9 +10,7 @@ const Navbar = (props) => {
 
     return (
         <React.Fragment>
-            {/* <CssBaseline /> */}
-            <Box sx={{ flexGrow: 1, color: 'black' }} className="navigation">
-                <AppBar position="static" sx={{ color: 'black', backgroundColor: '#dcdee3' }}>
+                <AppBar position="sticky" sx={{ color: 'black', backgroundColor: '#dcdee3' }} className="navigation" >
                     <Toolbar sx={{ justifyContent: 'space-between', margin: '1% 1% 0px' }}>
                         <Typography
                             variant="h4"
@@ -40,7 +37,6 @@ const Navbar = (props) => {
                         <Button sx={{ ml: 2 }} color="inherit">Sign Out</Button>
                     </Toolbar>
                 </AppBar>
-            </Box>
         </React.Fragment>
     );
 };

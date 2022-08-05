@@ -2,7 +2,7 @@ import * as React from 'react';
 import {IconButton, Alert, Snackbar} from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-export default function addToFavorites({event, movieID}) {
+export default function addToFavorites({event, movieID, poster}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -12,7 +12,7 @@ export default function addToFavorites({event, movieID}) {
   const actionWrapper = e => {
     handleOpen()
     //pass in userID and movieID
-    addToFavorites('1234', id)
+    addToFavorites('sase', id, poster)
   }
   const buttonSides = 64;
 
