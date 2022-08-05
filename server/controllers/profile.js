@@ -22,12 +22,15 @@ module.exports.saveProfileData = async (username, newUsername, aboutMe) => {
   }
 };
 
-module.exports.updatePofileArr = async (username, serviceName, newValue, add=true) => {
+module.exports.updatePofileArr = async (req, res) => {
+  let {username, itemName, newValue, add} = req.body;
+  if (add==='undefined') add = true;
+
   try {
-    await User.updateArrayProp({username}, serviceName, [newValue], add);
-    return true;
+    await User.updateArrayProp({username}, itemName, [newValue], add);
+    res.end();
   } catch {
-    return false;
+    res.status(500).end();
   }
 };
 

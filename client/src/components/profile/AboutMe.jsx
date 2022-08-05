@@ -6,19 +6,8 @@ import axios from 'axios';
 var defaultPfp = require('./base64DefaultImg.js');
 
 const AboutMe = (props) => {
-
-  const username = 'sase'; // later come from props;
   const imgDiv = useRef();
-  const [user, setUser] = useState({});
-
-  const fetchUser = () => {
-    axios.get(`/user/profile/${username}`)
-    .then(res => setUser(res.data))
-    .catch(err => err);    //
-  };
-
-  useEffect(fetchUser, []);
-
+  const { user, fetchUser, username } = props;
 
   const openFilePicker = () => {
     document.querySelector('#open-file').click();
