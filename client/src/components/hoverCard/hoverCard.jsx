@@ -54,7 +54,7 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name }
   if(movieImage !== '') {
     return (
       <div onMouseLeave={() => set(false)} >
-      <Card sx={{ width: '400px', height: '350px', position: 'relative', zIndex: 5 }}>
+      <Card sx={{ width: '400px', height: '375px', position: 'relative', zIndex: 5 }}>
         <CardActionArea
           onClick = {(e) => navigate(`/movie/${id}`)}
         >
@@ -66,7 +66,7 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name }
           />
           <CardContent
             sx={{
-              height: '115px'
+              height: '107px'
             }}
           >
             <Typography gutterBottom variant="h5" component="div"
