@@ -39,6 +39,8 @@ $newBlack: rgba(0,0,0,0.85);
   position: relative;
   min-width: 200px;
   height: 200px;
+  // border-radius: 200px;
+
 }
 
 .replace-this-image {
@@ -49,11 +51,15 @@ $newBlack: rgba(0,0,0,0.85);
   height: 175px;
   border: 1px solid rgba(0,0,0,0.125);
   border-radius: 100%;
-  background: url('../../imgs/empty-user.webp');
   background-size: 100%;
-  background-position: center;
+  background-position: center; 
   background-repeat: no-repeat;
   background-color: lightgray;
+  overflow: hidden;
+}
+
+img {
+  border-radius: 100% !important;
 }
 
 .user-profile-user-meta-about-me-container {

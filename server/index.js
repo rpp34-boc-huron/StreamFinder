@@ -20,8 +20,8 @@ const userController = require('./controllers/profile.js');
 // app.use(cors())
 app.use(express.json());
 app.use(express.static(publicPath));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json({limit: '5mb'}));
+app.use(bodyParser.urlencoded({extended: true, limit: '5mb'}));
 
 app.use('/api/auth', require('./routes/register'));
 app.use('/api/auth', require('./routes/login'));
@@ -33,10 +33,11 @@ app.use('/list', hoverRoutes)
 app.use('/details/:movieId',hoverRoutes)
 
 // Profile
+app.get('/user/profile/:username', userController.getUserProfile);
 app.post('/user/profileUrl', userController.saveProfilePicture);
-app.post('/user/aboutMe', userController.saveProfileData);
-app.post('/user/service', userController.updatePofileArr);
-app.post('/user/friends', userController.addFriend);
+// app.post('/user/aboutMe', userController.saveProfileData);
+// app.post('/user/service', userController.updatePofileArr);
+// app.post('/user/friends', userController.addFriend);
 
 //------------------movie-specific------------------//
 app.get('/poster/:movieId', posterFinder);

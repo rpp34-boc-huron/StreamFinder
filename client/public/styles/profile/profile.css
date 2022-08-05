@@ -40,6 +40,7 @@
   height: 350px;
   overflow: visible;
   z-index: 10000;
+  background: whitesmoke;
 }
 
 .carousel-next {
@@ -213,6 +214,7 @@
   height: 350px;
   overflow: visible;
   z-index: 10000;
+  background: whitesmoke;
 }
 
 .carousel-next {
@@ -291,11 +293,15 @@
   height: 175px;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 100%;
-  background: url("../../imgs/empty-user.webp");
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-color: lightgray;
+  overflow: hidden;
+}
+
+img {
+  border-radius: 100% !important;
 }
 
 .user-profile-user-meta-about-me-container {

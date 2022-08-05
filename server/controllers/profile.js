@@ -1,11 +1,12 @@
 const { User } = require('../../database/index.js');
 
-module.exports.saveProfilePicture = async (username, pfpBase64) => {
+module.exports.saveProfilePicture = async (req, res) => {
+  const { username, img } = req.body;  
   try {
-    await User.update({username}, {profileUrl: pfpBase64});
-    return true;
+    await User.update({username}, {profileUrl: img});
+    res.end();
   } catch {
-    return false;
+    res.status(500).end();
   }
 };
 
@@ -42,5 +43,17 @@ module.exports.addFriend = async (username, friendName) => {
     }
   } catch {
     return false;
+  }
+};
+
+module.exports.getUserProfile = async(req, res) => {
+  const { username } = req.params;
+  let users = await User.find({username});
+  if (users.length > 0) {
+    let user = users[0];
+    let {username, ownedServices, profileUrl, aboutMe} = user;
+    res.end(JSON.stringify({username, ownedServices, profileUrl, aboutMe}));
+  } else {
+    res.status(500).end('User not found!');
   }
 };
