@@ -26,7 +26,7 @@ const Friend = (props) => {
     <div className="friend">
       <div className="friend-meta">
         <img width={65} height={65} id="friend-pic" src={defaultProfilePic} alt="" />
-        <div className="friend-meta-username">@MAYOR ADAMS IS A MALICONE</div>
+        <div className="friend-meta-username">@BRUH3BRUH3BRUH3</div>
       </div>
       <div className="friend-service-list">
         {/* map it here! */}
