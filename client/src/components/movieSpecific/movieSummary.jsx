@@ -103,7 +103,6 @@ export default function Moviesumm() {
 
                                 axios.get(`/details/${movieId}/details/${movieId}`)
                                 .then((res) => {
-                                    console.log(res)
                                     const movieObj =  {
                                         'image': `https://image.tmdb.org/t/p/w185/${res.data.movieInfo.poster_path}`,
                                         'id': movieId

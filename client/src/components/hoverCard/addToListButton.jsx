@@ -2,7 +2,7 @@ import * as React from 'react';
 import {IconButton, Alert, Snackbar} from '@mui/material';
 import Add from '@mui/icons-material/Add';
 
-export default function addToList({event, movieID, poster}) {
+export default function addToList({event, movieID, poster, toBeWatched}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -14,6 +14,8 @@ export default function addToList({event, movieID, poster}) {
     //sase username is hardcoded
     addToList('sase', id, poster)
   }
+
+  const plusSignFillColor = toBeWatched ? 'blue' : 'gray';
 
     return (
         <IconButton
@@ -28,7 +30,7 @@ export default function addToList({event, movieID, poster}) {
             // backgroundColor: '#edeff2',
             "& .MuiButton-startIcon": { margin: 0 }}}
           >
-          <Add onClick={actionWrapper} />
+          <Add onClick={actionWrapper} style={{ fill: plusSignFillColor }}/>
           <Snackbar open={open} autoHideDuration={1500} onClose={handleClose} anchorOrigin={{vertical:'top', horizontal: 'center'}}>
             <Alert onClose={handleClose} severity="success">
                 Added to watch list!

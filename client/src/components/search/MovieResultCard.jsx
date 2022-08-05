@@ -28,7 +28,7 @@ const MovieResultCard = (props) => {
 
   const handleClicked = (e) => {
     const tagName = e.target.tagName;
-    console.log('tagName???', tagName)
+
     let id = e.target.parentElement.id;
     if (tagName === 'H5') {
       id = e.target.parentElement.parentElement.id;
