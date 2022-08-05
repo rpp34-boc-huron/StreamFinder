@@ -22,9 +22,9 @@ const App = () => {
     setMovieId(movieId);
   }
 
-  if (!token) {
-    return <Login setToken={setToken} setUserData={setUserData} />
-  }
+  // if (!token) {
+  //   return <Login setToken={setToken} setUserData={setUserData} />
+  // }
 
   return (
     <HashRouter>
