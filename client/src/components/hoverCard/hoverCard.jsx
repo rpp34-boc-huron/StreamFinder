@@ -36,7 +36,7 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name }
         const title = movieInfo.original_title;
         const description = movieInfo.overview;
         const poster_path = movieInfo.poster_path;
-        const image = `https://image.tmdb.org/t/p/w500${poster_path}`
+        const image = `https://image.tmdb.org/t/p/w500${movieInfo.backdrop_path}`
         setPoster(poster_path)
         setMovieTitle(title)
         setMovieDescription(description)

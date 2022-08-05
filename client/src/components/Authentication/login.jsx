@@ -35,6 +35,7 @@ export default function Login({ setToken, setUserData }) {
                 watchList: token['userData'][0]['watchList'],
             }
             setUserData(userInfo);
+            sessionStorage.setItem('token', token.token)
             console.log("this is the userInfo " + JSON.stringify(userInfo));
         }
         setToken(token.token);
@@ -74,7 +75,7 @@ export default function Login({ setToken, setUserData }) {
       </div>
     )
   }
-  
+
   Login.propTypes = {
     setToken: PropTypes.func.isRequired
   };
