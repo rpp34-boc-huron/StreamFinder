@@ -5,17 +5,14 @@ import { FaShare } from 'react-icons/fa';
 import { FcLike, FcBookmark } from 'react-icons/fc';
 const axios = require('axios');
 import MovieSpecific2 from '../movieSpecific-2/MovieSpecific2';
-import { useParams } from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import { FormControlUnstyledContext } from "@mui/base";
-// import { addList, addFavorites,getMovieInfo} from '../../../../server/controllers/hoverCardController'
 
 
 export default function Moviesumm() {
     // React-Router: get movieId from URL
     const { movieId } = useParams();
-
     // React-Router: set movieId in URL
     const navigate = useNavigate();
 
@@ -53,6 +50,14 @@ export default function Moviesumm() {
             console.error('get providers error', err);
         }
     }
+    async function copyPageUrl() {
+        try {
+          await navigator.clipboard.writeText(location.href);
+          window.alert('Page URL copied to clipboard');
+        } catch (err) {
+          window.alert('Failed to copy: ', err);
+        }
+      }
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -63,7 +68,7 @@ export default function Moviesumm() {
     useEffect(() => {
         getPoster();
         getSummary();
-        getProviders()
+        getProviders();
     }, [movieId]);
 
 
@@ -95,11 +100,7 @@ export default function Moviesumm() {
 
                     <span className="actionBar">
                         <FcLike className="like" onClick={() => {
-                            // axios.post('/favorites')
-                            // .then((res) => {
-                            //     console.log('yesss')
-                            // })
-                            // .catch(err => console.log(err))
+
                                 axios.get(`/details/${movieId}/details/${movieId}`)
                                 .then((res) => {
                                     console.log(res)
@@ -127,7 +128,9 @@ export default function Moviesumm() {
                          })
                          .catch(err => console.log(err))
                         }}/>
-                        {/* <FaShare className="share" /> */}
+                        <FaShare className="share" onClick={() => {
+                            copyPageUrl()
+                        }}/>
                     </span>
                     <div className="starRating">
                         {`Score : ${movieScore}`}

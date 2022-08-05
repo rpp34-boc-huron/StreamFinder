@@ -17,19 +17,17 @@ const getMovieInfo = async (req, res) => {
         catch (error) {
         console.log(error);
       }
-}
+} //
 
 const addList = (req, res) => {
-  const username = req.body.username
-  const movieObj = req.body.movieObj
-  User.updateList(username, 'watchList', movieObj, (err, resultCode)=>{
+  const movieObj = req.body;
+  User.updateList('sase', 'watchList', movieObj, (err, resultCode)=>{
     res.status(201).send(resultCode)
   })
 }
 const addFavorites = (req, res) => {
-  const username = req.body.username
-  const movieObj = req.body.movieObj
-  User.updateList(username, 'favorites', movieObj, (err, resultCode)=>{
+  const movieObj =  req.body;
+  User.updateList('sase', 'favorites', movieObj, (err, resultCode)=>{
     res.status(201).send(resultCode)
   })
 }
