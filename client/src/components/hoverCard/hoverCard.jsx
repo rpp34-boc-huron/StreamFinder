@@ -12,7 +12,7 @@ import { getMovieDetails, addToFavorites, addToList } from '../../utils/getTMDBd
 import { useNavigate } from 'react-router-dom';
 
 
-export default function HoverCard({ movieId, set }) {
+export default function HoverCard({ movieId, set, toBeWatched, favorited, name }) {
   const [movieTitle, setMovieTitle] = useState('');
   const [movieDescription, setMovieDescription] = useState('');
   const [movieImage, setMovieImage] = useState('');
@@ -172,8 +172,8 @@ export default function HoverCard({ movieId, set }) {
                   {/* </Grid>
                 </Grid>
               </Grid>  */}
-            <AddToFavorites event={{addToFavorites}} movieID={{id}} poster={{poster}}/>
-            <AddToList event={{addToList}} movieID={{id}} poster={{poster}} />
+            <AddToFavorites event={{addToFavorites}} movieID={{id}} poster={{poster}} favorited={favorited}/>
+            <AddToList event={{addToList}} movieID={{id}} poster={{poster}} toBeWatched={toBeWatched}/>
             </Stack>
       </Card>
       </div>

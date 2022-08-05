@@ -20,14 +20,18 @@ const getMovieInfo = async (req, res) => {
 } //
 
 const addList = (req, res) => {
-  const movieObj = req.body;
-  User.updateList('sase', 'watchList', movieObj, (err, resultCode)=>{
+  const movieObj =  req.body;
+  const username = movieObj.username;
+  const movieData = movieObj.movieObj;
+  User.updateList(username, 'watchList', movieData, (err, resultCode)=>{
     res.status(201).send(resultCode)
   })
 }
 const addFavorites = (req, res) => {
   const movieObj =  req.body;
-  User.updateList('sase', 'favorites', movieObj, (err, resultCode)=>{
+  const username = movieObj.username;
+  const movieData = movieObj.movieObj;
+  User.updateList(username, 'favorites', movieData, (err, resultCode)=>{
     res.status(201).send(resultCode)
   })
 }

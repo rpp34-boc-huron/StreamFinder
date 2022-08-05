@@ -100,7 +100,6 @@ const addToFavorites = async (username, id, poster) => {
       username: username,
       movieObj: movieObj
     })
-    console.log(response)
   }
   catch (error){
     console.log(error)
@@ -117,7 +116,6 @@ const addToList = async (username, id, poster) => {
       username: username,
       movieObj: movieObj
     })
-    console.log(response)
   }
   catch (error){
     console.log(error)
