@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react';
 
 const Carousel = (props) => {
-  // const ExpandedView = children;
-  const { ExpandedView, name, arrOfMoviesObj } = props;
+  const { ExpandedView, name, arrOfMoviesObj, favorites, watchList } = props;
   const [items, setItems] = useState([]);
   const [displayedItems, setDisplayedItems] = useState([]);
   const [index, setIndex] = useState(1);
   const [balls, setBalls] = useState([1,1,1]);
+  const [favoritesIds, setFavoritesIds] = useState([]);
+  const [watchlistIds, setWatchListIds] = useState([]);
 
   const getMaxItemOnScreen = () => {
     let x = Math.floor(window.innerWidth/220);
-    console.log(x);
     return x;
   }
 
@@ -23,9 +23,11 @@ const Carousel = (props) => {
     setBalls(ballsArr);
     setIndex(1);
     setItems(arrOfMoviesObj);
+    setFavoritesIds(favorites);
+    setWatchListIds(watchList);
     setDisplayedItems(items.slice(0, maxItems));
 
-  }, [arrOfMoviesObj, items]);
+  }, [arrOfMoviesObj, items, favorites, watchList]);
 
   const changeIndex = (num) => {
     setIndex(num);
@@ -45,10 +47,9 @@ const Carousel = (props) => {
       <div className="carousel-name">{name}</div>
       <div className="carousel-rectangle">
         {displayedItems.map((item, i) => {
-          console.log('item: ', item);
           return (
             <div key={`carousel-${name}-${i}`} className="carousel-item">
-              <Display item={item} ExpandedView={ExpandedView}/>
+              <Display item={item} ExpandedView={ExpandedView} favoritesIds={favoritesIds} watchlistIds={watchlistIds}/>
             </div>
           );
         })}
@@ -63,11 +64,11 @@ const Carousel = (props) => {
   );
 };
 
-const Display = ({ item, ExpandedView}) => {
+const Display = ({ item, ExpandedView, favoritesIds, watchlistIds}) => {
   const [expanded, setExpanded] = useState(false);
 
   if (expanded) {
-    return ExpandedView!==undefined? <ExpandedView movieId={item.id} set={setExpanded}/> : <Empty set={setExpanded}/>;
+    return ExpandedView!==undefined? <ExpandedView movieId={item.id} set={setExpanded} favorited={favoritesIds ? favoritesIds.includes(item.id.toString()) : null} toBeWatched={watchlistIds ? watchlistIds.includes(item.id.toString()) : null}/> : <Empty set={setExpanded}/>;
   }
   return (
     <img src={item.image} alt="" width="100%" height="100%" onMouseEnter={() => setExpanded(true)}/>

@@ -32,7 +32,7 @@ const Navbar = (props) => {
                         <SearchBar setSearchMovieData={setSearchMovieData} />
                         <Button onClick={() => navigate('/')} color="inherit">Home</Button>
                         <Button onClick={() => navigate('/profile')} color="inherit">Profile</Button>
-                        <Button color="inherit">Sign Out</Button>
+                        <Button onClick={() => location.reload()}color="inherit">Sign Out</Button>
                     </Toolbar>
                 </AppBar>
             </Box>

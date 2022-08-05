@@ -8,10 +8,11 @@ import MovieCard from './MovieCard.jsx';
 import Carousel from '../profile/Carousel.jsx';
 import HoverCard from '../hoverCard/hoverCard.jsx';
 
-const MovieCarousel = ({ header, apiMethod, user }) => {
+const MovieCarousel = ({ header, apiMethod, user, type, setFavorites, setWatchList, favorites, watchlist }) => {
 
     const [trendingList, setTrendingList] = useState([]);
     const [error, setError] = useState(null);
+
     useEffect(() => {
       if (user) {
         apiMethod((err, res) => {
@@ -19,6 +20,17 @@ const MovieCarousel = ({ header, apiMethod, user }) => {
             setError(err);
           } else {
             setTrendingList(res.data);
+            if (type === 'favorites') {
+              const favoriteIds = res.data.map((movie) => {
+                return movie.id;
+              });
+              setFavorites(favoriteIds);
+            } else if (type === 'watchlist') {
+              const watchListIds = res.data.map((movie) => {
+                return movie.id;
+              });
+              setWatchList(watchListIds);
+            }
           }
         }, user)
       } else {
@@ -40,7 +52,7 @@ const MovieCarousel = ({ header, apiMethod, user }) => {
 
     }, [])
 
-    return <Carousel name={header} arrOfMoviesObj={trendingList} ExpandedView={HoverCard}>{/*HoverCard*/}</Carousel>
+    return <Carousel name={header} arrOfMoviesObj={trendingList} ExpandedView={HoverCard} favorites={favorites} watchList={watchlist}>{/*HoverCard*/}</Carousel>
 
 //     const sliderItems = trendingList.length > 6 ? 6 : trendingList.length;
 //     const items = [];
