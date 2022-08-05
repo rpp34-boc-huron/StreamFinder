@@ -21,8 +21,8 @@ const LandingPage = (props) => {
 
   return (
     <div className="movie-carousels">
-      {favorites.length && <MovieCarousel header={'Watch List'} apiMethod={getWatchlistMovieData} user={'sase'} type={'watchlist'} setWatchList={setWatchList} favorites={favorites} watchlist={watchList}/>}
-      {watchList.length && <MovieCarousel header={'My Favorites'} apiMethod={getFavoritesMovieData} user={'sase'} type={'favorites'}  setFavorites={setFavorites} favorites={favorites} watchlist={watchList}/>}
+      {favorites.length > 0 && <MovieCarousel header={'Watch List'} apiMethod={getWatchlistMovieData} user={'sase'} type={'watchlist'} setWatchList={setWatchList} favorites={favorites} watchlist={watchList}/>}
+      {watchList.length > 0 && <MovieCarousel header={'My Favorites'} apiMethod={getFavoritesMovieData} user={'sase'} type={'favorites'}  setFavorites={setFavorites} favorites={favorites} watchlist={watchList}/>}
       <MovieCarousel header={'Trending'} apiMethod={getTrendingMovieData} favorites={favorites} watchlist={watchList}/>
       <MovieCarousel header={'Horror'} apiMethod={getHorrorMovieData} favorites={favorites} watchlist={watchList}/>
       <MovieCarousel header={'Action'} apiMethod={getActionMovieData} favorites={favorites} watchlist={watchList}/>
