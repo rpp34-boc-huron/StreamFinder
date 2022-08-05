@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, InputLabelProps } from '@mui/material';
+import axios from 'axios';
 
 const Account = (props) => {
   const {user} = props;
@@ -11,11 +12,23 @@ const Account = (props) => {
     if (passwordReset) {
       // want to save 
 
-      //After Effect
-      el.disabled = true;
-      el.value = 'LOLIWOULDNTSTOREITHERE.!';
-      setPasswordReset(!passwordReset);
-      setBtnText('Reset Password');
+      if (el.value.length >= 6) {
+        axios({
+          method: 'post',
+          url: '/user/password/reset',
+          data: {
+            username: user.username,
+            password: el.value
+          }
+        })
+        .then(() => {
+          el.disabled = true;
+          el.value = 'LOLIWOULDNTSTOREITHERE.!';
+          setPasswordReset(!passwordReset);
+          setBtnText('Reset Password');
+        })
+        .catch(err => err);
+      }
     } else {
       el.disabled = false;
       el.focus();
@@ -56,7 +69,8 @@ const Account = (props) => {
         height: 'max-content',
         position: 'relative',
         top: '-5px',
-        padding: '5px 0 5px'
+        padding: '5px 0 5px',
+        color: 'lightskyblue'
       }}
       disableRipple
       onClick={resetPassword}

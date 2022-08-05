@@ -36,7 +36,8 @@ app.use('/details/:movieId',hoverRoutes)
 app.get('/user/profile/:username', userController.getUserProfile);
 app.post('/user/profileUrl', userController.saveProfilePicture);
 app.post('/user/service', userController.updatePofileArr);
-// app.post('/user/aboutMe', userController.saveProfileData);
+app.post('/user/password/reset', userController.resetPassword);
+app.post('/user/aboutMe', userController.saveProfileData);
 // app.post('/user/friends', userController.addFriend);
 
 //------------------movie-specific------------------//

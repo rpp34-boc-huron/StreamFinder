@@ -10,15 +10,17 @@ module.exports.saveProfilePicture = async (req, res) => {
   }
 };
 
-module.exports.saveProfileData = async (username, newUsername, aboutMe) => {
+module.exports.saveProfileData = async (req, res) => {
+  const {username, newUsername, aboutMe} = req.body;
+
   try {
     await User.update({username}, {
       username: newUsername,
       aboutMe
     });
-    return true;
+    res.end();
   } catch {
-    return false;
+    res.status(500).end();
   }
 };
 
@@ -58,5 +60,17 @@ module.exports.getUserProfile = async(req, res) => {
     res.end(JSON.stringify({username, ownedServices, profileUrl, aboutMe}));
   } else {
     res.status(500).end('User not found!');
+  }
+};
+
+module.exports.resetPassword = async (req, res) => {
+  // check for is the auth (user pass match session user)
+  const {username, password} = req.body;
+  
+  try {
+    await User.update({username}, {password});
+    res.end();
+  } catch {
+    res.status(500).end();
   }
 };

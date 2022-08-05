@@ -58,7 +58,7 @@ $newBlack: rgba(0,0,0,0.85);
   overflow: hidden;
 }
 
-img {
+#img {
   border-radius: 100% !important;
 }
 
@@ -85,7 +85,7 @@ img {
   bottom: 12.5px;
   right: 12.5px;
   border-radius: 100%;
-  background-color: black;
+  // background-color: black;
 }
 
 //  Settings
@@ -212,22 +212,40 @@ img {
 }
 
 .user-profile-edit-text {
-  width: 800px;
-  height: 400px;
-}
-
-.user-profile-edit-text {
   position: fixed;
   z-index: 1000;
   width: 800px;
   height: 300px;
-  top: calc(50vh - 150px);
+  top: calc(50vh - 125px);
   left: calc(50vw - 400px);
-  background: rgba(0,0,0,0.285);
-  backdrop-filter: blur(2px);
   display: grid;
   grid-template-rows: max-content max-content max-content;
-  grid-row-gap: 10px;
+  // grid-row-gap: 10px;
+  align-content: space-around;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 20px;
+  border-radius: 5px;
+  animation: 500ms flyUp ease forwards;
+  // background: rgba(119,136,153, 0.085);
+  background: transparent;
+  backdrop-filter: blur(4px) !important;
+}
+
+@keyframes flyUp {
+  0% {
+    opacity: 0;
+    transform: translateY(200px);
+    background: white;
+  }
+  100% {
+    transform: translatY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes riseAbove {
+  100% {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
 }
