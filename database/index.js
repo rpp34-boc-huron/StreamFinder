@@ -87,22 +87,18 @@ const User = {
   },
 
   updateList: async (userName, listName, movieObj, callback) => {
-    //movieObj format, listName e.g 'favorites' or 'watchList
-    // movieObj =  {
-    //      'image': 'test insert',
-    //      'id': '99999'
-    //    };
+    const movieJSON = movieObj.movieObj;
     const result = USER.findOne({username: userName})
     const selected = result.select(listName)
     selected
       .then((list) => {
         let arr = list[listName]
-        const index = arr.findIndex(obj => obj.id === movieObj.id)
+        const index = arr.findIndex(obj => obj.id === movieJSON.id)
         if(index > -1) {
           arr.splice(index, 1)
           //remove movie
             USER.findOneAndUpdate({username: userName}, {[listName]: arr}, {upsert: true, new: true}, (err, result) => {
-              console.log(result)
+              // console.log(result)
               if(err) {
                 callback(err, null)
               } else {
@@ -110,7 +106,7 @@ const User = {
               }
             })
         } else {
-        arr.push(movieObj)
+        arr.push(movieJSON)
           //add movie
         USER.findOneAndUpdate({username: userName}, {[listName]: arr}, {upsert: true, returnDocument: 'after'}, (err, result) => {
           console.log(result)

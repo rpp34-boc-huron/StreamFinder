@@ -24,6 +24,7 @@ export default function HoverCard({ movieId, set }) {
   const [hboState, setHBOClick] = useState(true);
   const [spacing, setSpacing] = useState(2);
   const [poster, setPoster] =useState('');
+  const [providerArr, setProviderArr] = useState([])
   //9615 -> HBO
   //122066 -> HUlu
   //881957 -> netflix
@@ -41,23 +42,11 @@ export default function HoverCard({ movieId, set }) {
         const movieInfo = data.movieInfo
         const streaming = data.streaming.results.US?.flatrate
         if(streaming) {
-          const netflixClick = getProvider(streaming, 'Netflix');
-          const huluClick = getProvider(streaming, 'Hulu');
-          const HBOClick = getProvider(streaming, 'HBO Now');
-          if(!netflixClick){
-            setNetflix(Netflix)
-          }
-          if(!huluClick){
-            setHulu(hulu)
-          }
-          if(!HBOClick){
-            setHBO(HBO)
-          }
-          setNetflixClick(netflixClick)
-          setHuluClick(huluClick)
-          setHBOClick(HBOClick)
-        }
+          console.log(streaming)
+          //'Disney Plus
+          setProviderArr(streaming)
 
+        }
         const title = movieInfo.original_title;
         const description = movieInfo.overview;
         const poster_path = movieInfo.poster_path;
@@ -66,7 +55,6 @@ export default function HoverCard({ movieId, set }) {
         setMovieTitle(title)
         setMovieDescription(description)
         setMovieImage(image)
-
       })
   })
 
@@ -79,11 +67,10 @@ export default function HoverCard({ movieId, set }) {
 
   if(movieImage !== '') {
     return (
-      <div onMouseLeave={() => set(false)} className="bruh">
-      <Card sx={{ width: '300px', height: '350px', position: 'relative', zIndex: 5 }}>
+      <div onMouseLeave={() => set(false)} >
+      <Card sx={{ width: '400px', height: '350px', position: 'relative', zIndex: 5 }}>
         <CardActionArea
           onClick = {(e) => navigate(`/movie/${id}`)}
-          // onMouseOut = { set(false) }
         >
           <CardMedia
             component="img"
@@ -103,7 +90,9 @@ export default function HoverCard({ movieId, set }) {
                 display: "-webkit-box",
                 WebkitLineClamp: "1",
                 WebkitBoxOrient: "vertical",
-            }}
+                fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
+                fontSize: 24,
+              }}
             >
               {movieTitle}
             </Typography>
@@ -114,7 +103,7 @@ export default function HoverCard({ movieId, set }) {
               overflow: "hidden",
               textOverflow: "ellipsis",
               display: "-webkit-box",
-              WebkitLineClamp: "2",
+              WebkitLineClamp: "3",
               WebkitBoxOrient: "vertical",
               }}
             >
@@ -122,56 +111,23 @@ export default function HoverCard({ movieId, set }) {
             </Typography>
           </CardContent>
         </CardActionArea>
-
         <Stack
           spacing={1}
           direction="row"
           justifyContent="space-evenly"
-          sx={{paddingBottom: "2px", paddingLeft: "12px", background:"white", '&:hover': {background: 'white'}}}
+          sx={{paddingBottom: "0px", paddingLeft: "12px", background:"white", '&:hover': {background: 'white'}}}
         >
-              <Card sx={{minWidth:30, maxWidth:30}}>
-                <CardActionArea href="https://www.netflix.com/" target="_blank" disabled={netflixState} sx={{height: 30}}>
-                  <CardMedia
+          {providerArr.map((provider) => (
+              <Card sx={{paddingTop: "3px", minWidth:30, maxWidth:30}}>
+                  <CardActionArea href="https://www.netflix.com/" target="_blank" disabled={netflixState} sx={{height: 30}}>
+                        <CardMedia
                         component="img"
                         height="30"
-                        image={netflixIcon}
-                  />
-                </CardActionArea>
-              </Card>
-            {/* <Card sx={{minWidth:30, maxWidth: 30 ,                            color: '#ffff',
-                            opacity: 0}}>
-              <CardActionArea href="https://hulu.com" target="_blank" disabled={huluState} sx={{maxHeight: 30}}>
-                <CardMedia
-                      component="img"
-                      height="30"
-                      image={white}
-                />
-              </CardActionArea>
-            </Card>
-            <Card sx={{minWidth:30, maxWidth: 30,      color: '#ffff',
-                            opacity: 0}}>
-
-            </Card> */}
-             {/* <Grid sx={{ flexGrow: 1 }} container spacing={2}>
-      <Grid item xs={12}>
-        <Grid container spacing={spacing}>
-
-                    {/* {[0,1,2,3].map((value) => (
-                      <Grid key={value} item>
-                        <Paper
-                          sx={{
-                            height: 30,
-                            width: 30,
-                            color: '#ffff',
-                            opacity: 0
-                          }}
+                        image={`https://image.tmdb.org/t/p/original${provider.logo_path}`}
                         />
-                      </Grid>
-
-                    ))} */}
-                  {/* </Grid>
-                </Grid>
-              </Grid>  */}
+                    </CardActionArea>
+                  </Card>)
+              )}
             <AddToFavorites event={{addToFavorites}} movieID={{id}} poster={{poster}}/>
             <AddToList event={{addToList}} movieID={{id}} poster={{poster}} />
             </Stack>

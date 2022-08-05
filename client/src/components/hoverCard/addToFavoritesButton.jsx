@@ -1,24 +1,35 @@
 import * as React from 'react';
 import {IconButton, Alert, Snackbar} from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Add from '@mui/icons-material/Add';
 
 export default function addToFavorites({event, movieID, poster}) {
   const [open, setOpen] = React.useState(false);
+  const [showBanner, setBanner] =React.useState(null);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const { addToFavorites } = event;
   const { id } = movieID;
   const actionWrapper = e => {
-    handleOpen()
     //pass in userID and movieID
     addToFavorites('sase', id, poster)
+      .then((responseCode) => {
+        console.log(responseCode)
+        if(responseCode.data === 'removed') {
+          setBanner(true)
+          handleOpen()
+        } else {
+          setBanner(false)
+          handleOpen()
+        }
+      })
   }
   const buttonSides = 64;
 
     return (
-    <IconButton
-      aria-label="favorites"
+      <IconButton
+      aria-label="add"
       variant="contained"
       sx={{
         minWidth: 25,
@@ -27,13 +38,22 @@ export default function addToFavorites({event, movieID, poster}) {
         // border: "1px solid",
         // borderColor: "primary.main",
         // backgroundColor: '#edeff2',
-        "& .MuiButton-startIcon": { margin: 0 }
-      }}>
+        "& .MuiButton-startIcon": { margin: 0 }}
+      }
+      >
       <FavoriteIcon onClick={actionWrapper} />
-      <Snackbar open={open} autoHideDuration={1500} onClose={handleClose} anchorOrigin={{vertical:'top', horizontal: 'center'}}>
-        <Alert onClose={handleClose} severity="success">
-            Added to Favorites!
-        </Alert>
+        <Snackbar open={open} autoHideDuration={1000} onClose={handleClose} anchorOrigin={{vertical:'top', horizontal: 'bottom'}} sx={{ height: "100%", opacity: "transparent" }}>
+        {showBanner ? <Alert onClose={()=>{
+              setOpen(false)
+              setBanner(null)
+            }} severity="info">
+              Removed from Favorites!
+            </Alert> : <Alert onClose={()=>{
+              setOpen(false)
+              setBanner(null)
+            }} severity="success">
+              Added to Favorites!
+            </Alert>}
       </Snackbar>
     </IconButton>
   )
