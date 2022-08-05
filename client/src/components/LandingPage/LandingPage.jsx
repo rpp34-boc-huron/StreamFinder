@@ -16,7 +16,7 @@ import {
 const LandingPage = (props) => {
   const { handleClick } = props
   return (
-    <>
+    <div className="movie-carousels">
       <MovieCarousel header={'Watch List'} apiMethod={getWatchlistMovieData} user={'sase'}/>
       <MovieCarousel header={'My Favorites'} apiMethod={getFavoritesMovieData} user={'sase'}/>
       <MovieCarousel header={'Trending'} apiMethod={getTrendingMovieData} />
@@ -27,7 +27,7 @@ const LandingPage = (props) => {
       <MovieCarousel header={'Drama'} apiMethod={getDramaMovieData} />
       <MovieCarousel header={'Science Fiction'} apiMethod={getSciFiMovieData} />
       <MovieCarousel header={'Mystery'} apiMethod={getMysteryMovieData} />
-    </>
+    </div>
 
   )
 }

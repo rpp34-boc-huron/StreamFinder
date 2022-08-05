@@ -1,23 +1,25 @@
 import React, {useEffect, useState} from 'react';
 
-const Carousel = (props) => {
-  const { name, arrOfMoviesObj, ExpandedView} = props;
-  const [items, setItems] = useState(arrOfMoviesObj);
+const Carousel = ({ name, arrOfMoviesObj, children}) => {
+  const ExpandedView = children;
+  const [items, setItems] = useState([]);
   const [displayedItems, setDisplayedItems] = useState([]);
   const [index, setIndex] = useState(1);
   const [balls, setBalls] = useState([1,1,1]);
 
-
-  const getMaxItemOnScreen = () => parseInt(window.innerWidth/215);
+  const getMaxItemOnScreen = () => parseInt(window.innerWidth/230);
   const setMaxItemsDom = (maxItems) => {
     let string = "";
     for (let i = 0; i < maxItems; i++) {
       string += "max-content ";
     }
-    document.querySelector('.carousel-rectangle').style.gridTemplateColumns = string;
+    document.querySelector('.carousel-rectangle').style.gridTemplateColumns = string + ' !important';
+    // document.querySelector('.carousel-rectangle').style.justifyContent = 'space-between';
+
   };
 
   useEffect(() => {
+
     let maxItems = getMaxItemOnScreen();
     setMaxItemsDom(maxItems);
     let balls = Math.ceil(items.length / maxItems);
@@ -25,8 +27,10 @@ const Carousel = (props) => {
     for (let i = 0; i < balls; i++) ballsArr.push(1);
     setBalls(ballsArr);
     setIndex(1);
+    setItems(arrOfMoviesObj);
     setDisplayedItems(items.slice(0, maxItems));
-  }, []);
+
+  }, [arrOfMoviesObj, items]);
 
   const changeIndex = (num) => {
     setIndex(num);
@@ -46,6 +50,7 @@ const Carousel = (props) => {
       <div className="carousel-name">{name}</div>
       <div className="carousel-rectangle">
         {displayedItems.map((item, i) => {
+          console.log('item: ', item);
           return (
             <div key={`carousel-${name}-${i}`} className="carousel-item">
               <Display item={item} ExpandedView={ExpandedView}/>
@@ -63,12 +68,11 @@ const Carousel = (props) => {
   );
 };
 
-const Display = (props) => {
+const Display = ({ item, ExpandedView}) => {
   const [expanded, setExpanded] = useState(false);
-  const { item, ExpandedView} = props;
 
   if (expanded) {
-    return ExpandedView!==undefined? <ExpandedView item={item} set={setExpanded}/> : <EmptyDiv set={setExpanded}/>;
+    return ExpandedView!==undefined? <ExpandedView movieId={item.id} set={setExpanded}/> : <Empty set={setExpanded}/>;
   }
   return (
     <img src={item.image} alt="" width="100%" height="100%" onMouseEnter={() => setExpanded(true)}/>
@@ -79,7 +83,7 @@ const EmptyDiv = (props) => {
   if (!props.render) return;
   const {set} = props;
 
-  return ( 
+  return (
     <div className="empty" onMouseLeave={() => set(false)}>
       EMPTY
     </div>
