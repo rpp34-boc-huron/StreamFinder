@@ -13,7 +13,8 @@ const { searchTrailers, searchRecommendations }= require('./controllers/movieSpe
 const port = process.env.port || 8080;
 const publicPath = path.join(__dirname, '..', 'client', 'public');
 const indexHtmlPath = path.join(publicPath, 'index.html');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const userController = require('./controllers/profile.js');
 
 
 // app.use(cors())
@@ -32,10 +33,10 @@ app.use('/list', hoverRoutes)
 app.use('/details/:movieId',hoverRoutes)
 
 // Profile
-app.post('/user/profileUrl');
-app.post('/user/aboutMe');
-app.post('/user/service');
-app.post('/user/friends');
+app.post('/user/profileUrl', userController.saveProfilePicture);
+app.post('/user/aboutMe', userController.saveProfileData);
+app.post('/user/service', userController.updatePofileArr);
+app.post('/user/friends', userController.addFriend);
 
 //------------------movie-specific------------------//
 app.get('/poster/:movieId', posterFinder);
