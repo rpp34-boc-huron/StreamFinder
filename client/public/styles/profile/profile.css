@@ -458,6 +458,8 @@
   max-width: 800px;
   height: 88%;
   border-radius: 5px;
+  display: grid;
+  grid-row-gap: 15px;
 }
 
 .profile-you-have-no-subscriptions-text {
@@ -541,4 +543,74 @@
     opacity: 0;
     transform: translateY(-200px);
   }
+}
+.friend {
+  height: 75px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: -webkit-max-content -webkit-max-content;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.0285);
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.friend-meta {
+  display: grid;
+  grid-template-columns: 75px -webkit-max-content;
+  grid-template-columns: 75px max-content;
+  grid-column-gap: 12.5px;
+  align-items: center;
+}
+
+.friend-service-list {
+  position: relative;
+  width: 200px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: right;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  right: 20px;
+}
+
+#friend-pic {
+  position: relative;
+  border-radius: 100%;
+  left: 5px;
+}
+
+.black-canvas {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  top: 7.5px;
+  background: black;
+}
+
+.NETFLIX, .HBO, .HULU {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  background-size: cover;
+}
+
+.NETFLIX {
+  background: url("../../imgs/netflix.png");
+}
+
+.HBO {
+  background: url("../../imgs/hbo.webp");
+}
+
+.HULU {
+  background: url("../../imgs/hulu.png");
+}
+
+.friend-meta-username {
+  color: rgba(0, 0, 0, 0.5);
 }/*# sourceMappingURL=profile.css.map */
