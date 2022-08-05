@@ -79,16 +79,17 @@ export default function HoverCard({ movieId, set }) {
 
   if(movieImage !== '') {
     return (
-      <div onMouseMove={(e) => onMouseLeave(e)} >
-      <Card sx={{ maxWidth: 300, maxHeight: 330, position: 'absolute', zIndex: 5 }}>
+      <div onMouseLeave={() => set(false)} className="bruh">
+      <Card sx={{ width: '300px', height: '350px', position: 'relative', zIndex: 5 }}>
         <CardActionArea
           onClick = {(e) => navigate(`/movie/${id}`)}
           // onMouseOut = { set(false) }
         >
           <CardMedia
             component="img"
-            height="140"
+            height="175px"
             image={movieImage}
+            sx={{height: 200, media: {width: 10}}}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div"

@@ -1,27 +1,22 @@
 import React, {useEffect, useState} from 'react';
 
-const Carousel = ({ name, arrOfMoviesObj, children}) => {
-  const ExpandedView = children;
+const Carousel = (props) => {
+  // const ExpandedView = children;
+  const { ExpandedView, name, arrOfMoviesObj } = props;
   const [items, setItems] = useState([]);
   const [displayedItems, setDisplayedItems] = useState([]);
   const [index, setIndex] = useState(1);
   const [balls, setBalls] = useState([1,1,1]);
 
-  const getMaxItemOnScreen = () => parseInt(window.innerWidth/230);
-  const setMaxItemsDom = (maxItems) => {
-    let string = "";
-    for (let i = 0; i < maxItems; i++) {
-      string += "max-content ";
-    }
-    document.querySelector('.carousel-rectangle').style.gridTemplateColumns = string + ' !important';
-    // document.querySelector('.carousel-rectangle').style.justifyContent = 'space-between';
-
-  };
+  const getMaxItemOnScreen = () => {
+    let x = Math.floor(window.innerWidth/220);
+    console.log(x);
+    return x;
+  }
 
   useEffect(() => {
 
     let maxItems = getMaxItemOnScreen();
-    setMaxItemsDom(maxItems);
     let balls = Math.ceil(items.length / maxItems);
     let ballsArr = [];
     for (let i = 0; i < balls; i++) ballsArr.push(1);

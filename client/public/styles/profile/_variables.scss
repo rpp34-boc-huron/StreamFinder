@@ -2,11 +2,11 @@ $HeaderBlack: rgba(0,0,0,0.65);
 $RegularBlack: rgba(0,0,0,0.5);
 $HeaderFontSize: 20px;
 $CarouselGrey:rgba(0,0,0,0.015);
-;
 
 .carousel {
   position: relative;
-  width: 100vw;
+  width: calc(95vw - 15px);
+  left: calc(2.5vw - 7.5px);
   height: 300px;
 }
 
@@ -16,34 +16,27 @@ $CarouselGrey:rgba(0,0,0,0.015);
   color: $HeaderBlack;
   position: absolute;
   top: -30px;
-  left: 10px;
 }
 
 .carousel-rectangle {
   position: relative;
   box-sizing: border-box;
-  // padding: 10px;
-  width: 100vw;
-  max-width: 100vw;
   max-height: 300px;
-  display: grid;
-  grid-template-columns: max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content;
-  // justify-content: space-between !important;
-//   grid-column-gap: 20px;
-  overflow-x: hidden;
-  // overflow-y: hidden;
+  height: 300px;
+  display: flex;
+  flex-direction: row;
   -ms-overflow-style: none;
-  scrollbar-width: none;
-  margin-left: 10px;
+  align-items: center;
+  justify-content: space-between;
 }
 .carousel-rectangle::-webkit-scrollbar {
-  display: none;
+  // display: none;
 }
 
 .carousel-item {
   width: 200px;
-  height: calc(260px);
-  margin-right: 60px;
+  height: calc(280px);
+  // margin-right: 60px;
   background: whitesmoke;
   border-radius: 5px;
   box-shadow: 5px 5px 8px rgba(0,0,0,0.115);
@@ -52,18 +45,21 @@ $CarouselGrey:rgba(0,0,0,0.015);
 
 .carousel-item:hover {
   transition: all 0.1s;
-  width: 400px;
+  width: 300px;
+  height: 350px;
+  overflow: visible;
+  z-index: 10000;
 }
 
 .carousel-next {
   position: absolute;
-  width: 200px;
-  height: 50px;
-  bottom: -25px;
+  width: 100px;
+  height: 30px;
+  bottom: -30px;
   left: calc(50vw - 100px);
-  display: grid;
-  grid-template-columns: max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content;
-  place-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-around;
 }
 
@@ -77,6 +73,12 @@ $CarouselGrey:rgba(0,0,0,0.015);
 .movie-carousels {
   display: grid;
   grid-template-rows: max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content;
-  grid-row-gap: 35px;
+  grid-row-gap: 50px;
   margin-top: 55px;
+}
+
+.bruh {
+  width: 100%;
+  height: 100%;
+  transform: scale(1);
 }

@@ -40,9 +40,7 @@ const MovieCarousel = ({ header, apiMethod, user }) => {
 
     }, [])
 
-    console.log('Yo YO YOOO: ', HoverCard);
-
-    return <Carousel name={header} arrOfMoviesObj={trendingList}>{HoverCard}</Carousel>
+    return <Carousel name={header} arrOfMoviesObj={trendingList} ExpandedView={HoverCard}>{/*HoverCard*/}</Carousel>
 
 //     const sliderItems = trendingList.length > 6 ? 6 : trendingList.length;
 //     const items = [];
