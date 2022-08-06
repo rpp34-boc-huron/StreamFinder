@@ -42,6 +42,12 @@ const Carousel = (props) => {
     }
   }, [index]);
 
+  if (arrOfMoviesObj.length === 0) {
+    return (
+      <></>
+    );
+  }
+
   return (
     <div className="carousel">
       <div className="carousel-name">{name}</div>
