@@ -9,7 +9,7 @@ import Trailer from '../movieSpecific-2/Trailer';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
-
+import { addToFavorites, addToList } from '../../utils/getTMDBdata';
 
 
 export default function Moviesumm() {
@@ -67,6 +67,18 @@ export default function Moviesumm() {
         navigate(`/movie/${movieId}`);
     }
 
+    const movieLiked = async () => {
+      await getPoster();
+      const movieImage = {poster: moviePoster}
+      addToFavorites(movieId, movieImage);
+    }
+
+    const movieWatch = async () => {
+        await getPoster();
+        const movieImage = {poster: moviePoster}
+        addToList(movieId, movieImage);
+      }
+
     useEffect(() => {
         getPoster();
         getSummary();
@@ -105,9 +117,9 @@ export default function Moviesumm() {
                                 {movieTitle}
                             </h1>
                             <span className="actionBar">
-                                <FcLike className="like" />
-                                <FcBookmark className="bookmark" />
-                                <FaShare className="share" />
+                                <FcLike className="like" onClick={ movieLiked }/>
+                                <FcBookmark className="bookmark" onClick={ movieWatch }/>
+                                <FaShare className="share"  onClick={ copyPageUrl }/>
                             </span>
                             <div className="starRating">
                                 {`Score : ${movieScore}`}
