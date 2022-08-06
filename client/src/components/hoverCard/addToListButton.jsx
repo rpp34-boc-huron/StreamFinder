@@ -12,22 +12,22 @@ export default function addToList({event, movieID, poster, toBeWatched}) {
   const { id } = movieID;
 
   const actionWrapper = e => {
-    console.log(showBanner)
-    // sase username is hardcoded
-    addToList('sase', id, poster)
+    addToList(id, poster)
       .then((responseCode) => {
         if(responseCode.data === 'removed') {
-          setBanner(true)
           handleOpen()
+          setBanner(true)
         } else {
           setBanner(false)
           handleOpen()
         }
       })
-
   }
 
-
+const closeAction = action => {
+  setBanner(false)
+  handleClose()
+}
   const plusSignFillColor = toBeWatched ? 'blue' : 'gray';
 
     return (
@@ -44,21 +44,13 @@ export default function addToList({event, movieID, poster, toBeWatched}) {
             "& .MuiButton-startIcon": { margin: 0 }}
           }
           >
-
           <Add onClick={actionWrapper} style={{ fill: plusSignFillColor }}/>
-            <Snackbar open={open} autoHideDuration={1000} onClose={handleClose} anchorOrigin={{vertical:'top', horizontal: 'bottom'}} sx={{ height: "100%", opacity: "transparent" }}>
-            {showBanner ? <Alert onClose={()=>{
-              setOpen(false)
-              setBanner(null)
-            }} severity="info">
+            <Snackbar open={open} autoHideDuration={5} onClose={handleClose} anchorOrigin={{vertical:'top', horizontal: 'bottom'}} sx={{ height: "100%", opacity: "transparent" }}>
+            {showBanner ? <Alert severity="info">
               Removed from Watch List!
-            </Alert> : <Alert onClose={()=>{
-              setOpen(false)
-              setBanner(null)
-            }} severity="success">
+            </Alert> : <Alert severity="success">
               Added to Watch List!
             </Alert>}
-
           </Snackbar>
         </IconButton>
   )

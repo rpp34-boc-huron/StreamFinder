@@ -9,11 +9,10 @@ const Navbar = (props) => {
     const { setSearchMovieData } = props;
     const navigate = useNavigate();
 
-    const signout = () => {
+    const signOut = () => {
       axios.get('/sase/signout')
       .then(() => location.reload());
     };
-
     return (
         <React.Fragment>
             <AppBar position="sticky" sx={{ color: 'black', backgroundColor: 'rgba(119,136,153, 0.6)' }} className="navigation" >
@@ -36,7 +35,7 @@ const Navbar = (props) => {
                     <Toolbar sx={{ justifyContent: 'end', fontSize: '1.25rem' }}>
                         <Button onClick={() => navigate('/')} color="inherit" sx={{ fontSize: 'inherit' }}>Home</Button>
                         <Button onClick={() => navigate('/profile')} color="inherit" sx={{ fontSize: 'inherit' }} >Profile</Button>
-                        <Button onClick={() => location.reload()} color="inherit" sx={{ fontSize: 'inherit' }}>Sign Out</Button>
+                        <Button onClick={() => signOut()} color="inherit" sx={{ fontSize: 'inherit' }}>Sign Out</Button>
                     </Toolbar>
                 </Toolbar>
                 {/* <Toolbar sx={{ justifyContent: 'end', margin: '0px 1%' }}>
