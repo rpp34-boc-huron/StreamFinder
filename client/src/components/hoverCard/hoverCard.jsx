@@ -5,6 +5,9 @@ import AddToList from './addToListButton';
 import { getMovieDetails, addToFavorites, addToList } from '../../utils/getTMDBdata';
 import { useNavigate } from 'react-router-dom';
 import url from "./providerLink.js";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+
 
 
 
@@ -15,6 +18,7 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name, 
   const [spacing, setSpacing] = useState(2);
   const [poster, setPoster] =useState('');
   const [providerArr, setProviderArr] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const id = movieId
   const getProvider = (streaming) => {
@@ -31,6 +35,10 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name, 
   const navigate = useNavigate();
 
   useEffect(() => {
+    setTimeout(()=>{
+      console.log('delay 2s');
+      setLoading(false);
+    }, 400);
     getMovieDetails(movieId)
       .then((data) => {
         const movieInfo = data.movieInfo
@@ -57,8 +65,14 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name, 
       set(false);
     }
   }
-
-  if(movieImage !== '') {
+  if(loading) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center",  alignItems: 'center'}}>
+          <CircularProgress color="success" />
+      </Box>
+    )
+  }
+  // if(movieImage !== '') {
     return (
       <div onMouseLeave={() => set(false)} >
       <Card sx={{ width: '400px', height: '375px', position: 'relative', zIndex: 5 }}>
@@ -130,4 +144,4 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name, 
       </div>
     );
   }
-}
+// }
