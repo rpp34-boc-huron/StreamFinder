@@ -8,7 +8,7 @@ import url from "./providerLink.js";
 
 
 
-export default function HoverCard({ movieId, set, toBeWatched, favorited, name }) {
+export default function HoverCard({ movieId, set, toBeWatched, favorited, name, setRandomNumber }) {
   const [movieTitle, setMovieTitle] = useState('');
   const [movieDescription, setMovieDescription] = useState('');
   const [movieImage, setMovieImage] = useState('');
@@ -122,7 +122,7 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name }
                     </CardActionArea>
                   </Card>)
               )}
-            <AddToFavorites event={{addToFavorites}} movieID={{id}} poster={{poster}} favorited={favorited}/>
+            <AddToFavorites event={{addToFavorites}} movieID={{id}} poster={{poster}} favorited={favorited} setRandomNumber={setRandomNumber}/>
             <AddToList event={{addToList}} movieID={{id}} poster={{poster}} toBeWatched={toBeWatched}/>
 
             </Stack>
