@@ -36,9 +36,8 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name, 
 
   useEffect(() => {
     setTimeout(()=>{
-      console.log('delay 2s');
       setLoading(false);
-    }, 400);
+    }, 250);
     getMovieDetails(movieId)
       .then((data) => {
         const movieInfo = data.movieInfo
@@ -57,7 +56,7 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name, 
         setMovieDescription(description)
         setMovieImage(image)
       })
-  })
+  }, [])
 
   const onMouseLeave = (e) => {
     let { top, left, bottom, right } = e.target.getBoundingClientRect();
