@@ -2,12 +2,6 @@ import {Card, CardContent, CardMedia, CardActionArea, Typography, Stack, Grid, P
 import React, { useEffect, useState } from 'react';
 import AddToFavorites from './addToFavoritesButton';
 import AddToList from './addToListButton';
-import HBO from '../../../assets/hbo.png';
-import hbogrey from '../../../assets/hbo_grey.png';
-import netflixgrey from '../../../assets/netflix_grey.png';
-import hulugrey from '../../../assets/hulu_grey.png';
-import hulu from '../../../assets/hulu.png';
-import Netflix from '../../../assets/netflix.jpeg';
 import { getMovieDetails, addToFavorites, addToList } from '../../utils/getTMDBdata';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,17 +10,10 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name }
   const [movieTitle, setMovieTitle] = useState('');
   const [movieDescription, setMovieDescription] = useState('');
   const [movieImage, setMovieImage] = useState('');
-  const [netflixIcon, setNetflix] = useState(netflixgrey);
-  const [huluIcon, setHulu] = useState(hulugrey);
-  const [hboIcon, setHBO] = useState(hbogrey);
-  const [netflixState, setNetflixClick] = useState(true);
-  const [huluState, setHuluClick] = useState(true);
-  const [hboState, setHBOClick] = useState(true);
   const [spacing, setSpacing] = useState(2);
   const [poster, setPoster] =useState('');
-  //9615 -> HBO
-  //122066 -> HUlu
-  //881957 -> netflix
+  const [providerArr, setProviderArr] = useState([])
+
   const id = movieId
   const getProvider = (arr, type) => {
     const index = arr.map(obj => obj.provider_name).indexOf(type);
@@ -41,23 +28,11 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name }
         const movieInfo = data.movieInfo
         const streaming = data.streaming.results.US?.flatrate
         if(streaming) {
-          const netflixClick = getProvider(streaming, 'Netflix');
-          const huluClick = getProvider(streaming, 'Hulu');
-          const HBOClick = getProvider(streaming, 'HBO Now');
-          if(!netflixClick){
-            setNetflix(Netflix)
-          }
-          if(!huluClick){
-            setHulu(hulu)
-          }
-          if(!HBOClick){
-            setHBO(HBO)
-          }
-          setNetflixClick(netflixClick)
-          setHuluClick(huluClick)
-          setHBOClick(HBOClick)
-        }
+          console.log(streaming)
+          //'Disney Plus
+          setProviderArr(streaming)
 
+        }
         const title = movieInfo.original_title;
         const description = movieInfo.overview;
         const poster_path = movieInfo.poster_path;
@@ -66,7 +41,6 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name }
         setMovieTitle(title)
         setMovieDescription(description)
         setMovieImage(image)
-
       })
   })
 
@@ -79,11 +53,10 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name }
 
   if(movieImage !== '') {
     return (
-      <div onMouseLeave={() => set(false)} className="bruh">
-      <Card sx={{ width: '300px', height: '350px', position: 'relative', zIndex: 5 }}>
+      <div onMouseLeave={() => set(false)} >
+      <Card sx={{ width: '400px', height: '375px', position: 'relative', zIndex: 5 }}>
         <CardActionArea
           onClick = {(e) => navigate(`/movie/${id}`)}
-          // onMouseOut = { set(false) }
         >
           <CardMedia
             component="img"
@@ -93,7 +66,7 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name }
           />
           <CardContent
             sx={{
-              height: '115px'
+              height: '107px'
             }}
           >
             <Typography gutterBottom variant="h5" component="div"
@@ -103,7 +76,9 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name }
                 display: "-webkit-box",
                 WebkitLineClamp: "1",
                 WebkitBoxOrient: "vertical",
-            }}
+                fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
+                fontSize: 24,
+              }}
             >
               {movieTitle}
             </Typography>
@@ -114,7 +89,7 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name }
               overflow: "hidden",
               textOverflow: "ellipsis",
               display: "-webkit-box",
-              WebkitLineClamp: "2",
+              WebkitLineClamp: "3",
               WebkitBoxOrient: "vertical",
               }}
             >
@@ -122,58 +97,27 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name }
             </Typography>
           </CardContent>
         </CardActionArea>
-
         <Stack
           spacing={1}
           direction="row"
           justifyContent="space-evenly"
-          sx={{paddingBottom: "2px", paddingLeft: "12px", background:"white", '&:hover': {background: 'white'}}}
+          sx={{paddingBottom: "0px", paddingLeft: "12px", background:"white", '&:hover': {background: 'white'}}}
         >
-              <Card sx={{minWidth:30, maxWidth:30}}>
-                <CardActionArea href="https://www.netflix.com/" target="_blank" disabled={netflixState} sx={{height: 30}}>
-                  <CardMedia
+          {providerArr.map((provider) => (
+              <Card sx={{paddingTop: "3px", minWidth:30, maxWidth:30}}>
+                  <CardActionArea href="https://www.netflix.com/" target="_blank" disabled={true} sx={{height: 30}}>
+                        <CardMedia
                         component="img"
                         height="30"
-                        image={netflixIcon}
-                  />
-                </CardActionArea>
-              </Card>
-            {/* <Card sx={{minWidth:30, maxWidth: 30 ,                            color: '#ffff',
-                            opacity: 0}}>
-              <CardActionArea href="https://hulu.com" target="_blank" disabled={huluState} sx={{maxHeight: 30}}>
-                <CardMedia
-                      component="img"
-                      height="30"
-                      image={white}
-                />
-              </CardActionArea>
-            </Card>
-            <Card sx={{minWidth:30, maxWidth: 30,      color: '#ffff',
-                            opacity: 0}}>
-
-            </Card> */}
-             {/* <Grid sx={{ flexGrow: 1 }} container spacing={2}>
-      <Grid item xs={12}>
-        <Grid container spacing={spacing}>
-
-                    {/* {[0,1,2,3].map((value) => (
-                      <Grid key={value} item>
-                        <Paper
-                          sx={{
-                            height: 30,
-                            width: 30,
-                            color: '#ffff',
-                            opacity: 0
-                          }}
+                        image={`https://image.tmdb.org/t/p/original${provider.logo_path}`}
                         />
-                      </Grid>
 
-                    ))} */}
-                  {/* </Grid>
-                </Grid>
-              </Grid>  */}
+                    </CardActionArea>
+                  </Card>)
+              )}
             <AddToFavorites event={{addToFavorites}} movieID={{id}} poster={{poster}} favorited={favorited}/>
             <AddToList event={{addToList}} movieID={{id}} poster={{poster}} toBeWatched={toBeWatched}/>
+
             </Stack>
       </Card>
       </div>
