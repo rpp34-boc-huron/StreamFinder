@@ -14,6 +14,17 @@ const Carousel = (props) => {
     return x;
   }
 
+  const onBallClick = (name, num) => {
+    const balls = document.querySelectorAll(`.carousel-ball-${name}`)
+    console.log('balls: ', balls);
+    for (let i = 0; i < balls.length; i++) {
+      console.log(balls[i].style)
+      balls[i].style.background = 'lightgray';
+    }
+    document.querySelector(`.carousel-ball-${name}-${num}`).style.background = 'black'
+    changeIndex(num + 1)
+  }
+
   useEffect(() => {
 
     let maxItems = getMaxItemOnScreen();
@@ -42,6 +53,12 @@ const Carousel = (props) => {
     }
   }, [index]);
 
+  if (arrOfMoviesObj.length === 0) {
+    return (
+      <></>
+    );
+  }
+
   return (
     <div className="carousel">
       <div className="carousel-name">{name}</div>
@@ -57,7 +74,7 @@ const Carousel = (props) => {
 
       <div className="carousel-next">
         {balls.map((ball, i) => {
-          return <div key={`carousel-ball-${i}`} className="carousel-ball" onClick={() => changeIndex(i + 1)}></div>
+          return <div key={`carousel-ball-${i}`} className={`carousel-ball carousel-ball-${i} carousel-ball-${name}-${i} carousel-ball-${name}`} onClick={() => onBallClick(name, i)}></div>
         })}
       </div>
     </div>

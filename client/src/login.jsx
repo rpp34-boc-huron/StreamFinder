@@ -63,7 +63,7 @@ const Login = (props) => {
           </div>
         </div>
         <TextField onKeyUp={(e) => e.key==='Enter'? login(false) : ''} id='username-input' variant='outlined' label="Username" InputLabelProps={{shrink: true}} error={usernameErr} helperText={errorOnUsername}/>
-        <TextField onKeyUp={(e) => e.key==='Enter'? login(false) : ''}  id='password-input' variant='outlined' label="Password" InputLabelProps={{shrink: true}} error={passwordErr} helperText={errorOnPassword}/>
+        <TextField onKeyUp={(e) => e.key==='Enter'? login(false) : ''}  id='password-input' variant='outlined' label="Password" InputLabelProps={{shrink: true}} error={passwordErr} helperText={errorOnPassword} type="password" />
         <div className="login-btn-interactions">
           <button className="login-btn" onClick={() => login(false)}>Login</button>
           <button className="login-btn" onClick={() => login(true)}>Signup</button>
@@ -72,5 +72,5 @@ const Login = (props) => {
     </div>
   );
 };
- 
+
 export default Login;
