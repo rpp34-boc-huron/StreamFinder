@@ -671,7 +671,7 @@
   border: 1px solid black;
 }
 
-.NETFLIX, .HBO, .HULU {
+.NETFLIX, .HBO, .HULU, .AMAZON, .DISNEY, .DIRECTTV, .TNT, .APPLETV {
   position: relative;
   width: 60px;
   height: 60px;
@@ -698,4 +698,60 @@
   height: 70px;
   display: grid;
   place-items: center;
+}
+
+.AMAZON {
+  background: url("../../imgs/amzprime.jpg");
+  background-size: cover;
+  border: 1px solid black;
+}
+
+.DISNEY {
+  background: url("../../imgs/disney.jpg");
+  background-size: cover;
+}
+
+.DIRECTTV {
+  background: url("../../imgs/direct.webp");
+  background-size: cover;
+  border: 1px solid black;
+}
+
+.TNT {
+  background: url("../../imgs/tnt.png");
+  background-size: cover;
+}
+
+.APPLETV {
+  background: url("../../imgs/appletv.png");
+  background-size: cover;
+  border: 1px solid black;
+}
+
+.user-profile-service-item-Amazon {
+  background: url("../../imgs/amzprime.jpg");
+  background-size: cover;
+  border: 1px solid black;
+}
+
+.user-profile-service-item-Disney {
+  background: url("../../imgs/disney.jpg");
+  background-size: cover;
+}
+
+.user-profile-service-item-DirectTv {
+  background: url("../../imgs/direct.webp");
+  background-size: cover;
+  border: 1px solid black;
+}
+
+.user-profile-service-item-Tnt {
+  background: url("../../imgs/tnt.png");
+  background-size: cover;
+}
+
+.user-profile-service-item-AppleTv {
+  background: url("../../imgs/appletv.png");
+  background-size: cover;
+  border: 1px solid black;
 }/*# sourceMappingURL=profile.css.map */

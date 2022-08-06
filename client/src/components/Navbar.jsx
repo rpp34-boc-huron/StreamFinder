@@ -12,7 +12,7 @@ const Navbar = (props) => {
 
     const signOut = () => {
         axios.get('/sase/signout')
-            .then(() => location.reload());
+            .then(() => location.replace('/'));
     };
     return (
         <React.Fragment>
