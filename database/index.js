@@ -28,7 +28,7 @@ const User = {
     try {
       let users = await User.find({username: userData.username});
       if (users.length > 0) {
-        return "Err Username Taken";
+        return "Username Already Exists!";
       }
       let doc = new USER(userData);
       try {
@@ -39,7 +39,7 @@ const User = {
       }
     } catch {
       return "Err Checking If User Exists"
-    }
+    } 
   },
 
   update: async (findBy, newValues) => {

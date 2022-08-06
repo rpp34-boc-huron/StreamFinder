@@ -2,9 +2,7 @@ const bcrypt = require('bcrypt');
 
 class Session {
   constructor() {
-    this.data = {
-      //
-    }
+    this.data = {};
   }
 
   async insert(data) {
