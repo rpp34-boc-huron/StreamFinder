@@ -35,8 +35,9 @@ export default function Login({ setToken, setUserData }) {
                 watchList: token['userData'][0]['watchList'],
             }
             setUserData(userInfo);
-            sessionStorage.setItem('token', token.token)
             console.log("this is the userInfo " + JSON.stringify(userInfo));
+            sessionStorage.setItem('token', token.token)
+            sessionStorage.setItem('userInfo', JSON.stringify(userInfo))
         }
         setToken(token.token);
         setStatus(token.message);
