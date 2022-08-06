@@ -4,6 +4,8 @@ import AddToFavorites from './addToFavoritesButton';
 import AddToList from './addToListButton';
 import { getMovieDetails, addToFavorites, addToList } from '../../utils/getTMDBdata';
 import { useNavigate } from 'react-router-dom';
+import url from "./providerLink.js";
+
 
 
 export default function HoverCard({ movieId, set, toBeWatched, favorited, name }) {
@@ -15,9 +17,15 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name }
   const [providerArr, setProviderArr] = useState([])
 
   const id = movieId
-  const getProvider = (arr, type) => {
-    const index = arr.map(obj => obj.provider_name).indexOf(type);
-    return index >= 0 ? false : true;
+  const getProvider = (streaming) => {
+    streaming.map((obj) => {
+     for (const key in url) {
+      if (key === obj.provider_name) {
+        obj.link = url[key]
+      }
+      }
+    })
+    return streaming
   }
 
   const navigate = useNavigate();
@@ -29,9 +37,8 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name }
         const streaming = data.streaming.results.US?.flatrate
         if(streaming) {
           console.log(streaming)
-          //'Disney Plus
+          getProvider(streaming)
           setProviderArr(streaming)
-
         }
         const title = movieInfo.original_title;
         const description = movieInfo.overview;
@@ -105,7 +112,7 @@ export default function HoverCard({ movieId, set, toBeWatched, favorited, name }
         >
           {providerArr.map((provider) => (
               <Card sx={{paddingTop: "3px", minWidth:30, maxWidth:30}}>
-                  <CardActionArea href="https://www.netflix.com/" target="_blank" disabled={true} sx={{height: 30}}>
+                  <CardActionArea href={provider.link} target="_blank" disabled={provider.link ? false : true} sx={{height: 30}}>
                         <CardMedia
                         component="img"
                         height="30"
