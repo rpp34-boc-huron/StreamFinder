@@ -2,23 +2,32 @@ import * as React from 'react';
 import {IconButton, Alert, Snackbar} from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-export default function addToFavorites({event, movieID}) {
+export default function addToFavorites({event, movieID, poster, favorited}) {
   const [open, setOpen] = React.useState(false);
+  const [showBanner, setBanner] =React.useState(null);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const { addToFavorites } = event;
   const { id } = movieID;
   const actionWrapper = e => {
-    handleOpen()
     //pass in userID and movieID
-    addToFavorites('1234', id)
+    addToFavorites(id, poster)
+      .then((responseCode) => {
+        console.log(responseCode)
+        if(responseCode.data === 'removed') {
+          setBanner(true)
+          handleOpen()
+        } else {
+          setBanner(false)
+          handleOpen()
+        }
+      })
   }
-  const buttonSides = 64;
-
+  const heartFillColor = favorited ? 'red' : 'gray';
     return (
-    <IconButton
-      aria-label="favorites"
+      <IconButton
+      aria-label="add"
       variant="contained"
       sx={{
         minWidth: 25,
@@ -27,13 +36,16 @@ export default function addToFavorites({event, movieID}) {
         // border: "1px solid",
         // borderColor: "primary.main",
         // backgroundColor: '#edeff2',
-        "& .MuiButton-startIcon": { margin: 0 }
-      }}>
-      <FavoriteIcon onClick={actionWrapper} />
-      <Snackbar open={open} autoHideDuration={1500} onClose={handleClose} anchorOrigin={{vertical:'top', horizontal: 'center'}}>
-        <Alert onClose={handleClose} severity="success">
-            Added to Favorites!
-        </Alert>
+        "& .MuiButton-startIcon": { margin: 0 }}
+      }
+      >
+      <FavoriteIcon onClick={actionWrapper} style={{ fill: heartFillColor }}/>
+        <Snackbar open={open} autoHideDuration={500} onClose={handleClose} anchorOrigin={{vertical:'top', horizontal: 'bottom'}} sx={{ height: "100%", opacity: "transparent" }}>
+        {showBanner ? <Alert severity="info">
+              Removed from Favorites!
+            </Alert> : <Alert severity="success">
+              Added to Favorites!
+            </Alert>}
       </Snackbar>
     </IconButton>
   )

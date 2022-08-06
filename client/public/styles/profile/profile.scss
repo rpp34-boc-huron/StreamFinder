@@ -39,6 +39,8 @@ $newBlack: rgba(0,0,0,0.85);
   position: relative;
   min-width: 200px;
   height: 200px;
+  // border-radius: 200px;
+
 }
 
 .replace-this-image {
@@ -49,11 +51,15 @@ $newBlack: rgba(0,0,0,0.85);
   height: 175px;
   border: 1px solid rgba(0,0,0,0.125);
   border-radius: 100%;
-  background: url('../../imgs/empty-user.webp');
   background-size: 100%;
-  background-position: center;
+  background-position: center; 
   background-repeat: no-repeat;
   background-color: lightgray;
+  overflow: hidden;
+}
+
+#img {
+  border-radius: 100% !important;
 }
 
 .user-profile-user-meta-about-me-container {
@@ -79,7 +85,7 @@ $newBlack: rgba(0,0,0,0.85);
   bottom: 12.5px;
   right: 12.5px;
   border-radius: 100%;
-  background-color: black;
+  // background-color: black;
 }
 
 //  Settings
@@ -109,6 +115,7 @@ $newBlack: rgba(0,0,0,0.85);
   align-content: center;
   grid-template-columns: max-content max-content max-content max-content max-content max-content max-content max-content max-content max-content;
   grid-column-gap: 20px;
+  left: 15px;
 }
 
 .user-profile-service {
@@ -152,9 +159,11 @@ $newBlack: rgba(0,0,0,0.85);
 
 // Friends
 .user-profile-friends {
-  margin-left: 4vw;
+  margin-left: 55px;
+  margin-top: 55px;
   width: 35vw;
   max-width: 800px;
+  max-height: calc(100vh - 120px);
   height: calc(100vh - 70px);
   display: grid;
   grid-template-rows: 50px 50px 50px max-content;
@@ -175,6 +184,8 @@ $newBlack: rgba(0,0,0,0.85);
   max-width: 800px;
   height: 88%;
   border-radius: 5px;
+  display: grid;
+  grid-row-gap: 15px;
 }
 
 .profile-you-have-no-subscriptions-text {
@@ -203,22 +214,169 @@ $newBlack: rgba(0,0,0,0.85);
 }
 
 .user-profile-edit-text {
-  width: 800px;
-  height: 400px;
-}
-
-.user-profile-edit-text {
   position: fixed;
   z-index: 1000;
   width: 800px;
   height: 300px;
-  top: calc(50vh - 150px);
+  top: calc(50vh - 125px);
   left: calc(50vw - 400px);
-  background: rgba(0,0,0,0.285);
-  backdrop-filter: blur(2px);
   display: grid;
   grid-template-rows: max-content max-content max-content;
-  grid-row-gap: 10px;
+  // grid-row-gap: 10px;
+  align-content: space-around;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 20px;
+  border-radius: 5px;
+  animation: 500ms flyUp ease forwards;
+  // background: rgba(119,136,153, 0.085);
+  background: transparent;
+  backdrop-filter: blur(4px) !important;
+}
+
+@keyframes flyUp {
+  0% {
+    opacity: 0;
+    transform: translateY(200px);
+    background: white;
+  }
+  100% {
+    transform: translatY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes riseAbove {
+  100% {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+}
+
+.friend {
+  height: 75px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  background: rgba(0,0,0,0.0285);
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.friend-meta {
+  display: grid;
+  grid-template-columns: 75px max-content;
+  grid-column-gap: 12.5px;
+  align-items: center;
+}
+
+.friend-service-list {
+  position: relative;
+  width: 200px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: right;
+  column-gap: 10px;
+  right: 20px;
+}
+
+#friend-pic {
+  position: relative;
+  border-radius: 100%;
+  left: 5px;
+}
+
+.black-canvas {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  top: 7.5px;
+  background: black;
+}
+
+.NETFLIX, .HBO, .HULU {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  background-size: cover;
+}
+
+.NETFLIX {
+  background: url('../../imgs/netflix.png');
+}
+.HBO {
+  background: url('../../imgs/hbo.webp');
+}
+.HULU {
+  background: url('../../imgs/hulu.png');
+}
+
+.friend-meta-username {
+  color: $RegularBlack;
+}
+
+.login-upper-container {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.login-container {
+  position: relative;
+  width: 40%;
+  min-width: 500px;
+  justify-self: center;
+  height: 375px;
+  display: grid;
+  grid-template-rows: 100px auto auto auto;
+  align-content: space-between;
+} 
+
+.login-header {
+  background: rgba(0,0,0,0.0285);
+  display: grid;
+  grid-template-columns: 100px max-content;
+  grid-row-gap: 40px;
+  align-items: center;
+}
+
+.stream-finder-logo-login {
+  position: relative;
+  width: 75px;
+  height: 75px;
+  left: 12.5px;
+  background: url('../../imgs/transparent_streamfinder_icon.png');
+  background-size: cover;
+}
+
+.login-title {
+  font-size: 35px;
+  color: $HeaderBlack;
+  font-weight: 900;
+  font-family: lato, sans-serif;
+}
+
+.login-btn-interactions {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+}
+
+.login-btn {
+  width: 200px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.225);
+  font-size: 18px;
+  color: $RegularBlack;
+}
+
+.login-btn:hover {
+  border: 1px solid black;
 }

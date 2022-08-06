@@ -10,10 +10,11 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
 
+
+
 export default function Moviesumm() {
     // React-Router: get movieId from URL
     const { movieId } = useParams();
-
     // React-Router: set movieId in URL
     const navigate = useNavigate();
 
@@ -51,6 +52,14 @@ export default function Moviesumm() {
             console.error('get providers error', err);
         }
     }
+    async function copyPageUrl() {
+        try {
+          await navigator.clipboard.writeText(location.href);
+          window.alert('Page URL copied to clipboard');
+        } catch (err) {
+          window.alert('Failed to copy: ', err);
+        }
+      }
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -61,7 +70,7 @@ export default function Moviesumm() {
     useEffect(() => {
         getPoster();
         getSummary();
-        getProviders()
+        getProviders();
     }, [movieId]);
 
 

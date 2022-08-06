@@ -2,8 +2,9 @@ import * as React from 'react';
 import {IconButton, Alert, Snackbar} from '@mui/material';
 import Add from '@mui/icons-material/Add';
 
-export default function addToList({event, movieID, poster}) {
+export default function addToList({event, movieID, poster, toBeWatched}) {
   const [open, setOpen] = React.useState(false);
+  const [showBanner, setBanner] =React.useState(null);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -11,9 +12,23 @@ export default function addToList({event, movieID, poster}) {
   const { id } = movieID;
 
   const actionWrapper = e => {
-    handleOpen()
-    addToList('fake userID', id, poster)
+    addToList(id, poster)
+      .then((responseCode) => {
+        if(responseCode.data === 'removed') {
+          handleOpen()
+          setBanner(true)
+        } else {
+          setBanner(false)
+          handleOpen()
+        }
+      })
   }
+
+const closeAction = action => {
+  setBanner(false)
+  handleClose()
+}
+  const plusSignFillColor = toBeWatched ? 'blue' : 'gray';
 
     return (
         <IconButton
@@ -26,13 +41,16 @@ export default function addToList({event, movieID, poster}) {
             // border: "1px solid",
             // borderColor: "primary.main",
             // backgroundColor: '#edeff2',
-            "& .MuiButton-startIcon": { margin: 0 }}}
+            "& .MuiButton-startIcon": { margin: 0 }}
+          }
           >
-          <Add onClick={actionWrapper} />
-          <Snackbar open={open} autoHideDuration={1500} onClose={handleClose} anchorOrigin={{vertical:'top', horizontal: 'center'}}>
-            <Alert onClose={handleClose} severity="success">
-                Added to watch list!
-            </Alert>
+          <Add onClick={actionWrapper} style={{ fill: plusSignFillColor }}/>
+            <Snackbar open={open} autoHideDuration={5} onClose={handleClose} anchorOrigin={{vertical:'top', horizontal: 'bottom'}} sx={{ height: "100%", opacity: "transparent" }}>
+            {showBanner ? <Alert severity="info">
+              Removed from Watch List!
+            </Alert> : <Alert severity="success">
+              Added to Watch List!
+            </Alert>}
           </Snackbar>
         </IconButton>
   )

@@ -3,32 +3,34 @@ import AboutMe from './AboutMe.jsx';
 import FriendsList from './FriendsList.jsx';
 import Account from './UserSecurity.jsx';
 import UserServices from './UserServices.jsx';
-
-var mockUser = {
-  username: 'Sase',
-  password: 'johnFKenedyTheGoat#imAnImmigrant',
-  profileUrl: '',
-  aboutMe: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab exercitationem suscipit voluptatem sed quaerat dolore dolorem, nesciunt quis fugit odio illum placeat quos? Debitis, laudantium aperiam veritatis facere beatae aliquid officia, veniam distinctio aspernatur mollitia eaque ab laboriosam eveniet quidem molestias autem, ducimus at quas reprehenderit error nemo quibusdam assumenda! Voluptates molestias ab soluta error fugiat. Libero dolore aliquam ratione eveniet rem cum? Omnis inventore eligendi minus amet dolore eaque qui ullam, nobis dolores? Dicta!',
-  ownedServices: ['Netflix'],
-  favorites: [],
-  watchList: [],
-  friends: ['Josh']
-};
+import axios from 'axios';
 
 const UserProfile = (props) => {
-  const [user, setUser] = useState(mockUser);
-  // User should be passed down...
+  const [user, setUser] = useState({});
+
+  const { username, setUsername } = props; //for NOW
+
+  const fetchUser = () => {
+    axios({
+      method: 'post',
+      url: '/user/profile/username',
+    })
+    .then(res => setUser(res.data))
+    .catch(err => err);    //
+  };
+
+  useEffect(fetchUser, []);
 
   return (
     <div className="user-profile">
       <div className="user-information-container">
-        <AboutMe user={user}/>
-        <Account user={user}/>
-        <UserServices user={user}/>
+        <AboutMe user={user} fetchUser={fetchUser} username={username} setUsername={setUsername}/>
+        <Account user={user} fetchUser={fetchUser}/>
+        <UserServices user={user} fetchUser={fetchUser} username={username}/>
       </div>
 
       <div className="user-friends-list-container">
-        <FriendsList />
+        <FriendsList user={user} fetchUser={fetchUser}/>
       </div>
     </div>
   );
