@@ -26,7 +26,7 @@ export default function Moviesumm() {
 
     const getPoster = async () => {
         try {
-            const { data }  = await axios.get(`/poster/${movieId}`);
+            const { data } = await axios.get(`/poster/${movieId}`);
             changePoster(data);
         } catch (err) {
             console.error('get poster error', err);
@@ -54,12 +54,12 @@ export default function Moviesumm() {
     }
     async function copyPageUrl() {
         try {
-          await navigator.clipboard.writeText(location.href);
-          window.alert('Page URL copied to clipboard');
+            await navigator.clipboard.writeText(location.href);
+            window.alert('Page URL copied to clipboard');
         } catch (err) {
-          window.alert('Failed to copy: ', err);
+            window.alert('Failed to copy: ', err);
         }
-      }
+    }
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -78,7 +78,7 @@ export default function Moviesumm() {
         <>
             <Grid
                 container spacing={2}
-                mx={{mx: 'auto'}}
+                mx={{ mx: 'auto' }}
                 justify="flex-end"
             >
                 <Grid item xs={7} md={7}>
@@ -105,9 +105,38 @@ export default function Moviesumm() {
                                 {movieTitle}
                             </h1>
                             <span className="actionBar">
-                                <FcLike className="like" />
-                                <FcBookmark className="bookmark" />
-                                <FaShare className="share" />
+                                <FcLike className="like" onClick={() => {
+
+                                    axios.get(`/details/${movieId}/details/${movieId}`)
+                                        .then((res) => {
+                                            console.log(res)
+                                            const movieObj = {
+                                                'image': `https://image.tmdb.org/t/p/w185/${res.data.movieInfo.poster_path}`,
+                                                'id': movieId
+                                            };
+                                            axios.post('/favorites/favorites', movieObj)
+                                                .then(res => console.log('liked it'))
+                                                .catch((err => console.log(err)))
+                                        })
+                                        .catch(err => console.log(err))
+                                }} />
+                                <FcBookmark className="bookmark" onClick={() => {
+                                    axios.get(`/details/${movieId}/details/${movieId}`)
+                                        .then((res) => {
+                                            console.log(res)
+                                            const movieObj = {
+                                                'image': `https://image.tmdb.org/t/p/w185/${res.data.movieInfo.poster_path}`,
+                                                'id': movieId
+                                            };
+                                            axios.post('/list/list', movieObj)
+                                                .then(res => console.log('bookmarked it'))
+                                                .catch((err => console.log(err)))
+                                        })
+                                        .catch(err => console.log(err))
+                                }} />
+                                <FaShare className="share" onClick={
+                                    () => copyPageUrl()
+                                } />
                             </span>
                             <div className="starRating">
                                 {`Score : ${movieScore}`}
@@ -117,7 +146,7 @@ export default function Moviesumm() {
                         </div>
                     </div>
                 </Grid>
-                <Grid item xs={5} md={5} mx={{mx: 'auto'}}>
+                <Grid item xs={5} md={5} mx={{ mx: 'auto' }}>
                     <Trailer movieId={movieId} />
                 </Grid>
                 <Grid item xs={12} md={12}>

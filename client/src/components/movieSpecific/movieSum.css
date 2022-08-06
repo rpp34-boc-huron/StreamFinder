@@ -4,6 +4,10 @@
    /* justify-content: flex-end; */
    padding: 10px;
 }
+
+.description {
+    max-width: 15px;
+}
 .moviePoster {
     height: 450px;
     width: 300px;
