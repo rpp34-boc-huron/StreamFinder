@@ -22,6 +22,8 @@ export default function addToList({event, movieID, poster, toBeWatched}) {
           handleOpen()
         }
       })
+      window.location.reload(false);
+
   }
 
 const closeAction = action => {
