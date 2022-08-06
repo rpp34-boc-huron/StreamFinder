@@ -5,8 +5,10 @@ import { FaShare } from 'react-icons/fa';
 import { FcLike, FcBookmark } from 'react-icons/fc';
 const axios = require('axios');
 import MovieSpecific2 from '../movieSpecific-2/MovieSpecific2';
-import {useParams} from 'react-router-dom';
+import Trailer from '../movieSpecific-2/Trailer';
+import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { Grid } from '@mui/material';
 
 
 
@@ -74,73 +76,57 @@ export default function Moviesumm() {
 
     return (
         <>
-            <div className="container">
-                <div className="posterandprovider">
-                    <img src={moviePoster} className="moviePoster" />
-                    {movieProviders ? <div className="providersBox">
-                        {movieProviders.map((provider) => {
-                            return (
-                                Object.keys(costs).includes(provider.provider_name) ?
-                                    <div key={provider.provider_id}> {provider.provider_name}&nbsp;
-                                        <img src={`https://image.tmdb.org/t/p/w500/${provider.logo_path}`} className='providerLogo' />
-                                        &nbsp;<a> ${costs[provider.provider_name]} per month</a>
-                                    </div> :
-                                    <div key={provider.provider_id}>
-                                        {provider.provider_name} &nbsp;
-                                        <img src={`https://image.tmdb.org/t/p/w500/${provider.logo_path}`} className='providerLogo' />
-                                    </div>
-                            )
-                        })}</div> : <div> Not Available for Streaming</div>}
-                </div>
-                <div className="movieInfo">
-                    <h1 className="movieTitle">
-                        {movieTitle}
-                    </h1>
-
-
-                    <span className="actionBar">
-                        <FcLike className="like" onClick={() => {
-
-                                axios.get(`/details/${movieId}/details/${movieId}`)
-                                .then((res) => {
-                                    const movieObj =  {
-                                        'image': `https://image.tmdb.org/t/p/w185/${res.data.movieInfo.poster_path}`,
-                                        'id': movieId
-                                      };
-                                    axios.post('/favorites',movieObj)
-                                    .then(res => console.log('liked it'))
-                                    .catch((err => console.log(err)))
-                                })
-                                .catch(err => console.log(err))
-                        }}/>
-                        <FcBookmark className="bookmark" onClick={() => {
-                         axios.get(`/details/${movieId}/details/${movieId}`)
-                         .then((res) => {
-                             console.log(res)
-                             const movieObj =  {
-                                 'image': `https://image.tmdb.org/t/p/w185/${res.data.movieInfo.poster_path}`,
-                                 'id': movieId
-                               };
-                             axios.post('/list',movieObj)
-                             .then(res => console.log('bookmarked it'))
-                             .catch((err => console.log(err)))
-                         })
-                         .catch(err => console.log(err))
-                        }}/>
-                        <FaShare className="share" onClick={() => {
-                            copyPageUrl()
-                        }}/>
-                    </span>
-                    <div className="starRating">
-                        {`Score : ${movieScore}`}
+            <Grid
+                container spacing={2}
+                mx={{mx: 'auto'}}
+                justify="flex-end"
+            >
+                <Grid item xs={7} md={7}>
+                    <div className="container">
+                        <div className="posterandprovider">
+                            <img src={moviePoster} className="moviePoster" />
+                            {movieProviders ? <div className="providersBox">
+                                {movieProviders.map((provider) => {
+                                    return (
+                                        Object.keys(costs).includes(provider.provider_name) ?
+                                            <div key={provider.provider_id}> {provider.provider_name}&nbsp;
+                                                <img src={`https://image.tmdb.org/t/p/w500/${provider.logo_path}`} className='providerLogo' />
+                                                &nbsp;<a> ${costs[provider.provider_name]} per month</a>
+                                            </div> :
+                                            <div key={provider.provider_id}>
+                                                {provider.provider_name} &nbsp;
+                                                <img src={`https://image.tmdb.org/t/p/w500/${provider.logo_path}`} className='providerLogo' />
+                                            </div>
+                                    )
+                                })}</div> : <div> Not Available for Streaming</div>}
+                        </div>
+                        <div className="movieInfo">
+                            <h1 className="movieTitle">
+                                {movieTitle}
+                            </h1>
+                            <span className="actionBar">
+                                <FcLike className="like" />
+                                <FcBookmark className="bookmark" />
+                                <FaShare className="share" />
+                            </span>
+                            <div className="starRating">
+                                {`Score : ${movieScore}`}
+                            </div>
+                            <h2> Overview </h2>
+                            <p>{movieDetail === '' ? null : movieDetail} </p>
+                        </div>
                     </div>
-                    <h2> Overview </h2>
-                    <p>{movieDetail === '' ? null : movieDetail} </p>
-                </div>
-            </div>
-            <MovieSpecific2
-                movieId={movieId}
-                handleClick={handleClick} />
+                </Grid>
+                <Grid item xs={5} md={5} mx={{mx: 'auto'}}>
+                    <Trailer movieId={movieId} />
+                </Grid>
+                <Grid item xs={12} md={12}>
+                    <MovieSpecific2
+                        movieId={movieId}
+                        handleClick={handleClick} />
+                </Grid>
+            </Grid>
+
         </>
     )
 }
