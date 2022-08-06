@@ -4,10 +4,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Box, AppBar, IconButton, Toolbar, Typography, Button, CssBaseline, useScrollTrigger } from '@mui/material';
 import PropTypes from 'prop-types';
 import '../App.css';
+import axios from 'axios';
 
 const Navbar = (props) => {
     const { setSearchMovieData } = props;
     const navigate = useNavigate();
+
+    const signout = () => {
+      axios.get('/sase/signout')
+      .then(() => location.reload());
+    };
 
     return (
         <React.Fragment>
@@ -32,7 +38,8 @@ const Navbar = (props) => {
                         <SearchBar setSearchMovieData={setSearchMovieData} />
                         <Button onClick={() => navigate('/')} color="inherit">Home</Button>
                         <Button onClick={() => navigate('/profile')} color="inherit">Profile</Button>
-                        <Button onClick={() => location.reload()}color="inherit">Sign Out</Button>
+                        {/* <Button onClick={() => location.reload()}color="inherit">Sign Out</Button> */}
+                        <Button onClick={signout}color="inherit">Sign Out</Button>
                     </Toolbar>
                 </AppBar>
             </Box>

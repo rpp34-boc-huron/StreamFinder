@@ -8,10 +8,13 @@ import axios from 'axios';
 const UserProfile = (props) => {
   const [user, setUser] = useState({});
 
-  const username = 'sase'; //for NOW
+  const { username, setUsername } = props; //for NOW
 
   const fetchUser = () => {
-    axios.get(`/user/profile/${username}`)
+    axios({
+      method: 'post',
+      url: '/user/profile/username',
+    })
     .then(res => setUser(res.data))
     .catch(err => err);    //
   };
@@ -21,7 +24,7 @@ const UserProfile = (props) => {
   return (
     <div className="user-profile">
       <div className="user-information-container">
-        <AboutMe user={user} fetchUser={fetchUser} username={username}/>
+        <AboutMe user={user} fetchUser={fetchUser} username={username} setUsername={setUsername}/>
         <Account user={user} fetchUser={fetchUser}/>
         <UserServices user={user} fetchUser={fetchUser} username={username}/>
       </div>

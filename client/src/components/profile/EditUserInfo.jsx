@@ -23,7 +23,6 @@ const EditUserInfo = (props) => {
       method: 'post',
       url: '/user/aboutMe',
       data: {
-        username: user.username, 
         newUsername: username,
         aboutMe
       }

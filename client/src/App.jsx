@@ -6,15 +6,18 @@ import LandingPage from  './components/LandingPage/LandingPage.jsx'
 import Moviesumm from './components/movieSpecific/movieSummary';
 import LandingSearchPage from './components/search/LandingSearchPage';
 import UserProfile from './components/profile/UserProfile.jsx';
-import Login from './components/Authentication/login';
+// import Login from './components/Authentication/login';
 import useToken from './components/Authentication/useToken';
+import axios from 'axios';
+import Login from './login.jsx';
 
 
 const App = () => {
   const [searchMovieData, setSearchMovieData] = useState([]);
   const [movieId, setMovieId] = useState(238)
   const [token, setToken] = useState();
-  const [userData, setUserData] = useState();
+  const [username, setUsername] = useState(null);
+
 
   const handleClick = (e, movieID) => {
     e.preventDefault();
@@ -26,6 +29,10 @@ const App = () => {
   //   return <Login setToken={setToken} setUserData={setUserData} />
   // }
 
+  if (username === null) {
+    return <Login render={username} setUsername={setUsername}/> 
+  };
+
   return (
     <HashRouter>
     <div className="app">
@@ -33,7 +40,7 @@ const App = () => {
         <Routes>
           <Route exact path='/' element={ <LandingPage handleClick={handleClick}/>} />
           <Route exact path='/search_movies/:keywords/:page' element={<LandingSearchPage searchMovieData={searchMovieData} setSearchMovieData={setSearchMovieData} /> } />
-          <Route exact path='/profile' element={<UserProfile />} />
+          <Route exact path='/profile' element={<UserProfile username={username} setUsername={setUsername}/>} />
           <Route exact path='/movie/:movieId' element={<Moviesumm />} />
         </Routes>
     </div>

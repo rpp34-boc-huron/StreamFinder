@@ -8,7 +8,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 const AboutMe = (props) => {
   const imgDiv = useRef();
-  const { fetchUser, username } = props;
+  const { fetchUser, username, setUsername } = props;
   let [user, setUser] = useState(props.user || user);
   user = props.user;
 
@@ -19,6 +19,7 @@ const AboutMe = (props) => {
   const setClient = (data) => {
     user.username = data.username;
     user.aboutMe = data.aboutMe;
+    setUsername(data.username);
     setUser({...user});
   };
 
@@ -33,7 +34,6 @@ const AboutMe = (props) => {
           method: 'post',
           url: '/user/profileUrl',
           data: {
-            username,
             img: base64
           }
         })
@@ -92,4 +92,4 @@ const AboutMe = (props) => {
   );
 };
 
-export default AboutMe;
+export default AboutMe; 
