@@ -9,11 +9,11 @@ export default function RecomList({ recommendations, handleClick }) {
   return (
     <div id='recommendations'>
       <Typography variant="h4" gutterBottom component="div">
-        &nbsp;&nbsp;&nbsp;&nbsp; Recommendations
+        &nbsp;&nbsp;&nbsp; Recommendations
       </Typography>
       <ImageList
         sx={{
-          width: 0.97,
+          width: 0.98,
           height: 190,
           gridAutoFlow: "column",
           gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr)) !important",
