@@ -92,6 +92,10 @@ const User = {
     const selected = result.select(listName)
     selected
       .then((list) => {
+        if(list === null) {
+          list = {}
+          list[listName] =[]
+        }
         let arr = list[listName]
         const index = arr.findIndex(obj => obj.id === movieJSON.id)
         if(index > -1) {
