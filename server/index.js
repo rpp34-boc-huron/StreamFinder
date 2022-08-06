@@ -16,6 +16,8 @@ const indexHtmlPath = path.join(publicPath, 'index.html');
 const bodyParser = require('body-parser');
 const userController = require('./controllers/profile.js');
 const cookieParser = require('cookie-parser');
+const auth = require('./auth/login.js');
+
 
 // app.use(cors())
 app.use(express.json());
@@ -27,7 +29,8 @@ app.use(cookieParser());
 app.use('/api/auth', require('./routes/register'));
 app.use('/api/auth', require('./routes/login'));
 app.use('/movies', moviesRoutes);
-app.use('/hover', hoverRoutes);
+
+app.use('/hover', auth.auth, hoverRoutes);
 app.use('/search', searchMoviesRoutes);
 app.use('/favorites',hoverRoutes);
 app.use('/list', hoverRoutes)
@@ -43,10 +46,10 @@ app.get('/recommendations/:movieId', searchRecommendations);
 
 
 // SASE AUTH TESTS
-const auth = require('./auth/login.js');
 app.post('/sase/login', auth.login);
 app.post('/sase/signup', auth.signup);
 app.get('/sase/signout/', auth.signout);
+
 
 // Profile
 app.post('/user/profile/username', auth.auth, userController.getUserProfile);

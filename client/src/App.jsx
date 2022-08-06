@@ -16,10 +16,8 @@ import Login from './login.jsx';
 const App = () => {
   const [searchMovieData, setSearchMovieData] = useState([]);
   const [movieId, setMovieId] = useState(238)
-
-  const [token, setToken] = useState(null);
-  const [userData, setUserData] = useState();
-
+  const [token, setToken] = useState();
+  const [username, setUsername] = useState(null);
   const handleClick = (e, movieID) => {
     e.preventDefault();
     const movieId = e.target.id || movieID
@@ -34,10 +32,6 @@ const App = () => {
   if (username === null) {
     return <Login render={username} setUsername={setUsername}/>
   };
-
-  if (!loginSession) {
-    return <Login setToken={setToken} setUserData={setUserData} />
-  }
 
   return (
     <HashRouter>

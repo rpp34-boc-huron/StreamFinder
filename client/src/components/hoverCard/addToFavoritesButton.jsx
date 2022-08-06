@@ -12,9 +12,7 @@ export default function addToFavorites({event, movieID, poster, favorited}) {
   const { id } = movieID;
   const actionWrapper = e => {
     //pass in userID and movieID
-    const user = JSON.parse(sessionStorage.getItem('userInfo'))
-
-    addToFavorites(user.username, id, poster)
+    addToFavorites(id, poster)
       .then((responseCode) => {
         console.log(responseCode)
         if(responseCode.data === 'removed') {
