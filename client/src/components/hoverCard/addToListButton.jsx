@@ -13,7 +13,10 @@ export default function addToList({event, movieID, poster, toBeWatched}) {
 
   const actionWrapper = e => {
     // sase username is hardcoded
-    addToList('sase', id, poster)
+    const user = JSON.parse(sessionStorage.getItem('userInfo'))
+
+
+    addToList(user.username, id, poster)
       .then((responseCode) => {
         if(responseCode.data === 'removed') {
           handleOpen()
