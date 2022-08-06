@@ -136,7 +136,9 @@ export default function Moviesumm() {
                         {`Score : ${movieScore}`}
                     </div>
                     <h2> Overview </h2>
+                    <div className="description" >
                     <p>{movieDetail === '' ? null : movieDetail} </p>
+                    </div>
                 </div>
             </div>
             <MovieSpecific2
