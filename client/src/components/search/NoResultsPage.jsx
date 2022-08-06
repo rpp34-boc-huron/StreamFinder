@@ -6,11 +6,8 @@ const NoResultsPage = (props) => {
   const { keywords } = useParams();
 
   return (
-    // <div className="no-results-found">
-    //   <p>Sorry, we couldn't find any results for "<b>{keywords}</b>"</p>
-    // </div>
     <Container
-    sx={{ fontSize: '25px', 'padding-top': '50px', textAlign: 'center' }}>
+    sx={{ fontSize: '25px', paddingTop: '50px', textAlign: 'center', color: 'rgba(0,0,0,0.5)' }}>
       <div className="no-results-found">
         <p>Sorry, we couldn't find any results for "<b>{keywords}</b>"</p>
       </div>

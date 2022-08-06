@@ -36,7 +36,7 @@ const LandingSearchPage = (props) => {
     <>
       {searchMovieData.results && searchMovieData.results.length > 0
         ?
-        <Container sx={{ margin: '50px auto' }} >
+        <Container sx={{ margin: '50px auto'}} >
           <Grid container spacing={4} mt={0} >
             {searchMovieData.results.map((movie) => (
               <MovieResultCard key={movie.id} movie={movie} />
