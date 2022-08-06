@@ -36,18 +36,20 @@ module.exports.updatePofileArr = async (req, res) => {
   }
 };
 
-module.exports.addFriend = async (username, friendName) => {
+module.exports.addFriend = async (req, res) => {
+  const { username, friendName } = req.body;
+
   try {
-    let users = User.find({username});
+    let users = await User.find({username});
     if (users.length > 0) {
       let user = users[0];
       await User.updateArrayProp({username}, 'friends', [friendName]);
-      return true;
+      res.end();
     } else {
-      return false;
+      res.status(500).end();
     }
   } catch {
-    return false;
+    res.end(500).end();
   }
 };
 
@@ -85,5 +87,27 @@ module.exports.getFriend = async(req, res) => {
     res.end(JSON.stringify({username, ownedServices, profileUrl}));
   } else {
     res.status(500).end('User Not Found');
+  }
+};
+
+module.exports.getQueriedFriends = async (req, res) => {
+  let { query } = req.params;
+  let result = [];
+
+  //get * users
+  // find those with name similar to query
+
+  try {
+    let users = await User.find({});
+    users.forEach((user) => {
+      let username = user.username;
+      if (username.indexOf(query) !== -1) {
+        result.push(username);
+      }
+    });
+
+    res.end(JSON.stringify(result));
+  } catch {
+    res.status(500).end('Internal Error');
   }
 };
