@@ -691,4 +691,11 @@
 .HULU {
   background: url("../../imgs/hulu.png");
   background-size: cover;
+}
+
+.friend-add-button {
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-items: center;
 }/*# sourceMappingURL=profile.css.map */
