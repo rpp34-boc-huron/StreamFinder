@@ -56,8 +56,8 @@ module.exports.getUserProfile = async(req, res) => {
   let users = await User.find({username});
   if (users.length > 0) {
     let user = users[0];
-    let {username, ownedServices, profileUrl, aboutMe} = user;
-    res.end(JSON.stringify({username, ownedServices, profileUrl, aboutMe}));
+    let {username, ownedServices, profileUrl, aboutMe, friends} = user;
+    res.end(JSON.stringify({username, ownedServices, profileUrl, aboutMe, friends}));
   } else {
     res.status(500).end('User not found!');
   }
@@ -72,5 +72,18 @@ module.exports.resetPassword = async (req, res) => {
     res.end();
   } catch {
     res.status(500).end();
+  }
+};
+
+module.exports.getFriend = async(req, res) => {
+  let { name } = req.params;
+  
+  let users = await User.find({username: name});
+  if (users.length > 0) {
+    let user = users[0];
+    let {username, ownedServices, profileUrl} = user;
+    res.end(JSON.stringify({username, ownedServices, profileUrl}));
+  } else {
+    res.status(500).end('User Not Found');
   }
 };

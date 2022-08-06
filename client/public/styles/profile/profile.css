@@ -133,7 +133,6 @@
   position: relative;
   width: calc(60vw - 25px);
   height: 100px;
-  background-color: rgba(0, 0, 0, 0.015);
   border-radius: 5px;
   display: grid;
   grid-template-columns: -webkit-max-content -webkit-max-content -webkit-max-content -webkit-max-content -webkit-max-content;
@@ -303,7 +302,6 @@
   display: grid;
   grid-template-columns: -webkit-max-content -webkit-max-content;
   grid-template-columns: max-content max-content;
-  background: rgba(0, 0, 0, 0.015);
   border-radius: 5px;
   box-sizing: border-box;
   padding: 50px 10px 50px 10px;
@@ -600,28 +598,8 @@
   width: 60px;
   height: 60px;
   border-radius: 5px;
-  top: 7.5px;
+  top: 2.5px;
   background: black;
-}
-
-.NETFLIX, .HBO, .HULU {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  border-radius: 5px;
-  background-size: cover;
-}
-
-.NETFLIX {
-  background: url("../../imgs/netflix.png");
-}
-
-.HBO {
-  background: url("../../imgs/hbo.webp");
-}
-
-.HULU {
-  background: url("../../imgs/hulu.png");
 }
 
 .friend-meta-username {
@@ -691,4 +669,26 @@
 
 .login-btn:hover {
   border: 1px solid black;
+}
+
+.NETFLIX, .HBO, .HULU {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+}
+
+.NETFLIX {
+  background: url("../../imgs/netflix.png");
+  background-size: cover;
+}
+
+.HBO {
+  background: url("../../imgs/hbo.webp");
+  background-size: cover;
+}
+
+.HULU {
+  background: url("../../imgs/hulu.png");
+  background-size: cover;
 }/*# sourceMappingURL=profile.css.map */

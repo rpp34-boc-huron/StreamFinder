@@ -57,6 +57,7 @@ app.post('/user/profileUrl', auth.auth, userController.saveProfilePicture);
 app.post('/user/service', auth.auth, userController.updatePofileArr);
 app.post('/user/password/reset', auth.auth, userController.resetPassword);
 app.post('/user/aboutMe', auth.updateSession, auth.auth, userController.saveProfileData);
+app.post('/friend/:name', auth.auth, userController.getFriend);
 // app.post('/user/friends', userController.addFriend);
 
 

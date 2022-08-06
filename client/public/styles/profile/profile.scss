@@ -26,7 +26,6 @@ $newBlack: rgba(0,0,0,0.85);
   min-height: 300px;
   display: grid;
   grid-template-columns: max-content max-content;
-  background: $CarouselGrey;
   border-radius: 5px;
   box-sizing: border-box;
   padding: 50px 10px 50px 10px;
@@ -297,26 +296,8 @@ $newBlack: rgba(0,0,0,0.85);
   width: 60px;
   height: 60px;
   border-radius: 5px;
-  top: 7.5px;
+  top: 2.5px;
   background: black;
-}
-
-.NETFLIX, .HBO, .HULU {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  border-radius: 5px;
-  background-size: cover;
-}
-
-.NETFLIX {
-  background: url('../../imgs/netflix.png');
-}
-.HBO {
-  background: url('../../imgs/hbo.webp');
-}
-.HULU {
-  background: url('../../imgs/hulu.png');
 }
 
 .friend-meta-username {
@@ -384,4 +365,24 @@ $newBlack: rgba(0,0,0,0.85);
 
 .login-btn:hover {
   border: 1px solid black;
+}
+
+.NETFLIX, .HBO, .HULU {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+}
+
+.NETFLIX {
+  background: url('../../imgs/netflix.png');
+  background-size: cover;
+}
+.HBO {
+  background: url('../../imgs/hbo.webp');
+  background-size: cover;
+}
+.HULU {
+  background: url('../../imgs/hulu.png');
+  background-size: cover;
 }
