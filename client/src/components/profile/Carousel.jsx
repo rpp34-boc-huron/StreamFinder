@@ -15,7 +15,7 @@ const Carousel = (props) => {
   }
 
   const onBallClick = (name, num) => {
-    const balls = document.querySelectorAll(`.carousel-ball`)
+    const balls = document.querySelectorAll(`.carousel-ball-${name}`)
     console.log('balls: ', balls);
     for (let i = 0; i < balls.length; i++) {
       console.log(balls[i].style)
@@ -74,7 +74,7 @@ const Carousel = (props) => {
 
       <div className="carousel-next">
         {balls.map((ball, i) => {
-          return <div key={`carousel-ball-${i}`} className={`carousel-ball carousel-ball-${name}-${i}`} onClick={() => onBallClick(name, i)}></div>
+          return <div key={`carousel-ball-${i}`} className={`carousel-ball carousel-ball-${i} carousel-ball-${name}-${i} carousel-ball-${name}`} onClick={() => onBallClick(name, i)}></div>
         })}
       </div>
     </div>
