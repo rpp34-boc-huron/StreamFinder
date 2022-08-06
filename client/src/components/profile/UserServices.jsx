@@ -68,7 +68,6 @@ const OwnedServiceDetail = (props) => {
       method: 'post',
       url: '/user/service',
       data: {
-        username,
         itemName: 'ownedServices',
         newValue: service,
         add: false
@@ -93,7 +92,6 @@ const UnownedServiceDetail = (props) => {
       method: 'post',
       url: '/user/service',
       data: {
-        username,
         itemName: 'ownedServices',
         newValue: service,
         add: true
