@@ -344,6 +344,7 @@
 
 .user-profile-about-me-text {
   color: rgba(0, 0, 0, 0.65);
+  width: calc(60vw - 140px);
 }
 
 .replace-profile-image-button {
