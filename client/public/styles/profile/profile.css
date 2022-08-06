@@ -11,6 +11,7 @@
   color: rgba(0, 0, 0, 0.65);
   position: absolute;
   top: -30px;
+  margin-left: 1.5vw;
 }
 
 .carousel-rectangle {
@@ -22,7 +23,10 @@
   flex-direction: row;
   -ms-overflow-style: none;
   align-items: center;
-  justify-content: space-between;
+  justify-content: left;
+  -moz-column-gap: 1.2vw;
+       column-gap: 1.2vw;
+  margin-left: 1.5vw;
 }
 
 .carousel-item {
@@ -197,6 +201,7 @@
   color: rgba(0, 0, 0, 0.65);
   position: absolute;
   top: -30px;
+  margin-left: 1.5vw;
 }
 
 .carousel-rectangle {
@@ -208,7 +213,10 @@
   flex-direction: row;
   -ms-overflow-style: none;
   align-items: center;
-  justify-content: space-between;
+  justify-content: left;
+  -moz-column-gap: 1.2vw;
+       column-gap: 1.2vw;
+  margin-left: 1.5vw;
 }
 
 .carousel-item {
