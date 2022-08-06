@@ -18,20 +18,19 @@ const App = () => {
   const [movieId, setMovieId] = useState(238)
   const [token, setToken] = useState();
   const [username, setUsername] = useState(null);
-
-
   const handleClick = (e, movieID) => {
     e.preventDefault();
     const movieId = e.target.id || movieID
     setMovieId(movieId);
   }
 
+
   // if (!token) {
   //   return <Login setToken={setToken} setUserData={setUserData} />
   // }
 
   if (username === null) {
-    return <Login render={username} setUsername={setUsername}/> 
+    return <Login render={username} setUsername={setUsername}/>
   };
 
   return (

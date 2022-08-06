@@ -74,7 +74,7 @@ export default function Login({ setToken, setUserData }) {
       </div>
     )
   }
-  
+
   Login.propTypes = {
     setToken: PropTypes.func.isRequired
   };
