@@ -28,4 +28,4 @@ class Session {
 
 let session = new Session();
 
-module.exports = session;
+module.exports = session;     
