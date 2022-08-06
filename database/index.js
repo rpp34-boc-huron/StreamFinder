@@ -92,13 +92,17 @@ const User = {
     const selected = result.select(listName)
     selected
       .then((list) => {
+        if(list === null) {
+          list = {}
+          list[listName] =[]
+        }
         let arr = list[listName]
         const index = arr.findIndex(obj => obj.id === movieJSON.id)
         if(index > -1) {
           arr.splice(index, 1)
           //remove movie
             USER.findOneAndUpdate({username: userName}, {[listName]: arr}, {upsert: true, new: true}, (err, result) => {
-              // console.log(result)
+              console.log(result)
               if(err) {
                 callback(err, null)
               } else {
@@ -108,7 +112,7 @@ const User = {
         } else {
         arr.push(movieJSON)
           //add movie
-        USER.findOneAndUpdate({username: userName}, {[listName]: arr}, {upsert: true, returnDocument: 'after'}, (err, result) => {
+        USER.findOneAndUpdate({username: userName}, {[listName]: arr}, {upsert: true, new: true}, (err, result) => {
           console.log(result)
           if(err) {
             callback(err, null)

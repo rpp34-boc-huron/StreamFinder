@@ -12,7 +12,7 @@ export default function addToFavorites({event, movieID, poster, favorited}) {
   const { id } = movieID;
   const actionWrapper = e => {
     //pass in userID and movieID
-    addToFavorites('sase', id, poster)
+    addToFavorites(id, poster)
       .then((responseCode) => {
         console.log(responseCode)
         if(responseCode.data === 'removed') {
@@ -24,7 +24,6 @@ export default function addToFavorites({event, movieID, poster, favorited}) {
         }
       })
   }
-  const buttonSides = 64;
   const heartFillColor = favorited ? 'red' : 'gray';
     return (
       <IconButton
@@ -41,19 +40,12 @@ export default function addToFavorites({event, movieID, poster, favorited}) {
       }
       >
       <FavoriteIcon onClick={actionWrapper} style={{ fill: heartFillColor }}/>
-        <Snackbar open={open} autoHideDuration={1000} onClose={handleClose} anchorOrigin={{vertical:'top', horizontal: 'bottom'}} sx={{ height: "100%", opacity: "transparent" }}>
-        {showBanner ? <Alert onClose={()=>{
-              setOpen(false)
-              setBanner(null)
-            }} severity="info">
+        <Snackbar open={open} autoHideDuration={500} onClose={handleClose} anchorOrigin={{vertical:'top', horizontal: 'bottom'}} sx={{ height: "100%", opacity: "transparent" }}>
+        {showBanner ? <Alert severity="info">
               Removed from Favorites!
-            </Alert> : <Alert onClose={()=>{
-              setOpen(false)
-              setBanner(null)
-            }} severity="success">
+            </Alert> : <Alert severity="success">
               Added to Favorites!
             </Alert>}
-
       </Snackbar>
     </IconButton>
   )
