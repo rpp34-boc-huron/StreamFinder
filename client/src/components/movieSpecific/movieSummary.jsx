@@ -133,7 +133,7 @@ export default function Moviesumm() {
                                                 .catch((err => console.log(err)))
                                         })
                                         .catch(err => console.log(err))
-                                }} />
+                                }} />  
                                 <FaShare className="share" onClick={
                                     () => copyPageUrl()
                                 } />
