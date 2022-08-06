@@ -275,6 +275,10 @@
           backdrop-filter: blur(4px);
 }
 
+* {
+  font-family: lato, sans-serif !important;
+}
+
 .user-profile {
   position: relative;
   display: grid;
@@ -344,6 +348,7 @@
 
 .user-profile-about-me-text {
   color: rgba(0, 0, 0, 0.65);
+  width: calc(60vw - 140px);
 }
 
 .replace-profile-image-button {
