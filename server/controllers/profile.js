@@ -101,7 +101,7 @@ module.exports.getQueriedFriends = async (req, res) => {
     let users = await User.find({});
     users.forEach((user) => {
       let username = user.username;
-      if (username.indexOf(query) !== -1) {
+      if (JSON.stringify(username).indexOf(query) !== -1) {
         result.push(username);
       }
     });
