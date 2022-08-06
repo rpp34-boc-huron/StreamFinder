@@ -18,13 +18,15 @@ const LandingPage = (props) => {
 
   const [favorites, setFavorites] = useState([]);
   const [watchList, setWatchList] = useState([]);
+  const user = JSON.parse(sessionStorage.getItem('userInfo'))
+  console.log(user)
 //watchList.length > 0 &&
 //favorites.length > 0 &&
 console.log(watchList)
   return (
     <div className="movie-carousels">
-      { <MovieCarousel header={'Watch List'} apiMethod={getWatchlistMovieData} user={'sase'} type={'watchlist'} setWatchList={setWatchList} favorites={favorites} watchlist={watchList}/>}
-      {<MovieCarousel header={'My Favorites'} apiMethod={getFavoritesMovieData} user={'sase'} type={'favorites'}  setFavorites={setFavorites} favorites={favorites} watchlist={watchList}/>}
+      { <MovieCarousel header={'Watch List'} apiMethod={getWatchlistMovieData} user={user.username} type={'watchlist'} setWatchList={setWatchList} favorites={favorites} watchlist={watchList}/>}
+      {<MovieCarousel header={'My Favorites'} apiMethod={getFavoritesMovieData} user={user.username} type={'favorites'}  setFavorites={setFavorites} favorites={favorites} watchlist={watchList}/>}
       <MovieCarousel header={'Trending'} apiMethod={getTrendingMovieData} favorites={favorites} watchlist={watchList}/>
       <MovieCarousel header={'Horror'} apiMethod={getHorrorMovieData} favorites={favorites} watchlist={watchList}/>
       <MovieCarousel header={'Action'} apiMethod={getActionMovieData} favorites={favorites} watchlist={watchList}/>
