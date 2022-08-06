@@ -33,6 +33,9 @@ const MovieResultCard = (props) => {
     if (tagName === 'H5') {
       id = e.target.parentElement.parentElement.id;
     }
+    if (tagName === 'BUTTON') {
+      id = e.target.id;
+    }
     navigate(`/movie/${id}`);
   }
 
@@ -49,6 +52,7 @@ const MovieResultCard = (props) => {
         <CardActionArea
           id={movie.id}
           onClick={handleClicked}
+          sx={{ height: '100%' }}
         >
           <CardMedia
             sx={{ height: '366px' }}
@@ -62,7 +66,7 @@ const MovieResultCard = (props) => {
             alt='Image Not Supported'
           />
           <CardContent sx={{ flexGrow: 1 }}>
-            <Typography variant="h5" component="h5">
+            <Typography variant="h5" component="h5" sx={{color: 'rgba(0,0,0,0.5)'}}>
               {movie.title}
             </Typography>
           </CardContent>

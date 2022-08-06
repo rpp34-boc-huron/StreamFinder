@@ -133,24 +133,46 @@ const getSearchMovieResultsData = async (keywords, page) => {
     }
 };
 
-const getFavoritesMovieData = (cb, user) => {
-  axios.get(`/movies/${user}/favorites`)
+////////////////////////////////////////////////////////////////////////////////
+// const getFavoritesMovieData = (cb, user) => {
+//   axios.get(`/movies/${user}/favorites`)
+//   .then(data => {
+//     cb(null, data);
+//   })
+//   .catch(err => {
+//     cb(err);
+//   })
+// };
+
+const getFavoritesMovieData = (cb) => {
+  axios.post(`/movies/favorites`)
   .then(data => {
     cb(null, data);
   })
   .catch(err => {
     cb(err);
-  })
+  });
 };
 
-const getWatchlistMovieData = (cb, user) => {
-  axios.get(`/movies/${user}/watchlist`)
+////////////////////////////////////////////////////////////////////////////////
+// const getWatchlistMovieData = (cb, user) => {
+//   axios.get(`/movies/${user}/watchlist`)
+//   .then(data => {
+//     cb(null, data);
+//   })
+//   .catch(err => {
+//     cb(err);
+//   })
+// };
+
+const getWatchlistMovieData = (cb) => {
+  axios.post(`/movies/watchlist`)
   .then(data => {
     cb(null, data);
   })
   .catch(err => {
     cb(err);
-  })
+  });
 };
 
 

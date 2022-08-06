@@ -16,6 +16,7 @@ $CarouselGrey:rgba(0,0,0,0.015);
   color: $HeaderBlack;
   position: absolute;
   top: -30px;
+  margin-left: 1.5vw;
 }
 
 .carousel-rectangle {
@@ -27,8 +28,10 @@ $CarouselGrey:rgba(0,0,0,0.015);
   flex-direction: row;
   -ms-overflow-style: none;
   align-items: center;
-  justify-content: space-between;
-}
+  justify-content: left;
+  column-gap: 1.2vw;
+  margin-left: 1.5vw;
+} 
 
 .carousel-item {
   width: 200px;

@@ -8,10 +8,13 @@ import MovieCard from './MovieCard.jsx';
 import Carousel from '../profile/Carousel.jsx';
 import HoverCard from '../hoverCard/hoverCard.jsx';
 
-const MovieCarousel = ({ header, apiMethod, user, type, setFavorites, setWatchList, favorites, watchlist }) => {
+const MovieCarousel = ({ header, apiMethod, user, type, setFavorites, setWatchList, favorites, watchlist, randomNumber }) => {
 
     const [trendingList, setTrendingList] = useState([]);
     const [error, setError] = useState(null);
+    const [randomNum, setRandomNumber] = useState(0);
+
+    let rando = randomNumber;
 
     useEffect(() => {
       if (user) {
@@ -50,42 +53,9 @@ const MovieCarousel = ({ header, apiMethod, user, type, setFavorites, setWatchLi
         })
       }
 
-    }, [])
+    }, [randomNum])
 
-    return <Carousel name={header} arrOfMoviesObj={trendingList} ExpandedView={HoverCard} favorites={favorites} watchList={watchlist}>{/*HoverCard*/}</Carousel>
-
-//     const sliderItems = trendingList.length > 6 ? 6 : trendingList.length;
-//     const items = [];
-//     for (let i = 0; i < trendingList.length; i += sliderItems) {
-//         if (i % sliderItems === 0) {
-//         items.push(
-//             <Card raised className="Banner" style={{ padding: 20 }} key={i.toString()}>
-//             <Grid container spacing={0} className="BannerGrid">
-//                 {trendingList.slice(i, i + sliderItems).map((movies, index) => {
-//                 return <CarouselScreen key={index.toString()} item={movies} />;
-//                 })}
-//             </Grid>
-//             </Card>
-//         );
-//         }
-//     }
-//     return (
-//       <>
-//         <p className="carousel-header">{header}</p>
-//         <Carousel animation="slide" autoPlay={false} cycleNavigation timeout={300}>
-//         {items}
-//         </Carousel>
-//       </>
-//     );
-
-//   };
-
-
-//   const CarouselScreen = (props) => {
-//     return (
-//         <Paper>
-//             <MovieCard moviePoster={props.item.image} movieId={props.item.id}/>
-//         </Paper>
+    return <Carousel name={header} arrOfMoviesObj={trendingList} ExpandedView={HoverCard} favorites={favorites} watchList={watchlist} setRandomNumber={setRandomNumber}>{/*HoverCard*/}</Carousel>
 
 }
 

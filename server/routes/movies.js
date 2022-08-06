@@ -1,6 +1,7 @@
 const axios = require('axios');
 const express = require('express');
 const router = express.Router();
+const auth = require('../auth/login.js');
 require('dotenv').config();
 const API_KEY = process.env.API_KEY;
 const db = require('../controllers/getFavoritesAndWatchlistController.js');
@@ -87,24 +88,24 @@ router.get('/mystery', (req, res) => {
   })
 })
 
-router.get('/:user/favorites', (req, res) => {
-  db.getUserData(req.params.user, 'favorites')
+router.post('/favorites', auth.auth, (req, res) => {
+  db.getUserData(req.body.username, 'favorites')
   .then(data => {
     res.json(data)
   })
   .catch(err => {
     res.json(err);
-  })
-})
+  });
+});
 
-router.get('/:user/watchlist', (req, res) => {
-  db.getUserData(req.params.user, 'watchList')
+router.post('/watchlist', auth.auth, (req, res) => {
+  db.getUserData(req.body.username, 'watchList')
   .then(data => {
     res.json(data)
   })
   .catch(err => {
     res.json(err);
-  })
-})
+  });
+});
 
 module.exports = router;
