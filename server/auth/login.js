@@ -6,7 +6,6 @@ module.exports.login = async(req, res) => {
   const {username, password} = req.body;
   const { sessionId } = req.cookies;
 
-  console.log({username, sessionId});
   if ((username === undefined || username === '') && sessionId !== undefined) {
     // login with sesh
 
@@ -20,10 +19,8 @@ module.exports.login = async(req, res) => {
       }
     }
     
-    res.status(401).end();
+    res.status(401).end('Unautorized!');
   } else if (username !== undefined) {
-    // login with username
-    console.log('loggin in without sesh');
     let users = await User.find({username});
     if (users.length > 0) {
       let user = users[0];
@@ -36,11 +33,11 @@ module.exports.login = async(req, res) => {
         res.cookie('sessionId', sessionId, { maxAge: 900000, httpOnly: true });
         res.end(user.username);
       } else {
-        res.status(401).end();
+        res.status(401).end('Unauthorized');
       }
 
     } else {
-      res.status(400).end('User Not Found');
+      res.status(400).end('User Not Found'); 
     }
   }
 };

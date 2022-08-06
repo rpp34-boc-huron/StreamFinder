@@ -317,3 +317,66 @@ $newBlack: rgba(0,0,0,0.85);
 .friend-meta-username {
   color: $RegularBlack;
 }
+
+.login-upper-container {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.login-container {
+  position: relative;
+  width: 40%;
+  min-width: 500px;
+  justify-self: center;
+  height: 375px;
+  display: grid;
+  grid-template-rows: 100px auto auto auto;
+  align-content: space-between;
+} 
+
+.login-header {
+  background: rgba(0,0,0,0.0285);
+  display: grid;
+  grid-template-columns: 100px max-content;
+  grid-row-gap: 40px;
+  align-items: center;
+}
+
+.stream-finder-logo-login {
+  position: relative;
+  width: 75px;
+  height: 75px;
+  left: 12.5px;
+  background: url('../../imgs/transparent_streamfinder_icon.png');
+  background-size: cover;
+}
+
+.login-title {
+  font-size: 35px;
+  color: $HeaderBlack;
+  font-weight: 900;
+  font-family: lato, sans-serif;
+}
+
+.login-btn-interactions {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+}
+
+.login-btn {
+  width: 200px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.225);
+  font-size: 18px;
+  color: $RegularBlack;
+}
+
+.login-btn:hover {
+  border: 1px solid black;
+}
