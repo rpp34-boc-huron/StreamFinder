@@ -9,7 +9,7 @@ const Navbar = (props) => {
     const { setSearchMovieData } = props;
     const navigate = useNavigate();
 
-    const signout = () => {
+    const signOut = () => {
       axios.get('/sase/signout')
       .then(() => location.reload());
     };
