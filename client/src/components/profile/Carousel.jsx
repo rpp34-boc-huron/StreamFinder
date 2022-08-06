@@ -22,7 +22,7 @@ const Carousel = (props) => {
     for (let i = 0; i < balls; i++) ballsArr.push(1);
     setBalls(ballsArr);
     setIndex(1);
-    setItems(arrOfMoviesObj);
+    setItems(arrOfMoviesObj || []);
     setFavoritesIds(favorites);
     setWatchListIds(watchList);
     setDisplayedItems(items.slice(0, maxItems));

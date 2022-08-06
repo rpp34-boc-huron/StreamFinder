@@ -3,8 +3,7 @@ import { TextField, Button } from '@mui/material';
 import defaultProfilePic from './base64DefaultImg.js';
 
 const UserFriends = (props) => {
-
-    const [friends, setFriends] = useState([1,1,1]);
+    const { user , fetchUser} = props;
 
     return (
     <div className="user-profile-friends">
@@ -12,8 +11,8 @@ const UserFriends = (props) => {
       <TextField variant="standard" label="Search Friends" size="small" fullWidth/>
       <Button sx={{width: 'max-content', '&:hover': {background: 'transparent'}}} disableRipple >Add Friend</Button>
       <div className="user-profile-friends-list">
-        {friends.map((friend, i) => {
-          return <Friend name={friend}/>
+        {(user.fiends || []).map((friend, i) => {
+          return <Friend key={`user-friend-${i}`} name={friend}/>
         })}
       </div>
     </div>
@@ -21,6 +20,14 @@ const UserFriends = (props) => {
 };
 
 const Friend = (props) => {
+  const { name } = props;
+  const [friend, setFriend] = useState({});
+
+  console.log('name: ', name);
+  useEffect(() => {
+    // fetch friend
+  }, []);
+
   
   return (
     <div className="friend">

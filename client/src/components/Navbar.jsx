@@ -3,10 +3,16 @@ import SearchBar from './search/SearchBar';
 import { useNavigate } from 'react-router-dom';
 import { AppBar, IconButton, Toolbar, Typography, Button, CssBaseline } from '@mui/material';
 import '../App.css';
+import axios from 'axios';
 
 const Navbar = (props) => {
     const { setSearchMovieData } = props;
     const navigate = useNavigate();
+
+    const signout = () => {
+      axios.get('/sase/signout')
+      .then(() => location.reload());
+    };
 
     return (
         <React.Fragment>

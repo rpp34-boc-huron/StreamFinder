@@ -17,7 +17,6 @@ const Account = (props) => {
           method: 'post',
           url: '/user/password/reset',
           data: {
-            username: user.username,
             password: el.value
           }
         })

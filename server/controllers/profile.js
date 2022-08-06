@@ -52,7 +52,7 @@ module.exports.addFriend = async (username, friendName) => {
 };
 
 module.exports.getUserProfile = async(req, res) => {
-  const { username } = req.params;
+  const { username } = req.body;
   let users = await User.find({username});
   if (users.length > 0) {
     let user = users[0];
