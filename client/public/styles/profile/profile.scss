@@ -6,6 +6,10 @@ $newBlack: rgba(0,0,0,0.85);
 @import './profileServices';
 @import './variables';
 
+* {
+  font-family: lato, sans-serif !important;
+}
+
 .user-profile {
   position: relative;
   display: grid;
