@@ -7,7 +7,7 @@ const axios = require('axios');
 import MovieSpecific2 from '../movieSpecific-2/MovieSpecific2';
 import Trailer from '../movieSpecific-2/Trailer';
 import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation  } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import { addToFavorites, addToList } from '../../utils/getTMDBdata';
 
@@ -23,6 +23,8 @@ export default function Moviesumm() {
     const [moviePoster, changePoster] = useState(null);
     const [movieProviders, changeProvider] = useState([]);
     const [movieScore, changeScore] = useState(null);
+
+    const location = useLocation();
 
     const getPoster = async () => {
         try {
@@ -53,8 +55,9 @@ export default function Moviesumm() {
         }
     }
     async function copyPageUrl() {
+
         try {
-          await navigator.clipboard.writeText(location.href);
+          await navigator.clipboard.writeText(location);
           window.alert('Page URL copied to clipboard');
         } catch (err) {
           window.alert('Failed to copy: ', err);
