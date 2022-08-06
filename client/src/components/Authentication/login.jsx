@@ -36,8 +36,6 @@ export default function Login({ setToken, setUserData }) {
             }
             setUserData(userInfo);
             console.log("this is the userInfo " + JSON.stringify(userInfo));
-            sessionStorage.setItem('token', token.token)
-            sessionStorage.setItem('userInfo', JSON.stringify(userInfo))
         }
         setToken(token.token);
         setStatus(token.message);
