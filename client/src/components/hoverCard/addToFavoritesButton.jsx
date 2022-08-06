@@ -2,7 +2,7 @@ import * as React from 'react';
 import {IconButton, Alert, Snackbar} from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-export default function addToFavorites({event, movieID, poster, favorited}) {
+export default function addToFavorites({event, movieID, poster, favorited, setRandomNumber}) {
   const [open, setOpen] = React.useState(false);
   const [showBanner, setBanner] =React.useState(null);
   const handleOpen = () => setOpen(true);
@@ -23,6 +23,8 @@ export default function addToFavorites({event, movieID, poster, favorited}) {
           handleOpen()
         }
       })
+      setRandomNumber(Math.random());
+      window.location.reload(false);
   }
   const heartFillColor = favorited ? 'red' : 'gray';
     return (

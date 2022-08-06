@@ -88,28 +88,18 @@ router.get('/mystery', (req, res) => {
   })
 })
 
-router.get('/:user/favorites', (req, res) => {
-  db.getUserData(req.params.user, 'favorites')
-  .then(data => {
-    res.json(data)
-  })
-  .catch(err => {
-    res.json(err);
-  })
-})
-
-router.get('/:user/watchlist', (req, res) => {
-  db.getUserData(req.params.user, 'watchList')
-  .then(data => {
-    res.json(data)
-  })
-  .catch(err => {
-    res.json(err);
-  })
-})
-
 router.post('/favorites', auth.auth, (req, res) => {
   db.getUserData(req.body.username, 'favorites')
+  .then(data => {
+    res.json(data)
+  })
+  .catch(err => {
+    res.json(err);
+  });
+});
+
+router.post('/watchlist', auth.auth, (req, res) => {
+  db.getUserData(req.body.username, 'watchList')
   .then(data => {
     res.json(data)
   })

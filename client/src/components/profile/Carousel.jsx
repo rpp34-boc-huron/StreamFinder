@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 const Carousel = (props) => {
-  const { ExpandedView, name, arrOfMoviesObj, favorites, watchList } = props;
+  const { ExpandedView, name, arrOfMoviesObj, favorites, watchList, setRandomNumber } = props;
   const [items, setItems] = useState([]);
   const [displayedItems, setDisplayedItems] = useState([]);
   const [index, setIndex] = useState(1);
@@ -49,7 +49,7 @@ const Carousel = (props) => {
         {displayedItems.map((item, i) => {
           return (
             <div key={`carousel-${name}-${i}`} className="carousel-item">
-              <Display item={item} ExpandedView={ExpandedView} favoritesIds={favoritesIds} watchlistIds={watchlistIds}/>
+              <Display item={item} ExpandedView={ExpandedView} favoritesIds={favoritesIds} watchlistIds={watchlistIds} setRandomNumber={setRandomNumber}/>
             </div>
           );
         })}
@@ -64,11 +64,11 @@ const Carousel = (props) => {
   );
 };
 
-const Display = ({ item, ExpandedView, favoritesIds, watchlistIds}) => {
+const Display = ({ item, ExpandedView, favoritesIds, watchlistIds, setRandomNumber}) => {
   const [expanded, setExpanded] = useState(false);
 
   if (expanded) {
-    return ExpandedView!==undefined? <ExpandedView movieId={item.id} set={setExpanded} favorited={favoritesIds ? favoritesIds.includes(item.id.toString()) : null} toBeWatched={watchlistIds ? watchlistIds.includes(item.id.toString()) : null}/> : <Empty set={setExpanded}/>;
+    return ExpandedView!==undefined? <ExpandedView movieId={item.id} set={setExpanded} favorited={favoritesIds ? favoritesIds.includes(item.id.toString()) : null} toBeWatched={watchlistIds ? watchlistIds.includes(item.id.toString()) : null} setRandomNumber={setRandomNumber}/> : <Empty set={setExpanded}/>;
   }
   return (
     <img src={item.image} alt="" width="100%" height="100%" onMouseEnter={() => setExpanded(true)}/>
